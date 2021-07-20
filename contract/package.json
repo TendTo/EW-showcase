@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "truffle": "^5.4.0"
+  },
+  "scripts": {
+    "init": "truffle init",
+    "unbox": "truffle unbox",
+    "develop": "truffle develop",
+    "test": "truffle test",
+    "compile": "truffle compile",
+    "migrate": "truffle migrate",
+    "console": "truffle console",
+    "serve": "lite-server"
+  },
+  "name": "ew-contract",
+  "version": "1.0.0",
+  "description": "Energy Web contract showcase",
+  "private": true,
+  "devDependencies": {
+    "@truffle/hdwallet-provider": "^1.4.1",
+    "mocha": "^8.1.2"
+  },
+  "author": "Tend",
+  "license": "ISC"
+}
