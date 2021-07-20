@@ -1,2 +1,4 @@
 *.sh text eol=lf
 *.ipynb text eol=lf
+*.tex text eol=lf
+*.bib text eol=lf
