@@ -48,6 +48,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react-router-dom": "^5.1.8"
+    "@types/react-router-dom": "^5.1.8",
+    "text-encoding": "^0.7.0"
   }
 }
