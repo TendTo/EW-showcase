@@ -1,8 +1,9 @@
 import detectEthereumProvider from '@metamask/detect-provider';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import Web3 from 'web3';
 import { provider } from 'web3-core';
+import { WindowProvider } from '../../types/MetaMask';
 import AppNav from '../AppNav/AppNav';
 import ENS from '../ENS/ENS';
 import Home from '../Home/Home';
@@ -11,23 +12,21 @@ import Login from '../Login/Login';
 import './App.css';
 
 function App() {
+  const allowedChain = ["volta"];
   const [web3, setWeb3] = useState<Web3>();
+  const [accounts, setAccounts] = useState<string[]>([]);
+  const [chain, setChain] = useState<string>("");
 
-  useEffect(() => {
-    detectEthereumProvider()
-      .then((provider) => {
-        if (provider !== null)
-          setWeb3(new Web3(provider as provider));
-      })
-      .catch(console.error);
-  }, [])
+  const showMain = () => web3 !== undefined && accounts.length > 0 && allowedChain.includes(chain);
+
+  console.log("APP");
 
   return (
     <>
       <Router>
-        <AppNav></AppNav>
+        <AppNav accounts={accounts} chain={chain}></AppNav>
         <main className="container-fluid">
-          {web3 !== null && (
+          {showMain() && (
             <Switch>
               <Route path="/ens" exact>
                 <ENS web3={web3}></ENS>
@@ -37,8 +36,8 @@ function App() {
               </Route>
               <Route path="/" component={Home} />
             </Switch>)}
-          {web3 === null && (
-            <Login></Login>
+          {!showMain() && (
+            <Login web3={web3} chain={chain} setAccounts={setAccounts} setWeb3={setWeb3} setChain={setChain}></Login>
           )}
         </main>
       </Router>
