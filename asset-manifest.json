@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.c77dc8ca.chunk.css",
-    "main.js": "/static/js/main.4948224c.chunk.js",
-    "main.js.map": "/static/js/main.4948224c.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.35e12059.js",
-    "runtime-main.js.map": "/static/js/runtime-main.35e12059.js.map",
-    "static/js/2.e6b83677.chunk.js": "/static/js/2.e6b83677.chunk.js",
-    "static/js/2.e6b83677.chunk.js.map": "/static/js/2.e6b83677.chunk.js.map",
-    "static/js/3.089802e0.chunk.js": "/static/js/3.089802e0.chunk.js",
-    "static/js/3.089802e0.chunk.js.map": "/static/js/3.089802e0.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/main.c77dc8ca.chunk.css.map": "/static/css/main.c77dc8ca.chunk.css.map",
-    "static/js/2.e6b83677.chunk.js.LICENSE.txt": "/static/js/2.e6b83677.chunk.js.LICENSE.txt",
-    "static/media/key-manager-icon.1e677450.svg": "/static/media/key-manager-icon.1e677450.svg",
-    "static/media/metamask-logo.05bfcf16.svg": "/static/media/metamask-logo.05bfcf16.svg",
-    "static/media/wallet-connect-icon.44297cab.svg": "/static/media/wallet-connect-icon.44297cab.svg"
+    "main.css": "/EW-showcase/static/css/main.c77dc8ca.chunk.css",
+    "main.js": "/EW-showcase/static/js/main.4948224c.chunk.js",
+    "main.js.map": "/EW-showcase/static/js/main.4948224c.chunk.js.map",
+    "runtime-main.js": "/EW-showcase/static/js/runtime-main.a4918ee3.js",
+    "runtime-main.js.map": "/EW-showcase/static/js/runtime-main.a4918ee3.js.map",
+    "static/js/2.cb59e2b7.chunk.js": "/EW-showcase/static/js/2.cb59e2b7.chunk.js",
+    "static/js/2.cb59e2b7.chunk.js.map": "/EW-showcase/static/js/2.cb59e2b7.chunk.js.map",
+    "static/js/3.089802e0.chunk.js": "/EW-showcase/static/js/3.089802e0.chunk.js",
+    "static/js/3.089802e0.chunk.js.map": "/EW-showcase/static/js/3.089802e0.chunk.js.map",
+    "index.html": "/EW-showcase/index.html",
+    "static/css/main.c77dc8ca.chunk.css.map": "/EW-showcase/static/css/main.c77dc8ca.chunk.css.map",
+    "static/js/2.cb59e2b7.chunk.js.LICENSE.txt": "/EW-showcase/static/js/2.cb59e2b7.chunk.js.LICENSE.txt",
+    "static/media/key-manager-icon.1e677450.svg": "/EW-showcase/static/media/key-manager-icon.1e677450.svg",
+    "static/media/metamask-logo.05bfcf16.svg": "/EW-showcase/static/media/metamask-logo.05bfcf16.svg",
+    "static/media/wallet-connect-icon.44297cab.svg": "/EW-showcase/static/media/wallet-connect-icon.44297cab.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.35e12059.js",
-    "static/js/2.e6b83677.chunk.js",
+    "static/js/runtime-main.a4918ee3.js",
+    "static/js/2.cb59e2b7.chunk.js",
     "static/css/main.c77dc8ca.chunk.css",
     "static/js/main.4948224c.chunk.js"
   ]
