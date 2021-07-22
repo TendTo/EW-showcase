@@ -1,9 +1,6 @@
-import detectEthereumProvider from '@metamask/detect-provider';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import Web3 from 'web3';
-import { provider } from 'web3-core';
-import { WindowProvider } from '../../types/MetaMask';
 import AppNav from '../AppNav/AppNav';
 import ENS from '../ENS/ENS';
 import Home from '../Home/Home';

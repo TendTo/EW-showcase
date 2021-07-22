@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react';
+import React from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
 import toast from '../Toast/Toast';
 import './AppNav.css'

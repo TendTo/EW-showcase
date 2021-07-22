@@ -1,4 +1,3 @@
-import { timeStamp } from 'console';
 import React from 'react';
 import Transaction from '../../api/Transaction';
 import { getTransactionListSingleResponse } from '../../api/VoltaApi';
@@ -20,7 +19,7 @@ function EwTransaction({ transaction, address }: Props) {
                         Transaction
                     </span>
                     <span className="badge title-badge">
-                        {transaction.isError == "1" ? 'Error' : 'Success'}
+                        {transaction.isError === "1" ? 'Error' : 'Success'}
                     </span>
                 </div>
                 <div className="col-md-7 col-lg-8 d-flex flex-column pr-2 pr-sm-2 pr-md-0">

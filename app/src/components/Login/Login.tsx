@@ -20,13 +20,6 @@ export function Login({ setAccounts, setWeb3, setChain, web3, chain }: Props) {
     const allowedChains = ["volta"];
     const onboarding = React.useRef<MetaMaskOnboarding>(new MetaMaskOnboarding());
 
-    const providerEventSetup = (provider: WindowProvider, newWeb3: Web3) => {
-        provider.removeListener('accountsChanged', setAccounts);
-        provider.removeListener('chainChanged', setChain);
-        provider.on('accountsChanged', setAccounts);
-        provider.on('chainChanged', async (_) => setChain(await newWeb3.eth.net.getNetworkType()));
-    }
-
     const handleAccounts = (accounts: string[]) => {
         if (accounts.length > 0) {
             setAccounts(accounts);
@@ -55,10 +48,15 @@ export function Login({ setAccounts, setWeb3, setChain, web3, chain }: Props) {
     };
 
     useEffect(() => {
+        const providerEventSetup = (provider: WindowProvider, newWeb3: Web3) => {
+            provider.removeListener('accountsChanged', setAccounts);
+            provider.removeListener('chainChanged', setChain);
+            provider.on('accountsChanged', setAccounts);
+            provider.on('chainChanged', async (_) => setChain(await newWeb3.eth.net.getNetworkType()));
+        }
         const setup = async () => {
             const provider = await detectEthereumProvider() as WindowProvider;
             if (provider !== null) {
-                console.log(provider);
                 const newWeb3 = new Web3(provider);
                 const accounts = await newWeb3.eth.getAccounts();
                 const chain = await newWeb3.eth.net.getNetworkType();
@@ -68,9 +66,9 @@ export function Login({ setAccounts, setWeb3, setChain, web3, chain }: Props) {
                 setWeb3(newWeb3);
                 providerEventSetup(provider, newWeb3);
             }
-        }
+        };
         setup();
-    }, [])
+    }, [setAccounts, setWeb3, setChain, web3])
 
     return (
         <Card className="text-center">
