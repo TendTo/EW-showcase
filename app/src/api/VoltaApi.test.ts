@@ -37,7 +37,7 @@ test('VoltaApi getBalanceMulti', async () => {
         }
         else if (singleResult.account.toLowerCase() === address2.toLowerCase()) {
             expect(singleResult.balance).toBe("1750000000000000000000000");
-            expect(singleResult.stale).toBe(false);
+            expect(singleResult.stale).toBeDefined();
         }
         else {
             console.error(singleResult);
@@ -46,10 +46,18 @@ test('VoltaApi getBalanceMulti', async () => {
     }
 });
 
-test('VoltaApi getTransactionsList', async () => {
+test('VoltaApi getTransactionsList empy', async () => {
     const address = "0x1f603e0000000000000000000000000000000000";
+    const { message, status, result } = await new VoltaApi().getTransactionsList(address);
+    expect(message).toBe("No transactions found");
+    expect(status).toBe("0");
+    expect(result.length).toBe(0);
+});
+
+test('VoltaApi getTransactionsList results', async () => {
+    const address = "0x120470000000000000000000000000000000000a";
     const { message, status, result } = await new VoltaApi().getTransactionsList(address);
     expect(message).toBe("OK");
     expect(status).toBe("1");
-    expect(result.length).toBe(0);
+    expect(result.length).toBeGreaterThan(0);
 });
