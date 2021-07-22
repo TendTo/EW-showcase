@@ -1,0 +1,12 @@
+.login-button-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 20px;
+}
+.login-button-container > button > img{
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+}
