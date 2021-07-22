@@ -1,0 +1,10 @@
+[parity]
+# Custom chain
+chain = "/home/openethereum/.local/share/openethereum/Volta.json"
+# Blockchain and settings will be stored in ./.
+base_path = "/home/openethereum/.local/share/openethereum/"
+
+[rpc]
+interface = "all"
+apis = ["all"]
+hosts = ["all"]

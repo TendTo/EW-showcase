@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+    openethereum:
+        container_name: local-node-parity
+        image: openethereum/openethereum
+        volumes: 
+        - ./node:/home/openethereum/.local/share/openethereum/
+        command: 
+            - --config
+            - /home/openethereum/.local/share/openethereum/config.toml
+            - --warp-barrier
+            - "12621197"
+            - --jsonrpc-cors
+            - all
+            - --no-ancient-blocks
+        restart: always
+        ports:
+        - 8545:8545
+        - 8546:8546
+        - 30303:30303
+        - 30303:30303/udp
