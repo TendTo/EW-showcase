@@ -1,6 +1,7 @@
 {
   "name": "ew-app",
   "version": "0.1.0",
+  "homepage": "http://tendto.github.io/EW-showcase/",
   "private": true,
   "dependencies": {
     "@metamask/detect-provider": "^1.2.0",
