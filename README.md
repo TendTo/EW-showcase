@@ -64,3 +64,4 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 - [Create React App](https://create-react-app.dev/)
 - [Darkly bootstrap theme](https://bootswatch.com/darkly/)
 - [truffle](https://www.trufflesuite.com/truffle)
+- [Volta explorer API](https://volta-explorer.energyweb.org/api-docs)
