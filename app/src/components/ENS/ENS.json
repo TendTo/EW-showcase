@@ -1,4 +1,6 @@
 {
-  "errorGeneric": "An error has occurred. Make sure you are connected to MetaMask",
-  "errorNotFound": "The specified address could not be found"
+  "emptyError": "Insert either an ENS name or an address",
+  "genericError": "An error has occurred. Make sure you are connected to MetaMask",
+  "notFoundError": "The specified address could not be found",
+  "unrecognizedError": "The address or name you entered is not valid"
 }
