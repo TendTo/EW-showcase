@@ -1,5 +1,8 @@
 # Energy Web DApp showcase
 
+[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://tendto.github.io/EW-showcase/)
+![CI/CD](https://github.com/TendTo/EW-showcase/workflows/Production/badge.svg)
+
 ## Project structure 📁
 ```py
 .
