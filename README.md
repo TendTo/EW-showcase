@@ -19,6 +19,9 @@
 ## Brief description 📝
 Sample DApp meant to showcase the Energy Web's chain capabilities.
 
+## Docs (in italian) 📚
+- [Ew summary](./docs/EW_summary.pdf)
+- [Ew blockchain](./docs/EW_blockchain.pdf)
 ## Quickstart local 💻
 
 ### System requirements
