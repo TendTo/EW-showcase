@@ -6,7 +6,7 @@
 \usepackage[acronyms]{glossaries}
 \usepackage{graphicx}
 \usepackage{biblatex}
- 
+
 %%%%%%%%%%%%%%%%%%%%%%%%
 % Metadata
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -14,7 +14,7 @@
 \author{Ernesto Casablanca}
 \date{\today}
 \graphicspath{ {./img/} }
- 
+
 %%%%%%%%%%%%%%%%%%%%%%%%
 % Glossary
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -35,25 +35,25 @@
 \newacronym{ipfs}{IPFS}{InterPlanetary File System}
 \newacronym{dht}{DHT}{Distributed Hash Tables}
 \newacronym{sla}{SLA}{Service-Level Agreement}
- 
+
 %%%%%%%%%%%%%%%%%%%%%%%%
 % References
 %%%%%%%%%%%%%%%%%%%%%%%%
 \addbibresource{resources.bib} %Import the bibliography file
- 
+
 %%%%%%%%%%%%%%%%%%%%%%%%
 % Init document
 %%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
- 
+
 % \begin{titlepage}
 %     \maketitle
 % \end{titlepage}
- 
+
 \tableofcontents
- 
+
 \newpage
- 
+
 \begin{abstract}
     Breve introduzione alla \gls{ewc}, la blockchain utilizzata da Energy Web
 \end{abstract}
@@ -76,12 +76,12 @@ L'intero sistema è costituito da tre macro componenti, ognuno con uno scopo spe
 \end{figure}
 
 \newpage
- 
+
 \section{Differenze con Ethereum}
 Non è un mistero che la \gls{ewc} sia molto ispirata ad Ethereum.
 Alcuni dei servizi offerti, come l'\gls{ewns} sono fork con modifiche minime di progetti nati su Ethereum. \\
-Tuttavia, ci sono alcuni aspetti e funzionalità che hanno necessitato una revisione più profonda, per evitare non ostacolassero la visione dietro il progetto. \\
- 
+Tuttavia, ci sono alcuni aspetti e funzionalità che hanno necessitato una revisione più profonda, per evitare ostacolassero la visione dietro il progetto. \\
+
 \begin{tabular}{||p{7cm}|p{7cm}||}
     \hline
     Problema                                                    & Modifica                                                                                \\
@@ -95,15 +95,15 @@ Tuttavia, ci sono alcuni aspetti e funzionalità che hanno necessitato una revis
     Difficoltà a gestire transazioni che necessitino di privacy & Possibilità di mantenere i dati privati, se richiesto                                   \\[1ex]
     \hline
 \end{tabular}
- 
+
 \newpage
- 
+
 \section{Testnet}
 Energy Web mette ovviamente a disposizione una testnet che permette a chiunque sia interessato alle peculiarità della loro offerta di testare tutti i servizi senza spendere nulla. \\
 La testnet si chiama Volta, e non è dissimile alle testnet che affiancano Ethereum. \\
- 
+
 Di seguito il confronto fra Volta e la \gls{ewc}
- 
+
 \begin{tabular}{||p{4cm}|p{5cm} p{5cm}||}
     \hline
                        & Volta                                               & EWC                                                     \\ [0.5ex]
@@ -123,15 +123,15 @@ Di seguito il confronto fra Volta e la \gls{ewc}
     Nodi validatori    & 3 al lancio \newline max 150                        & 10 al lancio \newline max 150                           \\ [1ex]
     \hline
 \end{tabular}
- 
+
 \newpage
- 
+
 \section{Algoritmo di consenso \gls{poa}}
 L'algoritmo che permette di assicurare un consenso sullo stato della blockchain fra tutti i nodi è \gls{poa}, più precisamente l'algoritmo Aura \cite{art:aura}\cite{wiki:poa}. \\
 Nel caso di \gls{ewc}, i validatori sono i partner dell'associazione.
 Si tratta, nella maggior parte dei casi, di aziende leader del settore energetico. \\
 In breve, il funzionamento è il seguente:
- 
+
 \begin{itemize}
     \item Tutti i nodi validatori possiedono una lista aggiornata degli altri nodi validatori, oltre alla copia completa della blockchain e ad alcuni metadati ad essa collegati (es. il throughput della blockchain)
     \item Per una finestra temporale ben definita, un validatore primario viene scelto dall'algoritmo e svolge il compito di raccogliere le transazioni e produrre il nuovo block. La scelta del validatore primario è in funzione del timestamp e del numero di validatori
@@ -139,40 +139,40 @@ In breve, il funzionamento è il seguente:
     \item Gli altri validatori controllano che le transazioni siano legittime e firmano il block per poi propagarlo alla rete
     \item Se la maggior parte dei validatori hanno verificato il blocco, questo è aggiunto alla blockchain
 \end{itemize}
- 
+
 \newpage
- 
+
 \begin{figure}[!h]
     \includegraphics[height=14cm,keepaspectratio]{ew-poa}
     \centering
     \label{ew-poa}
     \caption{Passi dell'algoritmo \gls{poa} \cite{img:ew-poa}}
 \end{figure}
- 
+
 \newpage
- 
+
 \section{Costi di transazione}
 Una transazione è una qualsiasi operazione che modifica lo stato della blockchain. Trasferire token fra account, creare un nuovo smart contract o modificarne lo stato sono esempi di transazioni. \\
 Il costo da pagare per poter effettuare una transazione dipende dai seguenti fattori:
- 
+
 \begin{itemize}
     \item \textbf{Il costo in gas:} il gas rappresenta la complessità computazionale necessaria per risolvere la transazione. Più è complessa l'operazione più gas sarà richiesto
     \item \textbf{Prezzo del gas:} valore dell'unità di gas in EWT. Prima di effettuare una transazione, l'utente stabilisce quanto è disposto a pagare per unità di gas. Più è alta l'offerta, maggiore sarà la priorità della transazione
     \item \textbf{Valore di mercato del token:} se si vuole ottenere il costo della transazioni in moneta fiat, basta effettuare la conversione fra EWT spesi e il loro valore monetario
 \end{itemize}
- 
+
 Riassumendo con una formula: \\
 $ costo(\$) = costo\ gas(gas) * prezzo\ gas(token/gas) * valore\ token (\$/token) $. \\
- 
+
 \newpage
- 
+
 \section{Transazioni private}
 Una delle caratteristiche fondanti di ogni blockchain è la possibilità di tracciare e verificare ogni transazione che avviene sulla chain. \\
 Questa proprietà fondamentale, però, non è sempre desiderabile: anche per ottemperare alle regolamentazioni vigenti riguardanti la privacy, è necessario che ci sia la possibilità di nascondere informazioni sensibili da occhi indiscreti. \\
 Sono stati quindi individuati diversi approcci per risolvere il problema. 
 Di seguito sono elencati i più promettenti e avanzati.
 Per una lista completa è possibile consultare la documentazione \cite{wiki:ew-privacy}
- 
+
 \subsection{Parity Secret Store}
 Un'implementazione promettente per risolvere il problema è il Secret Store di del client Parity Ethereum. \\
 L'idea è quella di generare una coppia di chiavi, pubblica e privata. 
@@ -187,13 +187,13 @@ Vi sono, però, vari limiti all'uso di questa tecnica.
 Infatti, è richiesto una setup iniziale fra i nodi interessati, compresa una rete separata per i servizi e le API.
 Un numero di nodi attivi deve essere garantito in ogni momento per raggiungere il limite inferiore di votanti.
 Infine, attualmente l'implementazione è limitata al client Parity / OpenEthereum.
- 
+
 \subsubsection{Parity Private Transactions}
 Continuando a costruire sopra il Parity Secret Store, si può immaginare di generare uno smart contract criptato.
 Questo verrebbe poi inserito dentro uno smart contract tradizionale pubblico sulla blockchain. \\
 A quel punto, solo gli account autorizzati, con le chiavi necessarie, sono in grado di leggere e modificare lo stato del contratto interno.
 La nuova transazione viene eseguita e firmata off-chain, e il nuovo stato, criptato, viene reinserito nella blockchain pubblica.
- 
+
 \begin{figure}[h]
     \includegraphics[height=13cm,keepaspectratio]{ew-privacy}
     \centering
@@ -206,24 +206,24 @@ Precise Proofs è uno schema basato sugli alberi di Merkle, in grado di verifica
 Si parte realizzando un albero di Merkle a partire dai dati interessati e si rende pubblica la radice. \\
 Un terzo ente è interessato a verificare la validità di un subset di dati riceverà solo i dati effettivamente richiesti e le hash dei dati non necessari.
 In questo modo si hanno abbastanza informazioni da poter ricostruire la radice minimizzando i dati resi pubblici.
- 
+
 \subsection{Zero Knowledge Proof Protocols}
 Gli Zero Knowledge Proof Protocols sono una categoria di protocolli con lo scopo di validare una computazione senza rivelarne alcun input (es. validare una transazione senza rivelare mittente, destinatario, movimento etc.). \\
- 
+
 \subsubsection{zkSNARKs}
 zkSNARKs è probabilmente il protocollo più avanzato in questa categoria, sviluppato dal team Zcash. Sebbene sia il più maturo, presenta un tallone d'Achille non indifferente. \\
 Per poter utilizzare la Zero Knowledge Proof è necessario realizzare un circuito aritmetico che rappresenta la computazione da provare e generare da quello una coppia di chiavi prover/verifier.
 La creazione di questo setup deve essere sicura e pattuita a priori, perchè se dovesse essere compromesso un avversario potrebbe approfittarne per realizzare prove false.
- 
+
 \newpage
- 
+
 \section{Storage}
 Il fatto che tutti i dati siano immagazzinati sulla blockchain per essere accessibili si traduce in un incremento spesso più che lineare della memoria necessaria per salvare l'intera blockchain su un dispositivo fisico, cosa decisamente non auspicabile se si vuole favorire la partecipazione anche di piccoli dispositivi (IoT). \\
 Una prima soluzione è di evitare di immettere dati sulla blockchain, e limitarsi ad utilizzare gli hash degli stessi, per poi poter verificarne la validità off-chain. \\
 Nei casi in cui questo non fosse possibile, si può provare ad optare per una delle tante soluzioni che offrono un servizio di storage distribuito.
 Le principali soluzioni sono IPFS Storj.
 Per una lista completa è possibile consultare la documentazione \cite{wiki:ew-storage}
- 
+
 \subsubsection{\gls{ipfs}}
 \gls{ipfs} è un modello di filesystem distribuito.
 Invece di indirizzare i file con la loro locazione, li si identifica con un hash ottenuto dal loro contenuto.
@@ -234,27 +234,27 @@ Il fatto che un file sia identificato dal suo hash garantisce inoltre l'integrit
 Per aggiornare un file, infatti, bisogna utilizzare il sistema di versioning previsto dal protocollo. \\ \\
 Storj è molto simile ad IPFS, con l'incentivo che i nodi sono pagati per svolgere la loro funzione di content-storage.
 Ovviamente il contratto prevede che l'host sia in grado fornire su richiesta in qualsiasi momento tutti i file che afferma di possedere.
- 
+
 \newpage
- 
+
 \section{Governance}
 La natura decentralizzata della blockchain rende un qualsiasi cambiamento che riguarda la sua infrastruttura un problema non banale. \\
 Per gestire al meglio i possibili aggiornamenti che la \gls{ewc} potrebbe necessitare, si è deciso di affidarsi a chi la comprende bene, cioè gli sviluppatori.
-Il diritto di voto che determina quali proposte di modifica vengano accolte e quali respinte sarà determinato dalla quantità di gas che un singolo sviluppatore riesce a "generare" con i propri smart contracs.
+Il diritto di voto che determina quali proposte di modifica vengano accolte e quali respinte sarà determinato dalla quantità di gas che un singolo sviluppatore riesce a "generare" con i propri smart contracts.
 L'idea è che il valore che lo sviluppatore fornisce all'intero sistema rappresenta il suo peso nella votazione. \cite{wiki:ew-governance} \\
 Ciò non esclude che, in caso si renda necessario, alcune scelte troppo complesse possano essere prese da persone designate senza passare per il meccanismo di voto della blockchain.
- 
+
 \begin{figure}[!h]
     \includegraphics[height=10cm,keepaspectratio]{ew-governance}
     \centering
     \label{ew-governance}
     \caption{Passi per l'approvazione di una modifica all'infrastruttura di \gls{ewc} \cite{img:ew-governance}}
 \end{figure}
- 
+
 \newpage
- 
-\section{Stacking}
-Per fornire quello che nell'architettura di ES-DOS è chiamato "Utility layer", è necessatio il contributo di operatori che mettano a disposizione le proprie risorse a chi ha intenzione di sviluppare un servizio.
+
+\section{Staking}
+Per fornire quello che nell'architettura di ES-DOS è chiamato "Utility layer", è necessario il contributo di operatori che mettano a disposizione le proprie risorse a chi ha intenzione di sviluppare un servizio.
 Perchè il tutto sia affidabile e adatto ad un ambiente di produzione, devono essere garantiti dei livelli di servizio, in maniera analoga ad un qualsiasi \gls{sla} proposto da un fornitore di SaaS. \\
 La soluzione proposta non è dissimile a quella implementata in altre blockchain, e si rifà al modello \gls{pos}.
 Gli attori in questo modello vengono suddivisi in due categorie:
@@ -278,6 +278,6 @@ Gli attori in questo modello vengono suddivisi in due categorie:
 \end{figure}
 
 \newpage
- 
+
 \printbibliography
 \end{document}
