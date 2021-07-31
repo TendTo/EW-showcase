@@ -23,7 +23,8 @@
 \newacronym{der}{DER}{Distributed Energy Resource}
 \newacronym{dsm}{DSM}{Demand Side Management}
 \newacronym{irec}{I-REC}{International Renewable Energy Certificate}
-\newacronym{poa}{POA}{Proof of Authority}
+\newacronym{poa}{PoA}{Proof of Authority}
+\newacronym{pos}{PoS}{Proof of Stake}
 \newacronym{evm}{EVM}{Ethereum Virtual Machine}
 \newacronym{erc}{ERC}{Ethereum Request for Comment}
 \newacronym{ewns}{EWNS}{Energy Web Name Service}
@@ -33,6 +34,7 @@
 \newacronym{spf}{SPO}{Single Point of Failure}
 \newacronym{ipfs}{IPFS}{InterPlanetary File System}
 \newacronym{dht}{DHT}{Distributed Hash Tables}
+\newacronym{sla}{SLA}{Service-Level Agreement}
  
 %%%%%%%%%%%%%%%%%%%%%%%%
 % References
@@ -55,6 +57,25 @@
 \begin{abstract}
     Breve introduzione alla \gls{ewc}, la blockchain utilizzata da Energy Web
 \end{abstract}
+
+\section{Implementazione}
+Il cuore del progetto di Energy Web è EW-DOS, un'infrastruttura open-source, pubblica e digitale.
+L'intero sistema è costituito da tre macro componenti, ognuno con uno scopo specifico:
+
+\begin{itemize}
+    \item Trust - \gls{ewc}
+    \item Utility - Servizi e astrazioni sopra la blockchain
+    \item Toolkit - Frameworks per la costruzione di applicazioni
+\end{itemize}
+
+\begin{figure}[h]
+    \includegraphics[width=13cm]{ew-dos}
+    \centering
+    \label{ew-dos}
+    \caption{Visualizzazione della struttura di EW-DOS \cite{img:ew-dos}}
+\end{figure}
+
+\newpage
  
 \section{Differenze con Ethereum}
 Non è un mistero che la \gls{ewc} sia molto ispirata ad Ethereum.
@@ -230,6 +251,32 @@ Ciò non esclude che, in caso si renda necessario, alcune scelte troppo compless
     \caption{Passi per l'approvazione di una modifica all'infrastruttura di \gls{ewc} \cite{img:ew-governance}}
 \end{figure}
  
+\newpage
+ 
+\section{Stacking}
+Per fornire quello che nell'architettura di ES-DOS è chiamato "Utility layer", è necessatio il contributo di operatori che mettano a disposizione le proprie risorse a chi ha intenzione di sviluppare un servizio.
+Perchè il tutto sia affidabile e adatto ad un ambiente di produzione, devono essere garantiti dei livelli di servizio, in maniera analoga ad un qualsiasi \gls{sla} proposto da un fornitore di SaaS. \\
+La soluzione proposta non è dissimile a quella implementata in altre blockchain, e si rifà al modello \gls{pos}.
+Gli attori in questo modello vengono suddivisi in due categorie:
+
+\begin{itemize}
+    \item \textbf{Service providers:} sono organizzazioni che mettono a disposizione i nodi di utility. 
+    Per essere approvato, un service provider deve poter dimostrare la propria identità e depositare in garanzia una quantità di EWT per un periodo multiannale.
+    Dopo essere stati approvati, i service providers possono aggiungere ulteriori nodi di utility incrementando proporzionalmente il deposito di EWT.
+    Finchè il \gls{sla} continua ad essere rispettato, i service providers guadagneranno un interesse in base al loro deposito.
+    In questo momento, il deposito minimo necessario per essere approvati come service provider si attesta fra i $10000$ e i $100000$ EWT, a cui si aggiungono fra i $1000$ e i $10000$ EWT per service node \cite{art:ew-staking}.
+    \item \textbf{Patrons:} sono gli individui o le organizzazioni che finanziano un service provider depositando dei loro EWT per il service provider.
+    Differentemente rispetto a ciò che accade per i service provider, non c'è un minimo alla somma depositata e questa può essere ritirata in qualsiasi momento.
+    Questo porta i patrons a favorire service provider che rispettano i \gls{sla} e che offrano il miglior modello di revenue-sharing.
+\end{itemize}
+
+\begin{figure}[!h]
+    \includegraphics[height=10cm,keepaspectratio]{ew-staking}
+    \centering
+    \label{ew-staking}
+    \caption{Come l'utility layer supportato dallo staking si integra in EW-DOS \cite{art:ew-staking}}
+\end{figure}
+
 \newpage
  
 \printbibliography
