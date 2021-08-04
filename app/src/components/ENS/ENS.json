@@ -1,4 +1,5 @@
 {
+  "title": "ENS stands for Ethereum Name Service.\nIt implements a distributed, open and extensible naming system.",
   "emptyError": "Insert either an ENS name or an address",
   "genericError": "An error has occurred. Make sure you are connected to MetaMask",
   "notFoundError": "The specified address could not be found",

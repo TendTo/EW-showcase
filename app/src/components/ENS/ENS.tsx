@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import Web3 from 'web3';
 import VoltaApi, { getAccountInfoResponse } from '../../api/VoltaApi';
 import EwAccount from '../EwAccount/EwAccount';
-import { genericError, notFoundError, unrecognizedError, emptyError } from './ENS.json';
+import { title, genericError, notFoundError, unrecognizedError, emptyError } from './ENS.json';
 
 type Props = {
   web3?: Web3;
@@ -74,8 +74,12 @@ function ENS({ web3 }: Props) {
       <Card.Body>
         <Card.Title>ENS service</Card.Title>
         <div>
+          <Card.Text>
+            {title}
+          </Card.Text>
           <Form className="form-h" onSubmit={handleSubmit(onSubmit)}>
             <InputGroup hasValidation>
+              <InputGroup.Text>Name or address: </InputGroup.Text>
               <FormControl
                 {...register('search', {
                   required: { value: true, message: emptyError },
