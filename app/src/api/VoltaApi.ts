@@ -16,6 +16,7 @@ type queryParams = {
     action: string
     [key: string]: any
 }
+
 type getAccountQueryParams = {
     sort?: sort
     startblock?: number

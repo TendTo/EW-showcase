@@ -1,0 +1,11 @@
+.footer-container {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-container a {
+    color: #fff;
+    text-decoration: none;
+}
