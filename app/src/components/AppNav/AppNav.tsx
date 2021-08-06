@@ -17,7 +17,7 @@ function AppNav({ account, chain }: Props) {
   }
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="primary" variant="dark" expand="lg" className="p-3">
       <Navbar.Brand href="#home">Energy Web Dapp showcase</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
