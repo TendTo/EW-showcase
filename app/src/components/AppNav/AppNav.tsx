@@ -4,21 +4,18 @@ import toast from '../Toast/Toast';
 import './AppNav.css'
 
 type Props = {
-  accounts: string[];
+  account: string;
   chain: string;
 };
 
-function AppNav({ accounts, chain }: Props) {
-  const getAccount = () => {
-    if (accounts.length === 0)
-      return "";
-    const account = accounts[0];
-    return `${account.slice(0, 6)}...${account.slice(-4)}`;
-  }
+function AppNav({ account, chain }: Props) {
+  const shortAccount = `${account.slice(0, 6)}...${account.slice(-4)}`;
+
   const onClickAccount = () => {
-    navigator.clipboard.writeText(accounts[0]);
+    navigator.clipboard.writeText(account);
     toast("Address copied to clipboard");
   }
+
   return (
     <Navbar bg="light" expand="lg">
       <Navbar.Brand href="#home">Energy Web Dapp showcase</Navbar.Brand>
@@ -31,7 +28,7 @@ function AppNav({ accounts, chain }: Props) {
           <Nav.Link href="#iam">IAM</Nav.Link>
         </Nav>
         <Nav className="connection-info">
-          {accounts.length > 0 && (<p className="account-info text-muted" onClick={onClickAccount}>{getAccount()}</p>)}
+          {account && <p className="account-info text-muted" onClick={onClickAccount}>{shortAccount}</p>}
           {chain && (<p className="chain-info text-info">{chain}</p>)}
         </Nav>
       </Navbar.Collapse>

@@ -1,42 +1,47 @@
 import React, { useState } from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import Web3 from 'web3';
+import AppFooter from '../AppFooter/AppFooter';
 import AppNav from '../AppNav/AppNav';
 import ENS from '../ENS/ENS';
 import Home from '../Home/Home';
-import IAM from '../IAM/IAM';
+// import IAM from '../IAM/IAM';
 import Login from '../Login/Login';
+import MyIam from '../MyIAM/MyIAM';
 import './App.css';
 
 function App() {
   const allowedChain = ["volta"];
   const [web3, setWeb3] = useState<Web3>();
-  const [accounts, setAccounts] = useState<string[]>([]);
+  const [account, setAccount] = useState<string>("");
   const [chain, setChain] = useState<string>("");
 
-  const showMain = () => web3 !== undefined && accounts.length > 0 && allowedChain.includes(chain);
-
-  console.log("APP");
+  const loggedIn = web3 !== undefined && account.length > 0 && allowedChain.includes(chain);
 
   return (
     <>
       <Router>
-        <AppNav accounts={accounts} chain={chain}></AppNav>
-        <main className="container-fluid">
-          {showMain() && (
+        <header>
+          <AppNav account={account} chain={chain}></AppNav>
+        </header>
+        <main role="main" className="container-fluid">
+          {loggedIn ?
             <Switch>
               <Route path="/ens" exact>
                 <ENS web3={web3}></ENS>
               </Route>
               <Route path="/iam" exact>
-                <IAM></IAM>
+                <MyIam account={account}></MyIam>
               </Route>
               <Route path="/" component={Home} />
-            </Switch>)}
-          {!showMain() && (
-            <Login web3={web3} chain={chain} setAccounts={setAccounts} setWeb3={setWeb3} setChain={setChain}></Login>
-          )}
+            </Switch>
+            :
+            <Login web3={web3} chain={chain} setAccount={setAccount} setWeb3={setWeb3} setChain={setChain}></Login>
+          }
         </main>
+        <footer>
+          <AppFooter></AppFooter>
+        </footer>
       </Router>
     </>
   );
