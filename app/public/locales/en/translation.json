@@ -1,8 +1,24 @@
 {
   "HOME": {
     "TITLE": "Energy Web DApp showcase",
-    "SECTION_1_TITLE": "Description:",
-    "SECTION_1_TEXT": "This is a simple DApp meant to showcase some of the peculiarities of the Energy Web ecosystem."
+    "SECTION_1_TITLE": "What is Energy Web?",
+    "SECTION_1_TEXT": "Energy Web is a project that aims to promote a low-carbon ow-carbon, customer-centric electricity system through the blockchain technology.\nEvery energy asset can be assigned an unique identifies to allow it to be verified and to participate actively in any energy market.",
+    "SECTION_2_TITLE": "Energy Web Dos",
+    "SECTION_2_TEXT": "The heart of the Energy Web project is EW-DOS, an opensource, public, digital infrostracture.\nThe whole system is buit on top of three macro compoenets, each with its purpouse:",
+    "SECTION_2_ITEM_1": "Trust - Energy Web Chain (EWC)",
+    "SECTION_2_ITEM_2": "Utility - Services and abstraction over the blockchain",
+    "SECTION_2_ITEM_3": "Toolkit - Frameworks and tools for building applications",
+    "SECTION_2_IMG": "EW-Dos schema",
+    "SECTION_3_TITLE": "Trust layer",
+    "SECTION_3_TEXT": "The main role of the EWC is to ensure that there is consensus on the data and that all applications and smart contracts behave in a deterministic manner.\nIt is based on the Ethereum Virtual Machine (EVM), and as such allows the creation of smart contracts and respects all the Ethereum Request for Comment (ERC).\nThere is also a test-net, called Volta, used to test projects and applications before running on the main-net.\nThe consensus algorithm is Proof of Authority (POA), based on the AuRA protocol. At the cost of less decentralization, it ensures very high performance.\nThe token used on the blockchain is called Energy Web Token (EWT).",
+    "SECTION_4_TEXT": "The utility layer consists of a set of EWC-based services that aim to make the entire infrastructure as accessible and inviting as possible for developers.\nAll services are paid for in EWT.\nThree broad categories of services are identified: End-user experience, Multi-platform interoperability, Application performance.\n\nSome examples are:",
+    "SECTION_4_TITLE": "Utility layer",
+    "SECTION_4_ITEM_1": "EWNS - Similar to DNS, it associates human readable domains to addresses on the blockchain",
+    "SECTION_4_ITEM_2": "Oracles - Nodes that can be consulted with the Chainlink protocol to receive data of events external to the blockchain",
+    "SECTION_4_ITEM_3": "Identity Directory - Smart contract that contains all the Decentralized IDentifiers (DID)",
+    "SECTION_4_ITEM_4": "Messaging - A messaging system that uses DIDs to ensure the validity and authenticity of messages",
+    "SECTION_5_TITLE": "Toolkits layer",
+    "SECTION_5_TEXT": "Set of frameworks and services designed to create decentralized applications on EW-DOS.\n\nThere are two main examples:\nEW-Origin - Used to develop applications that support the tracking, transmission and awarding of energy Attribute Certificates (EAC) according to industry standards.\nEW-Flex - Open source software for the management of Distributed Energy Resource (DER) and the operations that involve them. Ensures an easy connection to the network, submitting the offers coming from small producers to an authorized operator that acts as intermetiator between the user and the grid."
   },
   "LOGIN": {
     "TITLE": "EW showcase login",
