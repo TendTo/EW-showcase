@@ -39,7 +39,7 @@ function App() {
             <Login web3={web3} chain={chain} setAccount={setAccount} setWeb3={setWeb3} setChain={setChain}></Login>
           }
         </main>
-        <footer className="fixed-bottom">
+        <footer>
           <AppFooter></AppFooter>
         </footer>
       </Router>

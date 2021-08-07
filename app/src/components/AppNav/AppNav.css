@@ -8,7 +8,6 @@
 
 .connection-info>.chain-info {
     font-weight: bold;
-    margin-left: 20px;
 }
 
 .connection-info>.chain-info::before {
@@ -26,6 +25,7 @@
 .connection-info>.account-info {
     cursor: pointer;
     font-weight: bold;
+    margin-right: 20px;
 }
 
 .connection-info>.account-info:hover {

@@ -1,5 +1,7 @@
 {
     "noProviderError": "No ethereum provider found. Please download Metamask",
     "noAccountError": "No account connected. Please connect an account",
-    "accountConnectionSentError": "A request has already been sent. Check your MetaMask extension"
+    "accountConnectionSentError": "A request has already been sent. Check your MetaMask extension",
+    "connectionRejectedError": "The connection request has been rejected",
+    "genericError": "An error has occurred. Check the console logs to know more"
 }

@@ -28,8 +28,8 @@ function AppNav({ account, chain }: Props) {
           <Nav.Link href="#iam">IAM</Nav.Link>
         </Nav>
         <Nav className="connection-info">
-          {account && <p className="account-info text-muted" onClick={onClickAccount}>{shortAccount}</p>}
-          {chain && (<p className="chain-info text-info">{chain}</p>)}
+          {account && <p className="account-info" onClick={onClickAccount}>{shortAccount}</p>}
+          {chain && (<p className="chain-info">{chain}</p>)}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
