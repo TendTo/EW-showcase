@@ -6,3 +6,8 @@ import '@testing-library/jest-dom';
 
 global.TextEncoder = require('text-encoding').TextEncoder;
 global.TextDecoder = require('text-encoding').TextDecoder;
+
+//Mocks the useTranslation function of i18next, to return the same string as for the key
+jest.mock('react-i18next', () => ({
+    useTranslation: () => ({t: (key: string) => key})
+  }));

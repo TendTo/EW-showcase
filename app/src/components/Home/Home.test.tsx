@@ -4,6 +4,6 @@ import Home from './Home';
 
 test('renders learn react link', () => {
   render(<Home />);
-  const linkElement = screen.getByText(/Energy Web DApp showcase/i);
+  const linkElement = screen.getByText(/HOME.TITLE/i);
   expect(linkElement).toBeInTheDocument();
 });
