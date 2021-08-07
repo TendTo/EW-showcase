@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { Button, Card, Container } from 'react-bootstrap';
 import Web3 from 'web3';
 import ew_logo from '../../asset/img/ew-logo-small.png';
-import metamaskLogo from "../../asset/metamask-logo.svg";
+import metamaskLogo from "../../asset/icon/metamask-logo.svg";
 import { WindowProvider } from '../../types/MetaMask';
 import toast from '../Toast/Toast';
 import './Login.css';

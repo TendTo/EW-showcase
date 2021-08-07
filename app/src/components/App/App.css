@@ -7,10 +7,13 @@
   pointer-events: none;
 }
 
-.form-h {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
+.app-page {
+  margin: auto;
+  max-width: 960px;
+}
+
+.app-page-header {
+  text-align: center;
 }
 
 html {

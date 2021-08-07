@@ -25,7 +25,7 @@ function EwAccount({ account, address }: Props) {
         <Card className="text-center border-primary">
             <Card.Body>
                 <Card.Title className="address-info" onClick={() => goToAddress(address)}>{address}</Card.Title>
-                <p><b>Balance:</b><span>{ApiResult.convertVT(account.balance.result)} VT</span></p>
+                <p><b>Balance: </b><span>{ApiResult.convertVT(account.balance.result)} VT</span></p>
                 <p><span>{account.token.result.length}</span><b> tokens</b></p>
                 <hr></hr>
                 <table className="table table-hover">
