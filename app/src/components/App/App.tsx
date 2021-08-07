@@ -6,9 +6,9 @@ import AppFooter from '../AppFooter/AppFooter';
 import AppNav from '../AppNav/AppNav';
 import ENS from '../ENS/ENS';
 import Home from '../Home/Home';
-// import IAM from '../IAM/IAM';
 import Login from '../Login/Login';
-import MyIam from '../MyIAM/MyIAM';
+// import IAM from '../IAM/IAM';
+// import MyIam from '../MyIAM/MyIAM';
 import './App.css';
 
 function App() {
@@ -35,9 +35,9 @@ function App() {
               <Route path="/ens" exact>
                 <ENS web3={web3}></ENS>
               </Route>
-              <Route path="/iam" exact>
-                <MyIam account={account}></MyIam>
-              </Route>
+              {/* <Route path="/iam" exact>
+                <IAM account={account}></IAM>
+              </Route> */}
               <Route path="/" component={Home} />
             </Switch>
             :
