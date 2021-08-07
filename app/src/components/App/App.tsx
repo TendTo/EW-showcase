@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
+import { Container, Spinner } from 'react-bootstrap';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import Web3 from 'web3';
 import AppFooter from '../AppFooter/AppFooter';
@@ -19,7 +20,11 @@ function App() {
   const loggedIn = web3 !== undefined && account.length > 0 && allowedChain.includes(chain);
 
   return (
-    <>
+    <Suspense fallback={
+      <Container fluid className="text-center">
+        <Spinner animation="grow"></Spinner>
+      </Container>}
+    >
       <Router>
         <header>
           <AppNav account={account} chain={chain}></AppNav>
@@ -43,7 +48,7 @@ function App() {
           <AppFooter></AppFooter>
         </footer>
       </Router>
-    </>
+    </Suspense>
   );
 }
 

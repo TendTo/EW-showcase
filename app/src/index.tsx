@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App/App';
-// import './deeppurple-amber.css';
+import './i18n';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 

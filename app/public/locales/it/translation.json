@@ -1,0 +1,21 @@
+{
+  "HOME": {
+    "TITLE": "Energy Web DApp showcase",
+    "SECTION_1": "Descrizione:"
+  },
+  "LOGIN": {
+    "TITLE": "EW showcase login",
+    "TEXT": "Effettua il login con l'estenzione browser MetaMask",
+    "BUTTON_METAMASK": "Login con Metamask",
+    "ERROR_UNSUPPORTED_CHAIN": "La rete {{chain}} non è supportata.\nConnettiti alla rete di test volta",
+    "NO_METAMASK": "Non hai MetaMask?",
+    "WHAT_IS_EW": "Cos'è Energy Web?"
+  },
+  "ERROR": {
+    "GENERIC": "Si è verificato un errore.\nControlla la console per saperne di più",
+    "NO_PROVIDER": "Non è stato trovato nessun Ethereum provider.\nScarica MetaMaks",
+    "NO_ACCOUNT": "Nessun account connesso.\nConnetti un account",
+    "REQUEST_ALREADY_SENT": "Una richiesta è già stata inviata. Controlla l'estensione MetaMask",
+    "REQUEST_REJECTED": "La richiesta di connessione è stata rifiutata"
+  }
+}

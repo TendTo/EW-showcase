@@ -1,0 +1,21 @@
+{
+  "HOME": {
+    "TITLE": "Energy Web DApp showcase",
+    "SECTION_1": "Description:"
+  },
+  "LOGIN": {
+    "TITLE": "EW showcase login",
+    "TEXT": "Login using the MetaMask browser extension",
+    "BUTTON_METAMASK": "Login with Metamask",
+    "ERROR_UNSUPPORTED_CHAIN": "{{chain}} net is not supported.\nConnect to the volta testnet",
+    "NO_METAMASK": "Don't have MetaMask?",
+    "WHAT_IS_EW": "What is Energy Web?"
+  },
+  "ERROR": {
+    "GENERIC": "An error has occurred.\nCheck the console logs to know more",
+    "NO_PROVIDER": "No ethereum provider found.\nPlease download Metamask",
+    "NO_ACCOUNT": "No account connected.\nPlease connect an account",
+    "REQUEST_ALREADY_SENT": "A request has already been sent.\nCheck your MetaMask extension",
+    "REQUEST_REJECTED": "The connection request has been rejected"
+  }
+}

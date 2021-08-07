@@ -37,6 +37,7 @@ main {
   position: relative;
   padding-top: 20px;
   padding-bottom: 60px;
+  white-space: pre-line;
 }
 
 p {
