@@ -1,14 +1,14 @@
 import detectEthereumProvider from '@metamask/detect-provider';
 import MetaMaskOnboarding from '@metamask/onboarding';
 import React, { useEffect } from 'react';
-import { Button, Card, Container } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import Web3 from 'web3';
-import ew_logo from '../../asset/img/ew-logo-small.png';
 import metamaskLogo from "../../asset/icon/metamask-logo.svg";
+import ew_logo from '../../asset/img/ew-logo-small.png';
 import { WindowProvider } from '../../types/MetaMask';
 import toast from '../Toast/Toast';
 import './Login.css';
-import { accountConnectionSentError, connectionRejectedError, genericError, noAccountError, noProviderError } from './Login.json';
 
 type Props = {
     setAccount: (account: string) => void;
@@ -21,6 +21,7 @@ type Props = {
 const reloadWindow = (_: any) => window.location.reload();
 
 export function Login({ setAccount, setWeb3, setChain, web3, chain }: Props) {
+    const { t } = useTranslation();
     const allowedChains = ["volta"];
     const onboarding = React.useRef<MetaMaskOnboarding>(new MetaMaskOnboarding());
 
@@ -30,7 +31,7 @@ export function Login({ setAccount, setWeb3, setChain, web3, chain }: Props) {
             onboarding.current.stopOnboarding();
         } else {
             setAccount('');
-            toast(noAccountError, 'danger');
+            toast(t("ERROR.NO_ACCOUNT"), 'danger');
         }
     }
 
@@ -43,18 +44,18 @@ export function Login({ setAccount, setWeb3, setChain, web3, chain }: Props) {
             } catch (e) {
                 switch (e.code) {
                     case 4001:
-                        return toast(connectionRejectedError, 'danger');
+                        return toast(t("ERROR.REQUEST_REJECTED"), 'danger');
                     case -32002:
-                        return toast(accountConnectionSentError, 'warning');
+                        return toast(t("ERROR.REQUEST_ALREADY_SENT"), 'warning');
                     default:
-                        return toast(genericError, 'danger');
+                        return toast(t("ERROR.GENERIC"), 'danger');
                 }
             }
             const currentWeb3 = web3 || new Web3(provider);
             handleAccounts(await currentWeb3.eth.getAccounts());
             setChain(await currentWeb3.eth.net.getNetworkType());
         } else {
-            toast(noProviderError, 'danger');
+            toast(t("ERROR.NO_PROVIDER"), 'danger');
             onboarding.current.startOnboarding();
         }
     };
@@ -90,21 +91,6 @@ export function Login({ setAccount, setWeb3, setChain, web3, chain }: Props) {
         setup();
     }, [setWeb3, setChain, setAccount])
 
-    const oldLogin = (
-        <Card className="text-center">
-            <Card.Body>
-                <Card.Title>Login</Card.Title>
-                <div className="login-button-container">
-                    <Button onClick={onClick}>
-                        <img alt="metamask logo" className="metamask" src={metamaskLogo} />
-                        <span>Login with Metamask</span>
-                    </Button>
-                </div>
-                {(!allowedChains.includes(chain) && chain !== "" &&
-                    <p className="label text-danger">{chain} net is not supported.<br></br>Conntect to the volta testnet</p>)}
-            </Card.Body>
-        </Card>
-    );
     return (
         <Container className="h-100">
             <div className="d-flex justify-content-center h-100">
@@ -116,27 +102,31 @@ export function Login({ setAccount, setWeb3, setChain, web3, chain }: Props) {
                     </div>
                     <div className="login-card-body">
                         <Container className="text-center">
-                            <h4>EW shocase login</h4>
+                            <h4>{t('LOGIN.TITLE')}</h4>
                         </Container>
                         <Container className="login-button-container">
-                            <p>Login using the MetaMask browser extension</p>
+                            <p>{t('LOGIN.TEXT')}</p>
                             <div className="login-button">
                                 <img alt="metamask logo" src={metamaskLogo} />
                                 <Button onClick={onClick}>
-                                    <span>Login with MetaMask</span>
+                                    <span>{t('LOGIN.BUTTON_METAMASK')}</span>
                                 </Button>
                             </div>
                             {(!allowedChains.includes(chain) && chain !== "" &&
-                                <p className="label text-danger">{chain} net is not supported.<br></br>Conntect to the volta testnet</p>)}
+                                <p className="label text-danger">{t('LOGIN.ERROR_UNSUPPORTED_CHAIN', { chain: chain })}</p>
+                            )}
                         </Container>
 
                         <div className="mt-4">
-                            <div className="d-flex justify-content-center">
-                                Don't have MetaMask? <a href="https://metamask.io/download.html" className="ml-2">Download</a>
+                            <div className="d-flex justify-content-center">{t('LOGIN.NO_METAMASK')}
+                                <a href="https://metamask.io/download.html" className="ml-2">Download</a>
                             </div>
                         </div>
-                        <div className="d-flex justify-content-center">
-                            What is Energy Web? <a href="https://www.energyweb.org/" className="ml-2">Energy Web</a>
+                        <div className="d-flex justify-content-center">{t('LOGIN.CONNECT_TO_VOLTA')}
+                            <a href="https://energyweb.atlassian.net/wiki/spaces/EWF/pages/703201459/Volta+Connecting+to+Remote+RPC+and+Metamask" className="ml-2">{t("LOGIN.CONNECT")}</a>
+                        </div>
+                        <div className="d-flex justify-content-center">{t('LOGIN.WHAT_IS_EW')}
+                            <a href="https://www.energyweb.org/" className="ml-2">Energy Web</a>
                         </div>
                     </div>
                 </div>

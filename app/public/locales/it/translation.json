@@ -1,7 +1,8 @@
 {
   "HOME": {
     "TITLE": "Energy Web DApp showcase",
-    "SECTION_1": "Descrizione:"
+    "SECTION_1_TITLE": "Descrizione:",
+    "SECTION_1_TEXT": "Questa è una semplice DApp per mostrare le peculiarità dell'ecosistema messo in piedi da Energy Web."
   },
   "LOGIN": {
     "TITLE": "EW showcase login",
@@ -9,7 +10,9 @@
     "BUTTON_METAMASK": "Login con Metamask",
     "ERROR_UNSUPPORTED_CHAIN": "La rete {{chain}} non è supportata.\nConnettiti alla rete di test volta",
     "NO_METAMASK": "Non hai MetaMask?",
-    "WHAT_IS_EW": "Cos'è Energy Web?"
+    "WHAT_IS_EW": "Cos'è Energy Web?",
+    "CONNECT": "Connettiti",
+    "CONNECT_TO_VOLTA": "Non connesso a volta?"
   },
   "ERROR": {
     "GENERIC": "Si è verificato un errore.\nControlla la console per saperne di più",

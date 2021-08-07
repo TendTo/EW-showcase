@@ -1,7 +1,8 @@
 {
   "HOME": {
     "TITLE": "Energy Web DApp showcase",
-    "SECTION_1": "Description:"
+    "SECTION_1_TITLE": "Description:",
+    "SECTION_1_TEXT": "This is a simple DApp meant to showcase some of the peculiarities of the Energy Web ecosystem."
   },
   "LOGIN": {
     "TITLE": "EW showcase login",
@@ -9,7 +10,9 @@
     "BUTTON_METAMASK": "Login with Metamask",
     "ERROR_UNSUPPORTED_CHAIN": "{{chain}} net is not supported.\nConnect to the volta testnet",
     "NO_METAMASK": "Don't have MetaMask?",
-    "WHAT_IS_EW": "What is Energy Web?"
+    "WHAT_IS_EW": "What is Energy Web?",
+    "CONNECT_TO_VOLTA": "Not connected to volta?",
+    "CONNECT": "Connect"
   },
   "ERROR": {
     "GENERIC": "An error has occurred.\nCheck the console logs to know more",
