@@ -1,8 +1,12 @@
-.address-info {
+.address-info>a {
     cursor: pointer;
+    text-decoration: none;
+    color: white;
 }
 
-.address-info:hover {
+.address-info:hover>a {
     opacity: .8;
     background-color: rgb(0, 0, 0, .1);
+    text-decoration: none;
+    color: white;
 }

@@ -1,0 +1,14 @@
+import { render, screen } from '@testing-library/react';
+import EwAccount from './EwAccount';
+
+type status = '0' | '1';
+
+test('renders EwAccount component', () => {
+    const address = "0xef131ed1460626e97F34243DAc544B42eb52a472";
+    const tx = { "message": "OK", "result": [{ "blockHash": "0xd2847ee53945229118af1708b23f811fa7b51c966d029a771c900d54b0d20716", "blockNumber": "12924462", "confirmations": "66961", "contractAddress": "", "cumulativeGasUsed": "283059", "from": "0xef131ed1460626e97f34243dac544b42eb52a472", "gas": "283059", "gasPrice": "1000000000", "gasUsed": "283059", "hash": "0x812cace28cb25ed8f06c69eeb1347a53cf2f225f530dbb616e9e18a65956d809", "input": " input", "isError": "0" as status, "nonce": "40", "timeStamp": "1628097855", "to": "0x0a97e07c4df22e2e31872f20c5be191d5efc4680", "transactionIndex": "0", "txreceipt_status": "1", "value": "0" }, { "blockHash": "0x682b3e4773f2b8d2e7b5df57cac1e4869b64b0a66ef2c7246cab96013ff1af96", "blockNumber": "12924459", "confirmations": "66964", "contractAddress": "", "cumulativeGasUsed": "100346", "from": "0xef131ed1460626e97f34243dac544b42eb52a472", "gas": "100346", "gasPrice": "1000000000", "gasUsed": "100346", "hash": "0x5d6455460b76865d3c791d133b638528996a82f66234a7859870a699e8bafadd", "input": " input", "isError": "0" as status, "nonce": "39", "timeStamp": "1628097840", "to": "0x0a97e07c4df22e2e31872f20c5be191d5efc4680", "transactionIndex": "0", "txreceipt_status": "1", "value": "0" }, { "blockHash": "0xca34ed3c5d814a0bb87d7bf68c41ffdd757ae574acccae9f3188aa09881c75b2", "blockNumber": "12924456", "confirmations": "66967", "contractAddress": "", "cumulativeGasUsed": "37380", "from": "0xef131ed1460626e97f34243dac544b42eb52a472", "gas": "37380", "gasPrice": "1000000000", "gasUsed": "37380", "hash": "0xc0a82c6aff682c82080f6b5eac0b32c1f9ca6acf4cd04d6d82df38168fd7c09e", "input": " input", "isError": "0" as status, "nonce": "38", "timeStamp": "1628097825", "to": "0xd7cef70ba7efc2035256d828d5287e2d285cd1ac", "transactionIndex": "0", "txreceipt_status": "1", "value": "0" }], "status": "1" as status };
+    const token = { "message": "OK", "result": [{ "balance": "1", "contractAddress": "0x042a9707b01efb3d1b8f313faf53ac35555e6745", "decimals": "", "name": "", "symbol": "", "type": "ERC-721" }], "status": "1" as status };
+    const balance = { "message": "OK", "result": "6038577194460860570", "status": "1" as status };
+    render(<EwAccount address={address} account={{ tx, token, balance }} />);
+    const linkElement = screen.getAllByText(/0xef131ed1460626e97F34243DAc544B42eb52a472/i);
+    expect(linkElement).toHaveLength(4);
+});
