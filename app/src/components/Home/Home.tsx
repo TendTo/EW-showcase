@@ -1,4 +1,3 @@
-import { Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import ew_dos from '../../asset/img/ew-dos.png';
 
