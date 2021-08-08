@@ -1,6 +1,7 @@
 #toast_container * {
     box-sizing: border-box;
     z-index: 9999;
+    white-space: pre-line;
 }
 
 .toast-list {

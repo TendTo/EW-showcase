@@ -20,7 +20,7 @@ i18n
             loadPath: '/EW-showcase/locales/{{lng}}/{{ns}}.json',
             addPath: '/EW-showcase/locales/add/{{lng}}/{{ns}}.missing.json',
         },
-        debug: true,
+        debug: false,
         fallbackLng: 'en',
         interpolation: {
             escapeValue: false, // not needed for react as it escapes by default
