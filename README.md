@@ -28,8 +28,11 @@ Sample DApp meant to showcase the Energy Web's chain capabilities.
 - [node 16.2.0](https://nodejs.org/)
 
 ### Available Scripts
-In the _app_ directory, you can run:
+In the _app_ directory, first run
+- `npm install`
+- `npx patch-package`
 
+Then, you can run:
 #### `npm start`
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
