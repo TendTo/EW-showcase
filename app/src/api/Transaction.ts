@@ -72,7 +72,11 @@ class Transaction extends ApiResult implements getTransactionListSingleResponse 
         return Transaction.convertVT(this.value);
     }
     get gasVt() {
-        return Transaction.convertVT(this.gas);
+        const decimals = this.gasUsed.length;
+        const gasUsed = Transaction.convertToNumber(this.gasUsed);
+        const gasPrice = Transaction.convertToNumber(this.gasPrice) / 1000000000;
+        const gas = `${gasUsed * gasPrice}`.slice(0, decimals).replace(".", "");
+        return Transaction.convertVT(gas);
     }
     get shortTo() {
         return Transaction.shortenAddress(this.to);
