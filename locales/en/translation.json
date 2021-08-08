@@ -35,6 +35,31 @@
     "NO_PROVIDER": "No ethereum provider found.\nPlease download Metamask",
     "NO_ACCOUNT": "No account connected.\nPlease connect an account",
     "REQUEST_ALREADY_SENT": "A request has already been sent.\nCheck your MetaMask extension",
-    "REQUEST_REJECTED": "The connection request has been rejected"
+    "REQUEST_REJECTED": "The connection request has been rejected",
+    "ADDRESS_NOT_FOUND": "The provided address could not be found",
+    "EMPTY_FIELD": "The field cannot be empty",
+    "INVALID_INPUT": "The input is not valid"
+  },
+  "ENS": {
+    "TITLE": "Ethereum Name Service (ENS)",
+    "SECTION_1_TITLE": "What is ENS?",
+    "SECTION_1_TEXT": "The Ethereum Name Service is a distributed, open, and extensible naming system based on the Ethereum blockchain. It is available on the Energy Web's chains as well.\nSimilarly to a DNS, addresses are mapped to human readeable domain names instead of hexadecimal values.\nThe default publicly available implementation allows mapping for: address, reverse addresses, content hashes, ABIdefinitions, public keys, smart contrats interfaces and so on.",
+    "SECTION_2_TITLE": "How does it work?",
+    "SECTION_2_TEXT": "The procedure for resolving a domain name with ENS is as follows:",
+    "SECTION_2_ITEM_1": "Normalise and hash the name. <a href=\"https://docs.ens.domains/contract-api-reference/name-processing\">(Learn more)</a>",
+    "SECTION_2_ITEM_2": "Call resolver() on the ENS registry, passing in the output of step 1. This returns the address of the resolver responsible for the name.",
+    "SECTION_2_ITEM_3": "Using the resolver interface, call addr() on the resolver address returned in step 2, passing in the hashed name calculated in step 1.  Alternatively if you are not looking up an address, call the relevant interface function to read the value of interest, e.g. text()",
+    "SECTION_2_TEXT_PT_2": "To know more about how ENS works under the hood, visit the <a href=\"https://energyweb.atlassian.net/wiki/spaces/EWF/pages/555745281/Using+ENS\">official wiki</a>",
+    "SECTION_3_TITLE": "ENS in action",
+    "SECTION_3_TEXT": "Use the name resolver below to see how convenient ENS can be.\nTry searching something with the hexadecimal address first and then use its domain name.",
+    "SECTION_3_LABEL_1": "Name or address",
+    "SEARCH": "Search"
+  },
+  "EW_ACCOUNT": {
+    "TRANSACTION": "Last 5 transactions",
+    "BALANCE": "Balance:"
+  },
+  "FOOTER": {
+    "LEGAL": "All names, logos, images, and brands are property of their respective owners."
   }
 }

@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/EW-showcase/static/css/main.d9d6fd97.chunk.css",
-    "main.js": "/EW-showcase/static/js/main.c9b109fb.chunk.js",
-    "main.js.map": "/EW-showcase/static/js/main.c9b109fb.chunk.js.map",
-    "runtime-main.js": "/EW-showcase/static/js/runtime-main.0d4c3a22.js",
-    "runtime-main.js.map": "/EW-showcase/static/js/runtime-main.0d4c3a22.js.map",
-    "static/js/2.3a2c81b1.chunk.js": "/EW-showcase/static/js/2.3a2c81b1.chunk.js",
-    "static/js/2.3a2c81b1.chunk.js.map": "/EW-showcase/static/js/2.3a2c81b1.chunk.js.map",
-    "static/js/3.1bcbd065.chunk.js": "/EW-showcase/static/js/3.1bcbd065.chunk.js",
-    "static/js/3.1bcbd065.chunk.js.map": "/EW-showcase/static/js/3.1bcbd065.chunk.js.map",
+    "main.css": "/EW-showcase/static/css/main.c21c67e3.chunk.css",
+    "main.js": "/EW-showcase/static/js/main.ca7bd0b9.chunk.js",
+    "main.js.map": "/EW-showcase/static/js/main.ca7bd0b9.chunk.js.map",
+    "runtime-main.js": "/EW-showcase/static/js/runtime-main.cbd68e0b.js",
+    "runtime-main.js.map": "/EW-showcase/static/js/runtime-main.cbd68e0b.js.map",
+    "static/js/2.66588e58.chunk.js": "/EW-showcase/static/js/2.66588e58.chunk.js",
+    "static/js/2.66588e58.chunk.js.map": "/EW-showcase/static/js/2.66588e58.chunk.js.map",
+    "static/js/3.40075fef.chunk.js": "/EW-showcase/static/js/3.40075fef.chunk.js",
+    "static/js/3.40075fef.chunk.js.map": "/EW-showcase/static/js/3.40075fef.chunk.js.map",
     "index.html": "/EW-showcase/index.html",
-    "static/css/main.d9d6fd97.chunk.css.map": "/EW-showcase/static/css/main.d9d6fd97.chunk.css.map",
-    "static/js/2.3a2c81b1.chunk.js.LICENSE.txt": "/EW-showcase/static/js/2.3a2c81b1.chunk.js.LICENSE.txt",
+    "static/css/main.c21c67e3.chunk.css.map": "/EW-showcase/static/css/main.c21c67e3.chunk.css.map",
+    "static/js/2.66588e58.chunk.js.LICENSE.txt": "/EW-showcase/static/js/2.66588e58.chunk.js.LICENSE.txt",
     "static/media/ew-dos.82f47696.png": "/EW-showcase/static/media/ew-dos.82f47696.png",
     "static/media/getFetch.cjs": "/EW-showcase/static/media/getFetch.582d29c4.cjs",
     "static/media/metamask-logo.05bfcf16.svg": "/EW-showcase/static/media/metamask-logo.05bfcf16.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.0d4c3a22.js",
-    "static/js/2.3a2c81b1.chunk.js",
-    "static/css/main.d9d6fd97.chunk.css",
-    "static/js/main.c9b109fb.chunk.js"
+    "static/js/runtime-main.cbd68e0b.js",
+    "static/js/2.66588e58.chunk.js",
+    "static/css/main.c21c67e3.chunk.css",
+    "static/js/main.ca7bd0b9.chunk.js"
   ]
 }
