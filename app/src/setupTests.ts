@@ -9,5 +9,6 @@ global.TextDecoder = require('text-encoding').TextDecoder;
 
 //Mocks the useTranslation function of i18next, to return the same string as for the key
 jest.mock('react-i18next', () => ({
-    useTranslation: () => ({t: (key: string) => key})
-  }));
+  useTranslation: () => ({ t: (key: string) => key }),
+  Trans: ({ i18nKey, children }: { i18nKey: string, children: any }) => children ? children : i18nKey
+}));
