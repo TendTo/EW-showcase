@@ -1,0 +1,30 @@
+.iamlogin-button-container {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    max-width: 500px;
+}
+
+.iamlogin-button {
+    height: 45px;
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.iamlogin-button>img {
+    width: 20%;
+    background-color: var(--dark);
+    padding: 2px;
+}
+
+.iamlogin-button>button {
+    width: 80%;
+}
+
+.iamlogin-result {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+}
