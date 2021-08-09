@@ -38,20 +38,21 @@
     "REQUEST_REJECTED": "La richiesta di connessione è stata rifiutata",
     "EMPTY_FIELD": "Il campo non può essere lasciato vuoto",
     "ADDRESS_NOT_FOUND": "L'indirizzo specificato non è stato trovato",
-    "INVALID_INPUT": "L'input non è valido"
+    "INVALID_INPUT": "L'input non è valido",
+    "REQUEST_UNAUTHORIZED": "La richesta non è autorizzata.\nAssicurarti di avere i ruoli necessari."
   },
   "ENS": {
     "TITLE": "Ethereum Name Service (ENS)",
     "SECTION_1_TEXT": "L'Ethereum Name Service è un sistema di denominazione distribuito, aperto ed estensibile basato sulla blockchain di Ethereum. \nÈ disponibile anche sulle catene di Energy Web.\nAnalogamente a un DNS, gli indirizzi vengono mappati su nomi di dominio leggibili dall'uomo anziché su valori esadecimali.\nL'implementazione disponibile pubblicamente predefinita consente l'utilizzo con: indirizzi, indirizzi inversi, hash di dati, definizioni ABI, chiavi pubbliche, interfacce di smart contracs e così via.",
     "SECTION_1_TITLE": "Cos'è ENS?",
     "SECTION_2_TITLE": "Come funziona?",
-    "SECTION_2_TEXT": "Il procedimento per risolvere un dominio con ENS è il seguente:",
+    "SECTION_2_TEXT": "Per un utente finale, ovviamente, il tutto è completamente trasparente. È compito dello sviluppatore di DApp integrare le funzionalità dell'ENS.\nEsistono diverse librerie che già supportano questa funzione, anche se potrebbe essere necessaria qualche patch manuale.\nIl procedimento per risolvere un dominio con ENS, comunque, non è particolarmente complicato:",
     "SECTION_2_ITEM_1": "Normalizza ed applica una funzione di hashing sul nome. <a>(Approfondisci)</a>",
-    "SECTION_2_ITEM_3": "Usando l'interfaccia del resolver, chiama addr() sull'indirizzo del resolver restituito nel passaggio 2, passando il nome con hash calcolato nel passaggio 1. In alternativa, se non stai cercando un indirizzo, chiama la funzione dell'interfaccia speficica nel tuo caso, ad esempio testo()",
+    "SECTION_2_ITEM_3": "Usando l'interfaccia del resolver, chiama addr() sull'indirizzo del resolver restituito nel passaggio 2, passando il nome con hash calcolato nel passaggio 1. In alternativa, se non stai cercando un indirizzo, chiama la funzione dell'interfaccia che ti interessa, ad esempio text()",
     "SECTION_2_ITEM_2": "Chiamare resolver() sul registro ENS, passando l'output del passaggio 1. Ciò restituisce l'indirizzo del resolver responsabile del dominio.",
     "SECTION_2_TEXT_PT_2": "Per saperne di più su come funziona ENS tecnicamente, visita la <a>wiki ufficiale</a>",
     "SECTION_3_TITLE": "ENS in azione",
-    "SECTION_3_TEXT": "Usa la barra di ricerca di seguito per cosntatare quanto può essere comodo ENS.\nProva prima a cercare qualcosa prima con l'indirizzo esadecimale e poi usa il dominio.",
+    "SECTION_3_TEXT": "Usa la barra di ricerca di seguito per cosntatare quanto può essere comodo ENS.\nProva prima a cercare qualcosa prima con l'indirizzo esadecimale e poi usa il dominio.\nEs. 0xef131ed1460626e97F34243DAc544B42eb52a472 | tend.ewc",
     "SECTION_3_LABEL_1": "Dominio o indirizzo",
     "SEARCH": "Cerca"
   },
@@ -64,5 +65,14 @@
   },
   "NAV": {
     "ADDRESS_COPIED": "Indirizzo copiato"
+  },
+  "IAM": {
+    "DID_VERIFIED": "DID verificato con successo",
+    "SECTION_1_TITLE": "Cos'è IAM?",
+    "SECTION_2_TITLE": "Come funziona?",
+    "TITLE": "Identity and Access Management (IAM)",
+    "DID_LOADING": "Loading...\nAspetta per confermare la transazione con MetaMask",
+    "DID_ERROR": "Si è verificato un errore con il login.\nSe hai rifiutato la richiesta, puoi provare nuovamente.\nSe questa è la priva volta che esegui l'operazione, hai bisogno di un po' di Volta token per creare la DID.\nPuoi ottenere dei Volta token dal <a>Volta Faucet</a>.",
+    "BUTTON_METAMASK": "Connettiti con MetaMask"
   }
 }
