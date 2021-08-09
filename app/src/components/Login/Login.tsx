@@ -20,7 +20,7 @@ type Props = {
 
 const reloadWindow = (_: any) => window.location.reload();
 
-export function Login({ setAccount, setWeb3, setChain, web3, chain }: Props) {
+function Login({ setAccount, setWeb3, setChain, web3, chain }: Props) {
     const { t } = useTranslation();
     const allowedChains = ["volta"];
     const onboarding = React.useRef<MetaMaskOnboarding>(new MetaMaskOnboarding());
@@ -108,7 +108,7 @@ export function Login({ setAccount, setWeb3, setChain, web3, chain }: Props) {
                             <p>{t('LOGIN.TEXT')}</p>
                             <div className="login-button">
                                 <img alt="metamask logo" src={metamaskLogo} />
-                                <Button onClick={onClick}>
+                                <Button onClick={onClick} disabled={!allowedChains.includes(chain) && chain !== ""}>
                                     <span>{t('LOGIN.BUTTON_METAMASK')}</span>
                                 </Button>
                             </div>
@@ -116,7 +116,6 @@ export function Login({ setAccount, setWeb3, setChain, web3, chain }: Props) {
                                 <p className="label text-danger">{t('LOGIN.ERROR_UNSUPPORTED_CHAIN', { chain: chain })}</p>
                             )}
                         </Container>
-
                         <div className="mt-4">
                             <div className="d-flex justify-content-center">{t('LOGIN.NO_METAMASK')}
                                 <a href="https://metamask.io/download.html" className="ml-2">Download</a>
