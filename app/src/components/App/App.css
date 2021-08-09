@@ -38,8 +38,14 @@ footer {
 main {
   position: relative;
   padding-top: 20px;
-  padding-bottom: 60px;
+  padding-bottom: 80px;
   white-space: pre-line;
+}
+
+@media screen and (max-width: 992px) {
+  main {
+    padding-bottom: 210px;
+  }
 }
 
 p {

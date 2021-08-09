@@ -61,5 +61,15 @@
   },
   "FOOTER": {
     "LEGAL": "All names, logos, images, and brands are property of their respective owners."
+  },
+  "NAV": {
+    "ADDRESS_COPIED": "Address copied to clipboard"
+  },
+  "IAM": {
+    "TITLE": "Identity and Access Management (IAM)",
+    "SECTION_1_TITLE": "What is IAM?",
+    "SECTION_1_TEXT": "IAM is a framework of policies and protocols that ensures that only authorized entities are able to access the requested resources.",
+    "SECTION_2_TITLE": "How does it work?",
+    "SECTION_2_TEXT": "In a decentralized system, as blockchains, a common approach to implement IAM is to employ Decentralized IDentifiers (DIDs)."
   }
 }

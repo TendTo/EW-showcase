@@ -56,10 +56,13 @@
     "SEARCH": "Cerca"
   },
   "EW_ACCOUNT": {
-    "BALANCE": "Saldo",
+    "BALANCE": "Saldo:",
     "TRANSACTION": "Ultime 5 transazioni"
   },
   "FOOTER": {
     "LEGAL": "Tutti i nomi, loghi, immagini e brand appartengono ai rispettivi proprietari."
+  },
+  "NAV": {
+    "ADDRESS_COPIED": "Indirizzo copiato"
   }
 }

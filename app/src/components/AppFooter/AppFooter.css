@@ -3,17 +3,31 @@
     flex-flow: row nowrap;
     align-items: center;
     justify-content: space-between;
-    min-height: 50px;
-    padding: 0 40px;
+    height: 70px;
+    padding: 20px 40px;
+    font-size: medium;
+}
+
+@media screen and (max-width: 992px) {
+    .footer-container {
+        flex-flow: column nowrap;
+        height: 200px;
+    }
+}
+
+.footer-container>* {
+    margin: 0 10px;
+    max-width: 100%;
 }
 
 .footer-container a {
     color: #fff;
     text-decoration: none;
-    margin: 0 5px;
 }
 
 .footer-container a img {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 50%;
 }
