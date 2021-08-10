@@ -1,27 +1,30 @@
-.iamlogin-button-container {
+.didlogin-button-container {
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     max-width: 500px;
 }
 
-.iamlogin-button {
+.didlogin-button {
     height: 45px;
     display: flex;
     flex-flow: row nowrap;
 }
 
-.iamlogin-button>img {
+.didlogin-button .didlogin-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 20%;
     background-color: var(--dark);
     padding: 2px;
 }
 
-.iamlogin-button>button {
+.didlogin-button>button {
     width: 80%;
 }
 
-.iamlogin-result {
+.didlogin-result {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;

@@ -7,7 +7,7 @@ import AppNav from '../AppNav/AppNav';
 import ENS from '../ENS/ENS';
 import Home from '../Home/Home';
 import Login from '../Login/Login';
-import IAM from '../IAM/IAM';
+import DID from '../DID/DID';
 // import MyIam from '../MyIAM/MyIAM';
 import './App.css';
 
@@ -36,7 +36,7 @@ function App() {
                 <ENS web3={web3}></ENS>
               </Route>
               <Route path="/iam" exact>
-                <IAM account={account}></IAM>
+                <DID account={account}></DID>
               </Route>
               <Route path="/" component={Home} />
             </Switch>

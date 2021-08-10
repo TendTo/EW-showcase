@@ -4,7 +4,7 @@ import { Button, Spinner } from "react-bootstrap";
 import { Trans, useTranslation } from "react-i18next";
 import metamaskLogo from "../../asset/icon/metamask-logo.svg";
 import IAMContext from "../../context/IAMContext";
-import './IAMLogin.css';
+import './DIDLogin.css';
 
 type Props = {
     setDID: (did: string) => void
@@ -12,7 +12,7 @@ type Props = {
 
 type RequestResultType = 'Error' | 'Unauthorized' | 'Success' | 'None';
 
-function IamLogin({ setDID }: Props) {
+function DIDLogin({ setDID }: Props) {
     const iam = useContext(IAMContext);
     const [requestResult, setRequestResult] = useState<RequestResultType>('None');
     const [loading, setLoading] = useState<boolean>(false);
@@ -20,11 +20,9 @@ function IamLogin({ setDID }: Props) {
 
     const login = async () => {
         setLoading(true);
-        setRequestResult("Success");
         try {
             const { did, connected } = await iam.initializeConnection({ walletProvider: WalletProvider.MetaMask });
-            console.log(`did: ${did}`);
-
+            setRequestResult("Success");
             if (connected && did) {
                 setDID(did);
             }
@@ -34,12 +32,18 @@ function IamLogin({ setDID }: Props) {
         setLoading(false);
     };
 
+    const logout = async function () {
+        await iam.closeConnection();
+        setDID("");
+        setRequestResult("None");
+    };
+
     const loginResult = () => {
         let faClass = "check";
-        let span = <span className="font-weight-bold">{t('IAM.DID_VERIFIED')}</span>;
+        let span = <span className="font-weight-bold">{t('DID.DID_VERIFIED')}</span>;
         switch (requestResult) {
             case "Error":
-                span = <Trans i18nKey="IAM.DID_ERROR" className="font-weight-bold" components={{ a: <a href="https://voltafaucet.energyweb.org" target="_blank" rel="noreferrer">a</a> }} />;
+                span = <Trans i18nKey="DID.DID_ERROR" className="font-weight-bold" components={{ a: <a href="https://voltafaucet.energyweb.org" target="_blank" rel="noreferrer">a</a> }} />;
                 faClass = "times"
                 break;
             case "Unauthorized":
@@ -53,7 +57,7 @@ function IamLogin({ setDID }: Props) {
                 return <></>;
         }
         return (
-            <div className="iamlogin-result">
+            <div className="didlogin-result">
                 <i className={`fa fa-lg fa-${faClass}-circle text-${faClass === "check" ? "success" : "danger"} mr-3`}></i>
                 <span>{span}</span>
             </div>
@@ -63,18 +67,21 @@ function IamLogin({ setDID }: Props) {
     return (
         <div className="d-flex justify-content-center">
             <div className="d-flex flex-column align-items-flex-start">
-                <div className="iamlogin-button-container mb-3">
-                    <div className="iamlogin-button">
-                        <img alt="metamask logo" src={metamaskLogo} />
-                        <Button onClick={login} disabled={loading}>
-                            <span>{t('IAM.BUTTON_METAMASK')}</span>
+                <div className="didlogin-button-container mb-3">
+                    <div className="didlogin-button">
+                        {requestResult !== "Success" ?
+                            <img alt="metamask logo" src={metamaskLogo} className="didlogin-label" />
+                            :
+                            <i className="fa fa-sign-out didlogin-label"></i>}
+                        <Button onClick={requestResult !== "Success" ? login : logout} disabled={loading} variant={requestResult !== "Success" ? "primary" : "secondary"}>
+                            <span>{requestResult !== "Success" ? t('DID.LOGIN') : t('DID.LOGOUT')}</span>
                         </Button>
                     </div>
                 </div>
                 {loading ?
                     (<div className="d-flex align-items-center">
                         <Spinner animation="border" className="mr-3" />
-                        <span className="font-weight-bold">{t('IAM.DID_LOADING')}</span>
+                        <span className="font-weight-bold">{t('DID.DID_LOADING')}</span>
                     </div>
                     )
                     :
@@ -84,4 +91,4 @@ function IamLogin({ setDID }: Props) {
     );
 }
 
-export default IamLogin;
+export default DIDLogin;

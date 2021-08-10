@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import Iam from './IAM';
+import DID from './DID';
 
 test('renders IAM component', () => {
-    render(<Iam account={"account"} />);
-    const linkElement = screen.getByText(/IAM.TITLE/i);
+    render(<DID account={"account"} />);
+    const linkElement = screen.getByText(/DID.TITLE/i);
     expect(linkElement).toBeInTheDocument();
 });
