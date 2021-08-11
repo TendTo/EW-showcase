@@ -66,7 +66,7 @@
   "NAV": {
     "ADDRESS_COPIED": "Address copied to clipboard"
   },
-  "IAM": {
+  "DID": {
     "TITLE": "Identity and Access Management (IAM)",
     "SECTION_1_TITLE": "What is IAM?",
     "SECTION_1_TEXT": "IAM is a framework of policies and protocols that ensures that only authorized entities are able to access the requested resources.",
@@ -75,6 +75,7 @@
     "DID_VERIFIED": "DID verified successfully",
     "DID_LOADING": "Loading...\nWait to sign the transaction with MetaMask",
     "DID_ERROR": "Error occurred with login.\nIf you rejected the signing requests, please try again and accept.\nIf this is your first time logging in, your account needs a small amount of Volta token to create a DID Document.\nA Volta token can be obtained from the <a>Volta Faucet</a>.",
-    "BUTTON_METAMASK": "Connect with MetaMask"
+    "LOGIN": "Connect with MetaMask",
+    "LOGOUT": "Log out"
   }
 }

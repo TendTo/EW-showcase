@@ -66,13 +66,14 @@
   "NAV": {
     "ADDRESS_COPIED": "Indirizzo copiato"
   },
-  "IAM": {
+  "DID": {
     "DID_VERIFIED": "DID verificato con successo",
     "SECTION_1_TITLE": "Cos'è IAM?",
     "SECTION_2_TITLE": "Come funziona?",
     "TITLE": "Identity and Access Management (IAM)",
     "DID_LOADING": "Loading...\nAspetta per confermare la transazione con MetaMask",
     "DID_ERROR": "Si è verificato un errore con il login.\nSe hai rifiutato la richiesta, puoi provare nuovamente.\nSe questa è la priva volta che esegui l'operazione, hai bisogno di un po' di Volta token per creare la DID.\nPuoi ottenere dei Volta token dal <a>Volta Faucet</a>.",
-    "BUTTON_METAMASK": "Connettiti con MetaMask"
+    "LOGIN": "Connettiti con MetaMask",
+    "LOGOUT": "Log out"
   }
 }
