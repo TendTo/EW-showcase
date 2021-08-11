@@ -68,12 +68,23 @@
   },
   "DID": {
     "DID_VERIFIED": "DID verificato con successo",
-    "SECTION_1_TITLE": "Cos'è IAM?",
-    "SECTION_2_TITLE": "Come funziona?",
+    "SECTION_1_TITLE": "Cos'è un DID?",
+    "SECTION_2_TITLE": "Qual è lo scopo delle DID?",
     "TITLE": "Identity and Access Management (IAM)",
     "DID_LOADING": "Loading...\nAspetta per confermare la transazione con MetaMask",
     "DID_ERROR": "Si è verificato un errore con il login.\nSe hai rifiutato la richiesta, puoi provare nuovamente.\nSe questa è la priva volta che esegui l'operazione, hai bisogno di un po' di Volta token per creare la DID.\nPuoi ottenere dei Volta token dal <a>Volta Faucet</a>.",
     "LOGIN": "Connettiti con MetaMask",
-    "LOGOUT": "Log out"
+    "LOGOUT": "Log out",
+    "ASSET_DID": "DID asset",
+    "DID_ADDRESS": "Indirizzo",
+    "DID_BIRTHDATE": "Data di nascita",
+    "DID_NAME": "Nome",
+    "NO_CLAIMS": "Non sono stati trovati claims",
+    "USER_DID": "DID utente",
+    "SECTION_1_TEXT": "I DID sono identificatori univoci usati per realizzare identità digitali verificabili e decentralizzate. Sono la base per l'implementazione delle Self Sovrain Identity (SSI).\nIl soggetto identificato può essere qualsiasi cosa: una persona, un'organizzazione o un bene fisico, per fare qualche esempio.\nUn DID si comporta come un URL e punta ad un DID document, archiviato su un archivio pubblico permanente, come una blockchain.\nIl DID document contiene tutte le informazioni o claims relativi al soggetto identificato dal DID e fornisce un insieme di meccaniscmi che consentono a chi controlla il DID di provarne il possesso.",
+    "SECTION_1_IMG": "Semplice esempio di un Decentralized IDentifier (DID) con i suoi componenti",
+    "SECTION_2_TEXT": "Il soggetto identificato ha bisogno di un’identità per essere in grado di dimostrare di possedere determinati tratti o caratteristiche a un verificatore.\nIl verificatore ha un certo numero di emittenti di fiducia ed è disposto ad accettarne i claims, cioè le affermazioni.\nIl soggetto può chiedere a uno di questi emittenti di aggiungere una dichiarazione firmata sul proprio documento DID,\nInoltre, sia l'emittente che il verificatore devono essere in grado di verificare che il soggetto sia effettivamente il proprietario dell'identità. Ciò si ottiene tramite DIDAuth.\nQuesto processo può assumere molte forme, come specificato nel documento DID, ma un modo comune è attraverso un challenge inviata dall'emittente o dal verificatore al soggetto, del quale conoscono la chiave pubblica grazie al DID document, che a sua volta risponderà firmando con la propria chiave privata, dimostrando la propria identità.\n\nProviamo un'analogia con il mondo reale.\nVuoi comprare alcool al bar. Per farlo, devi essere in grado di dimostrare al barista di avere almeno 18 anni. Il barista in questo caso è il verificatore.\nPuoi dimostrare la tua richiesta mostrando la tua carta d'identità.\nQuesta viene rilasciato dal governo, che funge da emittente di fiducia per il barman, il quale verificherà che tu sia effettivamente la persona raffigurata nella foto e si convincerà che sei maggiorennte.",
+    "SECTION_1_IMG_2": "Panoramica dell'architettura dei DID e le relazioni fra le componenti fondamentali",
+    "SECTION_2_IMG": "Possibile flusso che mostra come un'interazione di autenticazione potrebbe utilizzare DID per l'autenticazione autonoma"
   }
 }

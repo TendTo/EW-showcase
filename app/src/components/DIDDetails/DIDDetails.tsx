@@ -1,5 +1,5 @@
 import { IServiceEndpoint } from "@ew-did-registry/did-resolver-interface";
-import { Asset, AssetProfiles, ClaimData } from "iam-client-lib";
+import { AssetProfiles, ClaimData } from "iam-client-lib";
 import React, { Fragment, ReactElement, useContext, useEffect, useState } from "react";
 import { Container, Spinner } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
@@ -17,7 +17,6 @@ function DIDdetails({ did }: Props) {
     const iam = useContext(IAMContext);
     const [loading, setLoading] = useState(false);
     const [claims, setClaims] = useState<(IServiceEndpoint & ClaimData)[]>([]);
-    const [assets, setAssets] = useState<(Asset)[]>([]);
     const { t } = useTranslation();
 
     const toUTCTimestamp = (timeStamp: number | string | undefined) => {
@@ -42,7 +41,7 @@ function DIDdetails({ did }: Props) {
         }
         if (did)
             setup();
-    }, [did]);
+    }, [iam, did]);
 
     const assetsComponent = (assetProfiles: AssetProfiles) => {
         const assets: ReactElement[] = [];
@@ -51,15 +50,15 @@ function DIDdetails({ did }: Props) {
                 <div key={asset} className="diddetails-table mt-3">
                     <div className="diddetails-row">
                         <div>
-                            <img src={assetProfiles[asset].icon || solar_logo} className="diddetails-logo" />
+                            <img alt="asset" src={assetProfiles[asset].icon || solar_logo} className="diddetails-logo" />
                         </div>
                     </div>
                     <div className="diddetails-row">
-                        <div className="text-muted">Name</div>
+                        <div className="text-muted">{t('DID.DID_NAME')}</div>
                         <div>{assetProfiles[asset].name}</div>
                     </div>
                     <div className="diddetails-row">
-                        <div className="text-muted">Asset DID</div>
+                        <div className="text-muted">{t('DID.ASSET_DID')}</div>
                         <div className="text-truncate">{asset}</div>
                     </div>
                 </div>
@@ -68,37 +67,32 @@ function DIDdetails({ did }: Props) {
         return assets;
     }
 
-    const claimsComponent = claims.map((claim) => {
-        return (
-            <Fragment key={claim.id}>
-                {claim.profile &&
-                    <>
+    const claimsComponent = claims.map((claim) => (
+        <Fragment key={claim.id}>
+            {claim.profile &&
+                <>
+                    <div className="diddetails-row">
+                        <div className="text-muted">{t("DID.DID_NAME")}</div>
+                        <div>{claim.profile?.name}</div>
+                    </div>
+                    <div className="diddetails-row">
+                        <div className="text-muted">{t('DID.DID_ADDRESS')}</div>
+                        <div>{claim.profile?.address}</div>
+                    </div>
+                    <div className="diddetails-row">
+                        <div className="text-muted">{t('DID.DID_BIRTHDATE')}</div>
+                        <div>{toUTCTimestamp(claim.profile?.birthdate)}</div>
+                    </div>
+                    {claim.profile?.assetProfiles &&
                         <div className="diddetails-row">
-                            <div className="text-muted">Name</div>
-                            <div>{claim.profile?.name}</div>
-                        </div>
-                        <div className="diddetails-row">
-                            <div className="text-muted">Address</div>
-                            <div>{claim.profile?.address}</div>
-                        </div>
-                        <div className="diddetails-row">
-                            <div className="text-muted">Birthdate</div>
-                            <div>{toUTCTimestamp(claim.profile?.birthdate)}</div>
-                        </div>
-                        {
-                            claim.profile?.assetProfiles &&
-                            <div className="diddetails-row">
-                                <details>
-                                    <summary>{Object.keys(claim.profile?.assetProfiles).length + " assets"}</summary>
-                                    {assetsComponent(claim.profile?.assetProfiles)}
-                                </details>
-                            </div>
-                        }
-                    </>
-                }
-            </Fragment>
-        );
-    })
+                            <details>
+                                <summary>{Object.keys(claim.profile?.assetProfiles).length + " assets"}</summary>
+                                {assetsComponent(claim.profile?.assetProfiles)}
+                            </details>
+                        </div>}
+                </>}
+        </Fragment>
+    ))
 
     return (
         <>
@@ -108,14 +102,14 @@ function DIDdetails({ did }: Props) {
                 <Container fluid>
                     <div className="diddetails-table">
                         <div className="diddetails-row">
-                            <div className="text-muted">User DID</div>
+                            <div className="text-muted">{t('DID.USER_DID')}</div>
                             <div>{did}</div>
                         </div>
                         {claims.length > 0 ?
                             claimsComponent
                             :
                             <div className="d-flex justify-content-center align-items-center mt-2">
-                                <img className="diddetails-empty-icon" src={empty_set} /><div>No claims</div>
+                                <img alt="empty" className="diddetails-empty-icon" src={empty_set} /><div>{t('DID.NO_CLAIMS')}</div>
                             </div>
                         }
                     </div>

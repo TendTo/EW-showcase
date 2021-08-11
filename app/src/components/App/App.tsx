@@ -35,7 +35,7 @@ function App() {
               <Route path="/ens" exact>
                 <ENS web3={web3}></ENS>
               </Route>
-              <Route path="/iam" exact>
+              <Route path="/did" exact>
                 <DID account={account}></DID>
               </Route>
               <Route path="/" component={Home} />

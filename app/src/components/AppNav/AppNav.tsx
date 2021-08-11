@@ -26,8 +26,7 @@ function AppNav({ account, chain }: Props) {
         <Nav className="me-auto">
           <Nav.Link href="#home">Home</Nav.Link>
           <Nav.Link href="#ens">ENS</Nav.Link>
-          {/* <Nav.Link href="#did">DID</Nav.Link> */}
-          <Nav.Link href="#iam">IAM</Nav.Link>
+          <Nav.Link href="#did">DID</Nav.Link>
         </Nav>
         <Nav className="connection-info">
           {account && <p className="account-info" onClick={onClickAccount}>{shortAccount}</p>}

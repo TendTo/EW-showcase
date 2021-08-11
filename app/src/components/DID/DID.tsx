@@ -1,5 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import did_schema from '../../asset/img/did-schema.svg';
+import did_auth from '../../asset/img/did-auth.svg';
+import did_architecture from '../../asset/img/did-architecture.svg';
 import IAMContext from "../../context/IAMContext";
 import DIDDetails from "../DIDDetails/DIDDetails";
 import DIDLogin from "../DIDLogin/DIDLogin";
@@ -34,8 +37,20 @@ function DID({ account }: Props) {
             </div>
             <h3>{t("DID.SECTION_1_TITLE")}</h3>
             <p>{t('DID.SECTION_1_TEXT')}</p>
+            <div className="did-img-container">
+                    <img src={did_schema} className="figure-img img-fluid rounded" alt="DID schema" />
+                    <figcaption className="figure-caption text-center">{t("DID.SECTION_1_IMG")}</figcaption>
+            </div>
+            <div className="did-img-container">
+                <img src={did_architecture} className="figure-img img-fluid rounded" alt="DID schema" />
+                <figcaption className="figure-caption text-center">{t("DID.SECTION_1_IMG_2")}</figcaption>
+            </div>
             <h3>{t("DID.SECTION_2_TITLE")}</h3>
             <p>{t('DID.SECTION_2_TEXT')}</p>
+            <div className="did-img-container">
+                    <img src={did_auth} className="figure-img img-fluid rounded" alt="DID auth process" />
+                    <figcaption className="figure-caption text-center">{t("DID.SECTION_2_IMG")}</figcaption>
+            </div>
             <br />
             <DIDLogin setDID={setDID}></DIDLogin>
             <br />

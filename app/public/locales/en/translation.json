@@ -67,15 +67,24 @@
     "ADDRESS_COPIED": "Address copied to clipboard"
   },
   "DID": {
-    "TITLE": "Identity and Access Management (IAM)",
-    "SECTION_1_TITLE": "What is IAM?",
-    "SECTION_1_TEXT": "IAM is a framework of policies and protocols that ensures that only authorized entities are able to access the requested resources.",
-    "SECTION_2_TITLE": "How does it work?",
-    "SECTION_2_TEXT": "In a decentralized system, as blockchains, a common approach to implement IAM is to employ Decentralized IDentifiers (DIDs).",
+    "TITLE": "Decentralized IDentifiers (DIDs)",
+    "SECTION_1_TITLE": "What is a DID?",
+    "SECTION_1_IMG": "A simple example of a Decentralized IDentifier (DID) with its components",
+    "SECTION_1_TEXT": "DIDs are uniue identifiers that enable verifiable, decentralized digital identity. They are used to implement Self Sovrain Identity (SSI).\nThe identified subject can be anything: a person, an organization or a phisical asset to name a few.\nA DID behaves like an URL, and points to a DID document, which stored on public permanent storage, like a blockchain.\nThe DID document contains all the informations or claims related to the subject the DID identifies and provides a set of mechanisms which enable a DID controller to prove control of the DID. ",
+    "SECTION_2_TITLE": "What is the DID's purpouse?",
+    "SECTION_2_TEXT": "The identity subject needs an identity to be able to prove you possess certain traits or characteristics to a verifier.\nThe verifier has a number of trusted issuers from which it is willing to accept claims from.\nThe subject can ask one of these issuers to add a signed claim on its DID document, \nAlso, both issuer and verifier must be able to verify that the subject is actually the identity owner. This is achieved through DIDAuth.\nThis process can take many forms, as specified in the DID document, but a common way is through a challenge sent by the issuer or the verifier to the subject, whose public key they know thanks to the DID document, which in turn will respond by signing with the its private key, proving its identity.\n\nLet's try a real world analogy.\nYou want to buy alcohol at a bar. To do so, you must be able to prove to the barman that you are at least 18 years old. The barman in this case is the verifier.\nYou can prove your claim by showing your identity card. \nIt is issued from the government, which acts as a trusted issuer for the barman, who will check that you are actually the person pictured in the photo and will be convinced that you are old enough.",
     "DID_VERIFIED": "DID verified successfully",
     "DID_LOADING": "Loading...\nWait to sign the transaction with MetaMask",
     "DID_ERROR": "Error occurred with login.\nIf you rejected the signing requests, please try again and accept.\nIf this is your first time logging in, your account needs a small amount of Volta token to create a DID Document.\nA Volta token can be obtained from the <a>Volta Faucet</a>.",
     "LOGIN": "Connect with MetaMask",
-    "LOGOUT": "Log out"
+    "LOGOUT": "Log out",
+    "DID_NAME": "Name",
+    "ASSET_DID": "Asset DID",
+    "DID_ADDRESS": "Address",
+    "DID_BIRTHDATE": "Birthdate",
+    "USER_DID": "User DID",
+    "NO_CLAIMS": "No claims were found",
+    "SECTION_2_IMG": "Possible flow showing how an authentication interaction could use DIDs for autonomous authentication",
+    "SECTION_1_IMG_2": "Overview of DID architecture and the relationship of the basic components"
   }
 }
