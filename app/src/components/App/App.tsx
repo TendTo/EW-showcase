@@ -4,11 +4,11 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import Web3 from 'web3';
 import AppFooter from '../AppFooter/AppFooter';
 import AppNav from '../AppNav/AppNav';
+import DID from '../DID/DID';
 import ENS from '../ENS/ENS';
 import Home from '../Home/Home';
 import Login from '../Login/Login';
-import DID from '../DID/DID';
-// import MyIam from '../MyIAM/MyIAM';
+import References from '../References/References';
 import './App.css';
 
 function App() {
@@ -37,6 +37,9 @@ function App() {
               </Route>
               <Route path="/did" exact>
                 <DID account={account}></DID>
+              </Route>
+              <Route path="/references" exact>
+                <References />
               </Route>
               <Route path="/" component={Home} />
             </Switch>

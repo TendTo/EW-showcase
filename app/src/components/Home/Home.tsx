@@ -20,7 +20,7 @@ function Home() {
             </ul>
             <figure className="figure">
                 <img src={ew_dos} className="figure-img img-fluid rounded" alt="EW-Dos" />
-                <figcaption className="figure-caption text-center">{t("HOME.SECTION_2_IMG")}</figcaption>
+                <figcaption className="figure-caption text-center">[1] {t("HOME.SECTION_2_IMG")}</figcaption>
             </figure>
             <h3>{t('HOME.SECTION_3_TITLE')}</h3>
             <p>{t('HOME.SECTION_3_TEXT')}</p>

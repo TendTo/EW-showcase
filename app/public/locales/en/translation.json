@@ -65,7 +65,8 @@
     "LEGAL": "All names, logos, images, and brands are property of their respective owners."
   },
   "NAV": {
-    "ADDRESS_COPIED": "Address copied to clipboard"
+    "ADDRESS_COPIED": "Address copied to clipboard",
+    "REFERENCES": "References"
   },
   "DID": {
     "TITLE": "Decentralized IDentifiers (DIDs)",
@@ -96,5 +97,22 @@
   "GENERAL": {
     "CANCEL": "Cancel",
     "SUBMIT": "Submit"
+  },
+  "REFERENCES": {
+    "TITLE": "References",
+    "SECTION_1_TITLE": "Documentation",
+    "SECTION_1_ITEM_1": "Energy Web",
+    "SECTION_1_ITEM_2": "Energy Web Wiki",
+    "SECTION_1_ITEM_3": "Energy Web paper",
+    "SECTION_1_ITEM_4": "Energy Web insights (Medium)",
+    "SECTION_1_ITEM_5": "Decentralized Identifiers (W3.org)",
+    "SECTION_2_TITLE": "Images",
+    "SECTION_2_ITEM_1": "[1] EW-DOS",
+    "SECTION_2_ITEM_2": "[2] DID-schema",
+    "SECTION_2_ITEM_3": "[3] DID-architecture",
+    "SECTION_2_ITEM_4": "[4] DID-use",
+    "SECTION_3_TITLE": "DApps",
+    "SECTION_3_ITEM_1": "Switchboard",
+    "SECTION_3_ITEM_2": "EWNS"
   }
 }

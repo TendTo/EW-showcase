@@ -65,10 +65,11 @@
     "LEGAL": "Tutti i nomi, loghi, immagini e brand appartengono ai rispettivi proprietari."
   },
   "NAV": {
-    "ADDRESS_COPIED": "Indirizzo copiato"
+    "ADDRESS_COPIED": "Indirizzo copiato",
+    "REFERENCES": "Bibliografia"
   },
   "DID": {
-    "TITLE": "Identity and Access Management (IAM)",
+    "TITLE": "Decentralized IDentifiers (DIDs)",
     "SECTION_1_TITLE": "Cos'è un DID?",
     "SECTION_1_TEXT": "I DID sono identificatori univoci usati per realizzare identità digitali verificabili e decentralizzate. Sono la base per l'implementazione delle Self Sovrain Identity (SSI).\nIl soggetto identificato può essere qualsiasi cosa: una persona, un'organizzazione o un bene fisico, per fare qualche esempio.\nUn DID si comporta come un URL e punta ad un DID document, archiviato su un archivio pubblico permanente, come una blockchain.\nChiunque può creare un nuovo DID in qualsiasi momento, ma le caratteristiche (claims) continueranno a riferirsi ad uno specifico DID.",
     "SECTION_1_IMG": "Semplice esempio di un Decentralized IDentifier (DID) con i suoi componenti",
@@ -96,5 +97,22 @@
   "GENERAL": {
     "CANCEL": "Annulla",
     "SUBMIT": "Invia"
+  },
+  "REFERENCES": {
+    "TITLE": "Bibliografia",
+    "SECTION_1_TITLE": "Documentazione",
+    "SECTION_2_TITLE": "Immagini",
+    "SECTION_1_ITEM_1": "Energy Web",
+    "SECTION_1_ITEM_2": "Energy Web Wiki",
+    "SECTION_1_ITEM_3": "Energy Web paper",
+    "SECTION_1_ITEM_4": "Energy Web insights (Medium)",
+    "SECTION_1_ITEM_5": "Decentralized Identifiers (W3.org)",
+    "SECTION_2_ITEM_1": "[1] EW-DOS",
+    "SECTION_2_ITEM_2": "[2] DID-schema",
+    "SECTION_2_ITEM_3": "[3] DID-architecture",
+    "SECTION_2_ITEM_4": "[4] DID-use",
+    "SECTION_3_ITEM_1": "Switchboard",
+    "SECTION_3_ITEM_2": "EWNS",
+    "SECTION_3_TITLE": "DApps"
   }
 }
