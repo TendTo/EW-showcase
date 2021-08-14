@@ -21,7 +21,8 @@ function DIDLogin({ setDID }: Props) {
     const login = async () => {
         setLoading(true);
         try {
-            const { did, connected } = await iam.initializeConnection({ walletProvider: WalletProvider.MetaMask });
+            const { did, connected, didDocument } = await iam.initializeConnection({ walletProvider: WalletProvider.MetaMask });
+            console.table(didDocument)
             setRequestResult("Success");
             if (connected && did) {
                 setDID(did);

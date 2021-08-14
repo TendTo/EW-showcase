@@ -38,19 +38,23 @@ function DID({ account }: Props) {
             <h3>{t("DID.SECTION_1_TITLE")}</h3>
             <p>{t('DID.SECTION_1_TEXT')}</p>
             <div className="did-img-container">
-                    <img src={did_schema} className="figure-img img-fluid rounded" alt="DID schema" />
-                    <figcaption className="figure-caption text-center">{t("DID.SECTION_1_IMG")}</figcaption>
-            </div>
-            <div className="did-img-container">
-                <img src={did_architecture} className="figure-img img-fluid rounded" alt="DID schema" />
-                <figcaption className="figure-caption text-center">{t("DID.SECTION_1_IMG_2")}</figcaption>
+                <img src={did_schema} className="figure-img img-fluid rounded" alt="DID schema" />
+                <figcaption className="figure-caption text-center">{t("DID.SECTION_1_IMG")}</figcaption>
             </div>
             <h3>{t("DID.SECTION_2_TITLE")}</h3>
             <p>{t('DID.SECTION_2_TEXT')}</p>
             <div className="did-img-container">
-                    <img src={did_auth} className="figure-img img-fluid rounded" alt="DID auth process" />
-                    <figcaption className="figure-caption text-center">{t("DID.SECTION_2_IMG")}</figcaption>
+                <img src={did_architecture} className="figure-img img-fluid rounded" alt="DID architecture" />
+                <figcaption className="figure-caption text-center">{t("DID.SECTION_2_IMG")}</figcaption>
             </div>
+            <h3>{t("DID.SECTION_3_TITLE")}</h3>
+            <p>{t('DID.SECTION_3_TEXT')}</p>
+            <div className="did-img-container">
+                <img src={did_auth} className="figure-img img-fluid rounded" alt="DID auth process" />
+                <figcaption className="figure-caption text-center">{t("DID.SECTION_3_IMG")}</figcaption>
+            </div>
+            <h3>{t("DID.SECTION_4_TITLE")}</h3>
+            <p>{t('DID.SECTION_4_TEXT')}</p>
             <br />
             <DIDLogin setDID={setDID}></DIDLogin>
             <br />
