@@ -21,9 +21,6 @@ function DID({ account }: Props) {
         const showIam = async () => {
             iam.on('accountChanged', async () => { await iam.closeConnection(); setDID(""); });
             iam.on('networkChanged', async () => { await iam.closeConnection(); setDID(""); });
-
-            const claims = await iam.getUserClaims({ did });
-            console.log(claims);
         }
         if (iam.isConnected() && did) {
             showIam();
@@ -58,8 +55,10 @@ function DID({ account }: Props) {
             <br />
             <DIDLogin setDID={setDID}></DIDLogin>
             <br />
-            {iam.isConnected() && did &&
+            {iam.isConnected() && did ?
                 <DIDDetails did={did}></DIDDetails>
+                :
+                <div className="app-space" />
             }
         </div >
     );

@@ -17,7 +17,7 @@ type Props = {
 function DIDDetails({ did }: Props) {
     const iam = useContext(IAMContext);
     const [loading, setLoading] = useState(false);
-    const [claims, setClaims] = useState<(IServiceEndpoint & ClaimData)[]>([]);
+    const [profileClaim, setProfileClaims] = useState<(IServiceEndpoint & ClaimData)>();
     const { t } = useTranslation();
 
     const toUTCTimestamp = (timeStamp: number | string | undefined) => {
@@ -33,18 +33,16 @@ function DIDDetails({ did }: Props) {
             setLoading(true);
             try {
                 const claims = await iam.getUserClaims({ did });
-                setClaims(claims);
+                setProfileClaims(claims.find(c => c.profile));
             } catch (e) {
                 console.error(e);
-                setClaims([]);
+                setProfileClaims(undefined);
             }
             setLoading(false);
         }
         if (did)
             setup();
     }, [iam, did]);
-
-    const profileClaim = claims.find(c => c.profile)?.profile;
 
     const assetsComponent = (assetProfiles: AssetProfiles) => {
         const assets: ReactElement[] = [];
@@ -73,7 +71,6 @@ function DIDDetails({ did }: Props) {
     }
 
     const claimsComponent = () => {
-        const profileClaim = claims.find(claim => claim.profile);
         if (profileClaim === undefined)
             return null;
         return (<Fragment key={profileClaim.id}>
@@ -119,11 +116,11 @@ function DIDDetails({ did }: Props) {
                         <div className="diddetails-row">
                             <div className="d-flex align-items-baseline justify-content-between">
                                 <div className="text-muted">{t('DID.USER_DID')}</div>
-                                <DIDEdit did={did} profile={profileClaim} setClaims={setClaims} />
+                                <DIDEdit did={did} profile={profileClaim?.profile} setProfileClaims={setProfileClaims} />
                             </div>
                             <div>{did}</div>
                         </div>
-                        {claims.length > 0 ?
+                        {profileClaim !== undefined ?
                             claimsComponent()
                             :
                             <div className="d-flex justify-content-center align-items-center mt-2">

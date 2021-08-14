@@ -16,6 +16,11 @@
   text-align: center;
 }
 
+.app-space {
+  height: 300px;
+  text-align: center;
+}
+
 html {
   height: 100%;
 }

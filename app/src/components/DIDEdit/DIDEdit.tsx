@@ -12,7 +12,7 @@ import { IServiceEndpoint } from "@ew-did-registry/did-resolver-interface";
 type Props = {
     did: string
     profile: Profile | undefined
-    setClaims: (claims: (IServiceEndpoint & ClaimData)[]) => void
+    setProfileClaims: (claim: (IServiceEndpoint & ClaimData) | undefined) => void
 }
 
 type FormInput = {
@@ -21,7 +21,7 @@ type FormInput = {
     birthdate: string
 }
 
-function DIDEdit({ did, profile, setClaims }: Props) {
+function DIDEdit({ did, profile, setProfileClaims }: Props) {
     const defaultValues = {
         name: profile?.name ? profile.name.toString() : "",
         address: profile?.address ? profile.address.toString() : "",
@@ -46,7 +46,7 @@ function DIDEdit({ did, profile, setClaims }: Props) {
         try {
             await iam.createSelfSignedClaim({ data });
             const claims = await iam.getUserClaims({ did });
-            setClaims(claims);
+            setProfileClaims(claims.find(c => c.profile));
         } catch (e) {
             console.error(e);
             switch (e.code) {
@@ -62,7 +62,7 @@ function DIDEdit({ did, profile, setClaims }: Props) {
         }
         setLoading(false);
         setShow(false);
-        reset();
+        reset(defaultValues);
     }
 
     return (
@@ -70,7 +70,7 @@ function DIDEdit({ did, profile, setClaims }: Props) {
             <Button variant="outline-light" onClick={() => setShow(true)}><i className="fa fa-pencil" /></Button>
 
 
-            <Modal show={show} onHide={() => { setShow(false); reset(); }} backdrop={!loading} keyboard={!loading}>
+            <Modal show={show} onHide={() => { setShow(false); reset(defaultValues); }} backdrop={!loading} keyboard={!loading}>
                 <div className="didedit-card">
                     <div className="d-flex justify-content-center">
                         <div className="login-logo-container">
@@ -114,7 +114,7 @@ function DIDEdit({ did, profile, setClaims }: Props) {
                                 {loading &&
                                     <Spinner animation="border" className="mr-2"></Spinner>
                                 }
-                                <Button className="mr-2" variant="dark" onClick={() => { setShow(false); reset(); }} disabled={loading}>
+                                <Button className="mr-2" variant="dark" onClick={() => { setShow(false); reset(defaultValues); }} disabled={loading}>
                                     {t('GENERAL.CANCEL')} </Button>
                                 <Button variant="primary" type="submit" disabled={loading}>
                                     {t('GENERAL.SUBMIT')}

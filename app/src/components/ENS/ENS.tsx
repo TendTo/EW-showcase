@@ -112,8 +112,8 @@ function ENS({ web3 }: Props) {
         </InputGroup>
       </Form>
       <br></br>
-      {!loading && !getAccountComponent(address) && <div className="ens-space"><p className="text-danger">{error}</p></div>}
-      {loading && <div className="ens-space"><Spinner animation="border"></Spinner></div>}
+      {!loading && !getAccountComponent(address) && <div className="app-space"><p className="text-danger">{error}</p></div>}
+      {loading && <div className="app-space"><Spinner animation="border"></Spinner></div>}
       {!loading && getAccountComponent(address)}
     </div >
   );
