@@ -39,7 +39,8 @@
     "ADDRESS_NOT_FOUND": "The provided address could not be found",
     "EMPTY_FIELD": "The field cannot be empty",
     "INVALID_INPUT": "The input is not valid",
-    "REQUEST_UNAUTHORIZED": "Unauthorized login response.\nPlease ensure that you have the necessary role claim."
+    "REQUEST_UNAUTHORIZED": "Unauthorized login response.\nPlease ensure that you have the necessary role claim.",
+    "MAX_LENGTH": "The field cannot be more than {{max}} characters long"
   },
   "ENS": {
     "TITLE": "Ethereum Name Service (ENS)",
@@ -64,18 +65,54 @@
     "LEGAL": "All names, logos, images, and brands are property of their respective owners."
   },
   "NAV": {
-    "ADDRESS_COPIED": "Address copied to clipboard"
+    "ADDRESS_COPIED": "Address copied to clipboard",
+    "REFERENCES": "References"
   },
   "DID": {
-    "TITLE": "Identity and Access Management (IAM)",
-    "SECTION_1_TITLE": "What is IAM?",
-    "SECTION_1_TEXT": "IAM is a framework of policies and protocols that ensures that only authorized entities are able to access the requested resources.",
-    "SECTION_2_TITLE": "How does it work?",
-    "SECTION_2_TEXT": "In a decentralized system, as blockchains, a common approach to implement IAM is to employ Decentralized IDentifiers (DIDs).",
+    "TITLE": "Decentralized IDentifiers (DIDs)",
+    "SECTION_1_TITLE": "What is a DID?",
+    "SECTION_1_TEXT": "DIDs are uniue identifiers that enable verifiable, decentralized digital identity. They are used to implement Self Sovrain Identity (SSI).\nThe identified subject can be anything: a person, an organization or a phisical asset to name a few.\nA DID behaves like an URL, and points to a DID document, which stored on public permanent storage, like a blockchain.\nAnyone can create a new DID at any time, but the claims will continue to refer to a specific DID.",
+    "SECTION_1_IMG": "A simple example of a Decentralized IDentifier (DID) with its components",
+    "SECTION_2_TITLE": "A more in deapht look at DIDs",
+    "SECTION_2_TEXT": "A DID is, at its core, a URI composed of three parts: the scheme did:, a method identifier, and a unique, method-specific identifier specified by the DID method.\nDIDs are resolvable to DID documents, which are simple JSON-LD files. The DID document contains all the informations or claims related to the subject the DID identifies and provides a set of mechanisms which enable a DID controller to prove its control over the DID. They also typically express verification methods, such as cryptographic public keys, and services relevant to interactions with the DID subject.\n\nThe controller of a DID is the entity that has the capability to make changes to a DID document. This capability is typically asserted by the control of a set of cryptographic keys.\nNote that a DID might have more than one controller, and the DID subject can be the DID controller, or one of them.\n\nSystems that support recording DIDs and returning data necessary to produce DID documents are called a verifiable data registry.\nA DID resolver is the component responsible of returning the correct DID document given its DID. This process is called DID resolution.",
+    "SECTION_2_IMG": "Overview of DID architecture and the relationship of the basic components",
+    "SECTION_3_TITLE": "What is the DID's purpouse?",
+    "SECTION_3_TEXT": "The identity subject needs an identity to be able to prove you possess certain traits or characteristics to a verifier.\nThe verifier has a number of trusted issuers from which it is willing to accept claims from.\nThe subject can ask one of these issuers to add a signed claim on its DID document, \nAlso, both issuer and verifier must be able to verify that the subject is actually the identity owner. This is achieved through DIDAuth.\nThis process can take many forms, as specified in the DID document, but a common way is through a challenge sent by the issuer or the verifier to the subject, whose public key they know thanks to the DID document, which in turn will respond by signing with the its private key, proving its identity.\n\nLet's try a real world analogy.\nYou want to buy alcohol at a bar. To do so, you must be able to prove to the barman that you are at least 18 years old. The barman in this case is the verifier.\nYou can prove your claim by showing your identity card. \nIt is issued from the government, which acts as a trusted issuer for the barman, who will check that you are actually the person pictured in the photo and will be convinced that you are old enough.",
+    "SECTION_3_IMG": "Possible flow showing how an authentication interaction could use DIDs for autonomous authentication",
+    "SECTION_4_TITLE": "DID in action",
+    "SECTION_4_TEXT": "Energy web uses DIDs to identify users, organizations and assets. This way, informations about the entity are publicly verifiable.\nFor example, you could issue a renewable energy certificate and assign it to a specific asset.\nAlso, to each wallet address can corrispond a DID. This is useful to enstablish a role based IAM system.",
     "DID_VERIFIED": "DID verified successfully",
     "DID_LOADING": "Loading...\nWait to sign the transaction with MetaMask",
     "DID_ERROR": "Error occurred with login.\nIf you rejected the signing requests, please try again and accept.\nIf this is your first time logging in, your account needs a small amount of Volta token to create a DID Document.\nA Volta token can be obtained from the <a>Volta Faucet</a>.",
     "LOGIN": "Connect with MetaMask",
-    "LOGOUT": "Log out"
+    "LOGOUT": "Log out",
+    "DID_NAME": "Name",
+    "ASSET_DID": "Asset DID",
+    "DID_ADDRESS": "Address",
+    "DID_BIRTHDATE": "Birthdate",
+    "USER_DID": "User DID",
+    "NO_CLAIMS": "No profile claims were found",
+    "EDIT_TITLE": "Edit profile claim"
+  },
+  "GENERAL": {
+    "CANCEL": "Cancel",
+    "SUBMIT": "Submit"
+  },
+  "REFERENCES": {
+    "TITLE": "References",
+    "SECTION_1_TITLE": "Documentation",
+    "SECTION_1_ITEM_1": "Energy Web",
+    "SECTION_1_ITEM_2": "Energy Web Wiki",
+    "SECTION_1_ITEM_3": "Energy Web paper",
+    "SECTION_1_ITEM_4": "Energy Web insights (Medium)",
+    "SECTION_1_ITEM_5": "Decentralized Identifiers (W3.org)",
+    "SECTION_2_TITLE": "Images",
+    "SECTION_2_ITEM_1": "[1] EW-DOS",
+    "SECTION_2_ITEM_2": "[2] DID-schema",
+    "SECTION_2_ITEM_3": "[3] DID-architecture",
+    "SECTION_2_ITEM_4": "[4] DID-use",
+    "SECTION_3_TITLE": "DApps",
+    "SECTION_3_ITEM_1": "Switchboard",
+    "SECTION_3_ITEM_2": "EWNS"
   }
 }
