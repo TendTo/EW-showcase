@@ -2,11 +2,11 @@
 
 [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://tendto.github.io/EW-showcase/)
 ![CI/CD](https://github.com/TendTo/EW-showcase/workflows/Production/badge.svg)
-
+[![codecov](https://codecov.io/gh/TendTo/EW-showcase/branch/master/graph/badge.svg?token=WYZ1RF09ZN)](https://codecov.io/gh/TendTo/EW-showcase)
 ## Project structure 📁
 ```py
 .
-├── app                     # DApp front-end (React)
+├── app                     # Showcase DApp front-end (React)
 ├── contract                # Smart contract to deploy to the Energy Web Testnet - Volta (Truffle)
 ├── docs                    # Documentation files and report of the project (LateX)
 ├── node                    # Configuration for a client node on the Energy Web Testnet - Volta (openehtereum)
