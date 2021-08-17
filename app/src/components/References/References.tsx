@@ -22,6 +22,7 @@ function References() {
                 <li><a href="https://www.w3.org/TR/did-core/#a-simple-example" target="_blank" rel="noreferrer">{t("REFERENCES.SECTION_2_ITEM_2")}</a></li>
                 <li><a href="https://www.w3.org/TR/did-core/#architecture-overview" target="_blank" rel="noreferrer">{t("REFERENCES.SECTION_2_ITEM_3")}</a></li>
                 <li><a href="https://www.w3.org/TR/did-use-cases/#use" target="_blank" rel="noreferrer">{t("REFERENCES.SECTION_2_ITEM_4")}</a></li>
+                <li><a href="https://medium.com/energy-web-insights/digging-deeper-into-self-sovereign-identity-and-access-management-e6eefbac631e" target="_blank" rel="noreferrer">{t("REFERENCES.SECTION_2_ITEM_5")}</a></li>
             </ul>
             <h3>{t('REFERENCES.SECTION_3_TITLE')}</h3>
             <ul>

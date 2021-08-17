@@ -1,5 +1,5 @@
 import { WalletProvider } from "iam-client-lib";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Spinner } from "react-bootstrap";
 import { Trans, useTranslation } from "react-i18next";
 import metamaskLogo from "../../asset/icon/metamask-logo.svg";
@@ -18,11 +18,16 @@ function DIDLogin({ setDID }: Props) {
     const [loading, setLoading] = useState<boolean>(false);
     const { t } = useTranslation();
 
+    useEffect(() => {
+        if (iam.isConnected() && iam.getDid()) {
+            setRequestResult('Success');
+        }
+    }, [iam]);
+
     const login = async () => {
         setLoading(true);
         try {
-            const { did, connected, didDocument } = await iam.initializeConnection({ walletProvider: WalletProvider.MetaMask });
-            console.table(didDocument)
+            const { did, connected } = await iam.initializeConnection({ walletProvider: WalletProvider.MetaMask });
             setRequestResult("Success");
             if (connected && did) {
                 setDID(did);

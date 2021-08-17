@@ -7,6 +7,7 @@ import AppNav from '../AppNav/AppNav';
 import DID from '../DID/DID';
 import ENS from '../ENS/ENS';
 import Home from '../Home/Home';
+import IAM from '../IAM/IAM';
 import Login from '../Login/Login';
 import References from '../References/References';
 import './App.css';
@@ -40,6 +41,9 @@ function App() {
               </Route>
               <Route path="/references" exact>
                 <References />
+              </Route>
+              <Route path="/iam" exact>
+                <IAM account={account}/>
               </Route>
               <Route path="/" component={Home} />
             </Switch>
