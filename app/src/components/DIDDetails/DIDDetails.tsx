@@ -7,7 +7,6 @@ import empty_set from "../../asset/icon/empty-set.svg";
 import solar_logo from "../../asset/icon/solar-logo.svg";
 import IAMContext from "../../context/IAMContext";
 import DIDEdit from "../DIDEdit/DIDEdit";
-import "./DIDDetails.css";
 
 type Props = {
     did: string
@@ -48,21 +47,21 @@ function DIDDetails({ did }: Props) {
         const assets: ReactElement[] = [];
         for (const asset in assetProfiles) {
             assets.push(
-                <div key={asset} className="diddetails-table mt-3">
-                    <div className="diddetails-row">
+                <div key={asset} className="app-table mt-3">
+                    <div className="app-row">
                         <div>
-                            <img alt="asset" src={assetProfiles[asset].icon || solar_logo} className="diddetails-logo" />
+                            <img alt="asset" src={assetProfiles[asset].icon || solar_logo} className="app-logo" />
                         </div>
                     </div>
                     {assetProfiles[asset].name &&
-                        <div className="diddetails-row">
+                        <div className="app-row">
                             <div className="text-muted">{t('DID.DID_NAME')}</div>
                             <div>{assetProfiles[asset].name}</div>
                         </div>
                     }
-                    <div className="diddetails-row">
+                    <div className="app-row">
                         <div className="text-muted">{t('DID.ASSET_DID')}</div>
-                        <div className="text-truncate">{asset}</div>
+                        <div>{asset}</div>
                     </div>
                 </div>
             );
@@ -77,25 +76,25 @@ function DIDDetails({ did }: Props) {
             {profileClaim.profile &&
                 <>
                     {profileClaim.profile?.name &&
-                        <div className="diddetails-row">
+                        <div className="app-row">
                             <div className="text-muted">{t("DID.DID_NAME")}</div>
                             <div>{profileClaim.profile?.name}</div>
                         </div>
                     }
                     {profileClaim.profile?.address &&
-                        <div className="diddetails-row">
+                        <div className="app-row">
                             <div className="text-muted">{t('DID.DID_ADDRESS')}</div>
                             <div>{profileClaim.profile?.address}</div>
                         </div>
                     }
                     {profileClaim.profile?.birthdate && profileClaim.profile?.birthdate !== "NaN" &&
-                        <div className="diddetails-row">
+                        <div className="app-row">
                             <div className="text-muted">{t('DID.DID_BIRTHDATE')}</div>
                             <div>{toUTCTimestamp(profileClaim.profile?.birthdate)}</div>
                         </div>
                     }
                     {profileClaim.profile?.assetProfiles &&
-                        <div className="diddetails-row">
+                        <div className="app-row">
                             <details>
                                 <summary>{Object.keys(profileClaim.profile?.assetProfiles).length + " assets"}</summary>
                                 {assetsComponent(profileClaim.profile?.assetProfiles)}
@@ -112,8 +111,8 @@ function DIDDetails({ did }: Props) {
                 <div className="text-center mt-2"><Spinner animation="border" /></div>
                 :
                 <Container fluid>
-                    <div className="diddetails-table">
-                        <div className="diddetails-row">
+                    <div className="app-table">
+                        <div className="app-row">
                             <div className="d-flex align-items-baseline justify-content-between">
                                 <div className="text-muted">{t('DID.USER_DID')}</div>
                                 <DIDEdit did={did} profile={profileClaim?.profile} setProfileClaims={setProfileClaims} />
@@ -124,7 +123,7 @@ function DIDDetails({ did }: Props) {
                             claimsComponent()
                             :
                             <div className="d-flex justify-content-center align-items-center mt-2">
-                                <img alt="empty" className="diddetails-empty-icon" src={empty_set} /><div>{t('DID.NO_CLAIMS')}</div>
+                                <img alt="empty" className="app-empty-icon" src={empty_set} /><div>{t('DID.NO_CLAIMS')}</div>
                             </div>
                         }
                     </div>

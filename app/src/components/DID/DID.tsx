@@ -6,7 +6,6 @@ import did_architecture from '../../asset/img/did-architecture.svg';
 import IAMContext from "../../context/IAMContext";
 import DIDDetails from "../DIDDetails/DIDDetails";
 import DIDLogin from "../DIDLogin/DIDLogin";
-import "./DID.css";
 
 type Props = {
     account: string
@@ -22,9 +21,12 @@ function DID({ account }: Props) {
             iam.on('accountChanged', async () => { await iam.closeConnection(); setDID(""); });
             iam.on('networkChanged', async () => { await iam.closeConnection(); setDID(""); });
         }
-        if (iam.isConnected() && did) {
+        if (iam.isConnected() && did)
             showIam();
-        }
+        else if (iam.isConnected())
+            setDID(iam.getDid() || "");
+        else if (!iam.isConnected())
+            setDID("");
     }, [iam, did]);
 
     return (
@@ -34,21 +36,27 @@ function DID({ account }: Props) {
             </div>
             <h3>{t("DID.SECTION_1_TITLE")}</h3>
             <p>{t('DID.SECTION_1_TEXT')}</p>
-            <div className="did-img-container">
-                <img src={did_schema} className="figure-img img-fluid rounded" alt="DID schema" />
+            <div className="app-img-container">
+                <div>
+                    <img src={did_schema} className="figure-img img-fluid rounded" alt="DID schema" />
+                </div>
                 <figcaption className="figure-caption text-center">[2] {t("DID.SECTION_1_IMG")}</figcaption>
             </div>
             <h3>{t("DID.SECTION_2_TITLE")}</h3>
             <p>{t('DID.SECTION_2_TEXT')}</p>
-            <div className="did-img-container">
-                <img src={did_architecture} className="figure-img img-fluid rounded" alt="DID architecture" />
-                <figcaption className="figure-caption text-center">[3] {t("DID.SECTION_2_IMG")}</figcaption>
+            <div className="app-img-container">
+                <div>
+                    <img src={did_architecture} className="figure-img img-fluid rounded" alt="DID architecture" />
+                </div>
+                    <figcaption className="figure-caption text-center">[3] {t("DID.SECTION_2_IMG")}</figcaption>
             </div>
             <h3>{t("DID.SECTION_3_TITLE")}</h3>
             <p>{t('DID.SECTION_3_TEXT')}</p>
-            <div className="did-img-container">
-                <img src={did_auth} className="figure-img img-fluid rounded" alt="DID auth process" />
-                <figcaption className="figure-caption text-center">[4] {t("DID.SECTION_3_IMG")}</figcaption>
+            <div className="app-img-container">
+                <div>
+                    <img src={did_auth} className="figure-img img-fluid rounded" alt="DID auth process" />
+                </div>
+                    <figcaption className="figure-caption text-center">[4] {t("DID.SECTION_3_IMG")}</figcaption>
             </div>
             <h3>{t("DID.SECTION_4_TITLE")}</h3>
             <p>{t('DID.SECTION_4_TEXT')}</p>

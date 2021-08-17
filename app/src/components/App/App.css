@@ -12,6 +12,19 @@
   max-width: 960px;
 }
 
+.app-page .app-img-container {
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0 10px 0;
+}
+
+.app-page .app-img-container>div {
+  max-width: 750px;
+}
+
 .app-page-header {
   text-align: center;
 }
@@ -19,6 +32,40 @@
 .app-space {
   height: 300px;
   text-align: center;
+}
+
+.app-table {
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: var(--darker);
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid white;
+}
+
+.app-table .app-row {
+  border-bottom: 1px solid var(--dark);
+  padding: 10px;
+}
+
+.app-table .app-row:last-child {
+  border-bottom: none;
+  padding: 10px;
+}
+
+.app-table .app-logo {
+  width: auto;
+  height: 42px;
+}
+
+.app-table .app-row>div {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.app-table .app-empty-icon {
+  width: 20px;
+  margin-right: 10px;
 }
 
 html {
