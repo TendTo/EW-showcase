@@ -15,15 +15,11 @@ function EwRole({ role }: Props) {
     const preconditionsComponent = preconditions.map((precondition, i) =>
         <div key={`${role.id}-${i}`} className="app-row-set light">
             <div className="app-row">
-                <div className="d-flex align-items-baseline justify-content-between">
-                    <div className="text-muted">{t('GENERAL.TYPE')}</div>
-                </div>
+                <div className="text-muted">{t('GENERAL.TYPE')}</div>
                 <div>{precondition.type}</div>
             </div>
             <div className="app-row">
-                <div className="d-flex align-items-baseline justify-content-between">
-                    <div className="text-muted">{t('GENERAL.CONDITIONS')}</div>
-                </div>
+                <div className="text-muted">{t('GENERAL.CONDITIONS')}</div>
                 <div>{precondition.conditions.join("\n")}</div>
             </div>
         </div>
@@ -32,77 +28,57 @@ function EwRole({ role }: Props) {
     const fieldsComponent = role.definition.fields.map(field =>
         <div key={`${role.id}-${field.label}`} className="app-row-set warning">
             <div className="app-row">
-                <div className="d-flex align-items-baseline justify-content-between">
-                    <div className="text-muted">{t('GENERAL.LABEL')}</div>
-                </div>
+                <div className="text-muted">{t('GENERAL.LABEL')}</div>
                 <div>{field.label}</div>
             </div>
             <div className="app-row">
-                <div className="d-flex align-items-baseline justify-content-between">
-                    <div className="text-muted">{t('GENERAL.TYPE')}</div>
-                </div>
+                <div className="text-muted">{t('GENERAL.TYPE')}</div>
                 <div>{field.fieldType}</div>
             </div>
             {field.required &&
                 <div className="app-row">
-                    <div className="d-flex align-items-baseline justify-content-between">
-                        <div>{t('GENERAL.REQUIRED')}</div>
-                    </div>
+                    <div>{t('GENERAL.REQUIRED')}</div>
                 </div>
             }
             {field.minValue &&
                 <div className="app-row">
-                    <div className="d-flex align-items-baseline justify-content-between">
-                        <div className="text-muted">{t('GENERAL.MIN_VALUE')}</div>
-                    </div>
+                    <div className="text-muted">{t('GENERAL.MIN_VALUE')}</div>
                     <div>{field.minValue}</div>
                 </div>
             }
             {field.maxValue &&
                 <div className="app-row">
-                    <div className="d-flex align-items-baseline justify-content-between">
-                        <div className="text-muted">{t('GENERAL.MAX_VALUE')}</div>
-                    </div>
+                    <div className="text-muted">{t('GENERAL.MAX_VALUE')}</div>
                     <div>{field.maxValue}</div>
                 </div>
             }
             {field.minDate &&
                 <div className="app-row">
-                    <div className="d-flex align-items-baseline justify-content-between">
-                        <div className="text-muted">{t('GENERAL.MIN_DATE')}</div>
-                    </div>
+                    <div className="text-muted">{t('GENERAL.MIN_DATE')}</div>
                     <div>{field.minDate}</div>
                 </div>
             }
             {field.maxDate &&
                 <div className="app-row">
-                    <div className="d-flex align-items-baseline justify-content-between">
-                        <div className="text-muted">{t('GENERAL.MAX_DATE')}</div>
-                    </div>
+                    <div className="text-muted">{t('GENERAL.MAX_DATE')}</div>
                     <div>{field.maxDate}</div>
                 </div>
             }
             {field.minLength &&
                 <div className="app-row">
-                    <div className="d-flex align-items-baseline justify-content-between">
-                        <div className="text-muted">{t('GENERAL.MIN_LENGTH')}</div>
-                    </div>
+                    <div className="text-muted">{t('GENERAL.MIN_LENGTH')}</div>
                     <div>{field.minLength}</div>
                 </div>
             }
             {field.maxLength &&
                 <div className="app-row">
-                    <div className="d-flex align-items-baseline justify-content-between">
-                        <div className="text-muted">{t('GENERAL.MAX_LENGTH')}</div>
-                    </div>
+                    <div className="text-muted">{t('GENERAL.MAX_LENGTH')}</div>
                     <div>{field.maxLength}</div>
                 </div>
             }
             {field.pattern &&
                 <div className="app-row">
-                    <div className="d-flex align-items-baseline justify-content-between">
-                        <div className="text-muted">{t('GENERAL.PATTERN')}</div>
-                    </div>
+                    <div className="text-muted">{t('GENERAL.PATTERN')}</div>
                     <div>{field.pattern}</div>
                 </div>
             }
@@ -112,39 +88,27 @@ function EwRole({ role }: Props) {
     return (
         <div className="app-row-set success">
             <div className="app-row">
-                <div className="d-flex align-items-baseline justify-content-between">
-                    <div className="text-muted">{t('GENERAL.NAME')}</div>
-                </div>
+                <div className="text-muted">{t('GENERAL.NAME')}</div>
                 <div>{role.definition.roleName}</div>
             </div>
             <div className="app-row">
-                <div className="d-flex align-items-baseline justify-content-between">
-                    <div className="text-muted">{t('GENERAL.NAMESPACE')}</div>
-                </div>
+                <div className="text-muted">{t('GENERAL.NAMESPACE')}</div>
                 <div>{role.namespace}</div>
             </div>
             <div className="app-row">
-                <div className="d-flex align-items-baseline justify-content-between">
-                    <div className="text-muted">{t('GENERAL.TYPE')}</div>
-                </div>
+                <div className="text-muted">{t('GENERAL.TYPE')}</div>
                 <div>{role.definition.roleType}</div>
             </div>
             <div className="app-row">
-                <div className="d-flex align-items-baseline justify-content-between">
-                    <div className="text-muted">{t('GENERAL.VERSION')}</div>
-                </div>
+                <div className="text-muted">{t('GENERAL.VERSION')}</div>
                 <div>{role.definition.version}</div>
             </div>
             <div className="app-row">
-                <div className="d-flex align-items-baseline justify-content-between">
-                    <div className="text-muted">{t('GENERAL.ISSUER_TYPE')}</div>
-                </div>
+                <div className="text-muted">{t('GENERAL.ISSUER_TYPE')}</div>
                 <div>{role.definition.issuer.issuerType}</div>
             </div>
             <div className="app-row">
-                <div className="d-flex align-items-baseline justify-content-between">
-                    <div className="text-muted">{t('GENERAL.ISSUER_LIST')}</div>
-                </div>
+                <div className="text-muted">{t('GENERAL.ISSUER_LIST')}</div>
                 <div>{(role.definition.issuer.issuerType === "DID" ? role.definition.issuer.did?.join("\n") : role.definition.issuer.roleName)}</div>
             </div>
             {preconditions && preconditions.length > 0 &&

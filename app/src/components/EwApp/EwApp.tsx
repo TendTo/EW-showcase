@@ -39,38 +39,28 @@ function EwApp({ app }: Props) {
                 <img alt="org logo" src={app.definition.logoUrl || solar_logo} className="app-logo" />
             </div>
             <div className="app-row">
-                <div className="d-flex align-items-baseline justify-content-between">
-                    <div className="text-muted">Name</div>
-                </div>
+                <div className="text-muted">{t('GENERAL.NAME')}</div>
                 <div>{app.definition.appName}</div>
             </div>
             <div className="app-row">
-                <div className="d-flex align-items-baseline justify-content-between">
-                    <div className="text-muted">Namespace</div>
-                </div>
+                <div className="text-muted">{t('GENERAL.NAMESPACE')}</div>
                 <div>{app.namespace}</div>
             </div>
             {app.definition.websiteUrl &&
                 <div className="app-row">
-                    <div className="d-flex align-items-baseline justify-content-between">
-                        <div className="text-muted">Website</div>
-                    </div>
+                    <div className="text-muted">{t('GENERAL.WEBSITE')}</div>
                     <div>{app.definition.websiteUrl}</div>
                 </div>
             }
             {app.definition.description &&
                 <div className="app-row">
-                    <div className="d-flex align-items-baseline justify-content-between">
-                        <div className="text-muted">Description</div>
-                    </div>
+                    <div className="text-muted">{t('GENERAL.DESCRIPTION')}</div>
                     <div>{app.definition.description}</div>
                 </div>
             }
             {app.definition.others &&
                 <div className="app-row">
-                    <div className="d-flex align-items-baseline justify-content-between">
-                        <div className="text-muted">Other (JSON)</div>
-                    </div>
+                    <div className="text-muted">{t('GENERAL.OTHER_JSON')}</div>
                     <div>{JSON.stringify(app.definition.others)}</div>
                 </div>
             }
@@ -81,7 +71,7 @@ function EwApp({ app }: Props) {
                     {appRoles && appRoles.length > 0 &&
                         <div className="app-row">
                             <details>
-                                <summary>Roles</summary>
+                                <summary>{t('GENERAL.ROLES')}</summary>
                                 {appRoles.map(role => <EwRole key={role.id} role={role} />)}
                             </details>
                         </div>}

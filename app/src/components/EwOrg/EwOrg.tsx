@@ -44,29 +44,23 @@ function EwOrg({ org }: Props) {
                 <img alt="org logo" src={org.definition.logoUrl || solar_logo} className="app-logo" />
             </div>
             <div className="app-row">
-                <div className="d-flex align-items-baseline justify-content-between">
-                    <div className="text-muted">Name</div>
-                </div>
+                <div className="text-muted">{t('GENERAL.NAME')}</div>
                 <div>{org.definition.orgName}</div>
             </div>
             <div className="app-row">
-                <div className="d-flex align-items-baseline justify-content-between">
-                    <div className="text-muted">Namespace</div>
-                </div>
+                <div className="text-muted">{t('GENERAL.NAMESPACE')}</div>
                 <div>{org.namespace}</div>
             </div>
             {org.definition.description &&
                 <div className="app-row">
-                    <div className="d-flex align-items-baseline justify-content-between">
-                        <div className="text-muted">Description</div>
-                    </div>
+                    <div className="text-muted">{t('GENERAL.DESCRIPTION')}</div>
                     <div>{org.definition.description}</div>
                 </div>
             }
             {org.subOrgs && org.subOrgs.length > 0 &&
                 <div className="app-row">
                     <details>
-                        <summary>Suborgs</summary>
+                        <summary>{t('GENERAL.SUBORGS')}</summary>
                         {org.subOrgs.map(subOrg => <EwOrg key={subOrg.id} org={subOrg} />)}
                     </details>
                 </div>}
@@ -77,14 +71,14 @@ function EwOrg({ org }: Props) {
                     {orgRoles && orgRoles.length > 0 &&
                         <div className="app-row">
                             <details>
-                                <summary>Roles</summary>
+                                <summary>{t('GENERAL.ROLES')}</summary>
                                 {orgRoles.map(role => <EwRole key={role.id} role={role} />)}
                             </details>
                         </div>}
                     {apps && apps.length > 0 &&
                         <div className="app-row">
                             <details>
-                                <summary>Apps</summary>
+                                <summary>{t('GENERAL.APPS')}</summary>
                                 {apps.map(app => <EwApp key={app.id} app={app} />)}
                             </details>
                         </div>}
