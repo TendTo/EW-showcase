@@ -2,7 +2,7 @@ import React from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import toast from '../Toast/Toast';
-import './AppNav.css'
+import './AppNav.css';
 
 type Props = {
   account: string;

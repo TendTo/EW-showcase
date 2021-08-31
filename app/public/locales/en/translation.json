@@ -131,14 +131,14 @@
     "SECTION_1_ITEM_4": "Energy Web insights (Medium)",
     "SECTION_1_ITEM_5": "Decentralized Identifiers (W3.org)",
     "SECTION_2_TITLE": "Images",
-    "SECTION_2_ITEM_1": "[1] EW-DOS",
-    "SECTION_2_ITEM_2": "[2] DID-schema",
-    "SECTION_2_ITEM_3": "[3] DID-architecture",
-    "SECTION_2_ITEM_4": "[4] DID-use",
-    "SECTION_3_TITLE": "DApps",
+    "SECTION_2_ITEM_1": "EW-DOS",
+    "SECTION_2_ITEM_2": "DID-schema",
+    "SECTION_2_ITEM_3": "DID-architecture",
+    "SECTION_2_ITEM_4": "DID-use",
+    "SECTION_3_TITLE": "Official DApps",
     "SECTION_3_ITEM_1": "Switchboard",
     "SECTION_3_ITEM_2": "EWNS",
-    "SECTION_2_ITEM_5": "[5] IAM-process"
+    "SECTION_2_ITEM_5": "IAM-process"
   },
   "IAM": {
     "TITLE": "Identity and Access Management (IAM)",

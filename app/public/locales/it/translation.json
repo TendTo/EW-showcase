@@ -131,14 +131,14 @@
     "SECTION_1_ITEM_3": "Energy Web paper",
     "SECTION_1_ITEM_4": "Energy Web insights (Medium)",
     "SECTION_1_ITEM_5": "Decentralized Identifiers (W3.org)",
-    "SECTION_2_ITEM_1": "[1] EW-DOS",
-    "SECTION_2_ITEM_2": "[2] DID-schema",
-    "SECTION_2_ITEM_3": "[3] DID-architecture",
-    "SECTION_2_ITEM_4": "[4] DID-use",
+    "SECTION_2_ITEM_1": "EW-DOS",
+    "SECTION_2_ITEM_2": "DID-schema",
+    "SECTION_2_ITEM_3": "DID-architecture",
+    "SECTION_2_ITEM_4": "DID-use",
     "SECTION_3_ITEM_1": "Switchboard",
     "SECTION_3_ITEM_2": "EWNS",
-    "SECTION_3_TITLE": "DApps",
-    "SECTION_2_ITEM_5": "[5] IAM-process"
+    "SECTION_3_TITLE": "DApps ufficiali",
+    "SECTION_2_ITEM_5": "IAM-process"
   },
   "IAM": {
     "SECTION_1_TEXT": "IAM è un insieme di policy in grado di garantire che solo le entità con le credenziali e le autorizzazioni necessarie possano accedere alle risorse.\nIl sistema deve prima controllare l'identità digitale del soggetto e verificare i ruoli ad esso associati.\nL'operazione viene autorizzata solo se il soggetto ha i ruoli necessari.\nPer assicurare l'accountability, viene utilizzato un sistema di logging per registrare ogni operazione eseguita dal soggetto.",
