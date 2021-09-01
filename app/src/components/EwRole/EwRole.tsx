@@ -1,6 +1,7 @@
-import { IRole } from 'iam-client-lib';
+import { ENSNamespaceTypes, IRole } from 'iam-client-lib';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { switchboardUrl } from '../../context/IAMContext'
 
 
 type Props = {
@@ -11,6 +12,20 @@ function EwRole({ role }: Props) {
     const { t } = useTranslation();
 
     const preconditions = role.definition.enrolmentPreconditions.filter(precondition => precondition.conditions && precondition.conditions.length > 0);
+
+    const enrlomentUrl = () => {
+        if (!(role?.definition?.roleType)) return "";
+
+        const name = role.name;
+        const arr = role.namespace.split(`.${ENSNamespaceTypes.Roles}.`);
+        let namespace = '';
+
+        if (arr.length > 1) {
+            namespace = arr[1];
+        }
+
+        return `${switchboardUrl}/enrol?${role.definition.roleType}=${namespace}&roleName=${name}`;
+    }
 
     const preconditionsComponent = preconditions.map((precondition, i) =>
         <div key={`${role.id}-${i}`} className="app-row-set light">
@@ -88,7 +103,10 @@ function EwRole({ role }: Props) {
     return (
         <div className="app-row-set success">
             <div className="app-row">
-                <div className="text-muted">{t('GENERAL.NAME')}</div>
+                <div className="d-flex align-items-baseline justify-content-between">
+                    <div className="text-muted">{t('GENERAL.NAME')}</div>
+                    <a href={enrlomentUrl()} target="_blank" rel="noreferrer"><i className="fa fa-pencil" /></a>
+                </div>
                 <div>{role.definition.roleName}</div>
             </div>
             <div className="app-row">
