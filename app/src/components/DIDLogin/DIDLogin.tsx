@@ -33,7 +33,9 @@ function DIDLogin({ setDID }: Props) {
                 setDID(did);
             }
         } catch (err) {
+            console.error(err);
             setRequestResult("Error");
+            setDID("");
         }
         setLoading(false);
     };

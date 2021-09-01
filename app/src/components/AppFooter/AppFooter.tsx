@@ -30,7 +30,7 @@ function AppFooter() {
                     <i className="fa fa-2x fa-github"></i>
                 </a>
             </div>
-            <img onClick={onChangeLanguage} className="language-icon" src={i18n.language.startsWith('it') ? gb : it} alt={i18n.language.startsWith('it') ? gb : it + "flag"} />
+            <img onClick={onChangeLanguage} className="language-icon" src={i18n.language?.startsWith('it') ? gb : it} alt={i18n.language?.startsWith('it') ? gb : it + "flag"} />
         </div>
     );
 }
