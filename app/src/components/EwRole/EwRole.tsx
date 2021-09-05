@@ -1,5 +1,6 @@
 import { ENSNamespaceTypes, IRole } from 'iam-client-lib';
 import React from 'react';
+import { Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { switchboardUrl } from '../../context/IAMContext'
 
@@ -105,7 +106,9 @@ function EwRole({ role }: Props) {
             <div className="app-row">
                 <div className="d-flex align-items-baseline justify-content-between">
                     <div className="text-muted">{t('GENERAL.NAME')}</div>
-                    <a href={enrlomentUrl()} target="_blank" rel="noreferrer"><i className="fa fa-pencil" /></a>
+                    <Button variant="outline-light" href={enrlomentUrl()} target="_blank">
+                        <i className="fa fa-pencil" />
+                    </Button>
                 </div>
                 <div>{role.definition.roleName}</div>
             </div>
