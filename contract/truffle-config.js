@@ -44,7 +44,7 @@ module.exports = {
     //
     development: {
       host: "192.168.1.29",     // Localhost (default: none)
-      port: 7545,            // Standard Ethereum port (default: none)
+      port: 7545,               // Standard Ethereum port (default: none)
       network_id: "5777",       // Any network (default: none)
     },
     localnode: {
@@ -55,7 +55,7 @@ module.exports = {
       skipDryRun: true,
       gas: 6000000
     },
-    testnet: {
+    volta: {
       provider: () => new HDWalletProvider(mnemonic, `https://volta-rpc.energyweb.org`),
       network_id: 73799,
       confirmations: 3,
@@ -97,15 +97,16 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
+      version: "0.8.4",
       // version: "0.5.1",    // Fetch exact version from solc-bin (default: truffle's version)
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
-      // settings: {          // See the solidity docs for advice about optimization and evmVersion
-      //  optimizer: {
-      //    enabled: false,
-      //    runs: 200
-      //  },
-      //  evmVersion: "byzantium"
-      // }
+      settings: {          // See the solidity docs for advice about optimization and evmVersion
+        optimizer: {
+          enabled: true,
+          runs: 200
+        },
+        evmVersion: "istanbul"
+      }
     }
   },
 
