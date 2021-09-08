@@ -1,0 +1,74 @@
+\documentclass[12pt,a4paper,openany,oneside]{book}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Imports
+%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{hyperref} % Extensive support for hypertext in LATEX (https://ctan.org/pkg/hyperref)
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{csquotes}
+\usepackage{graphicx} % Enhanced support for graphics (https://ctan.org/pkg/graphicx)
+\usepackage{framed} % Framed or shaded regions that can break across pages (https://ctan.org/pkg/framed)
+\usepackage[acronyms]{glossaries}
+\usepackage[font=small,labelfont=bf,tableposition=top]{caption}
+\usepackage{biblatex} % Sophisticated Bibliographies in LATEX (https://ctan.org/pkg/biblatex)
+\usepackage{listings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Settings
+%%%%%%%%%%%%%%%%%%%%%%%%
+\graphicspath{ {./img/} } % Base image path
+\lstset{
+    language=C++,
+    basicstyle=\footnotesize\ttfamily,
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=5pt,
+    tabsize=5,
+    extendedchars=true,
+    breaklines=true,
+    keywordstyle=\textbf,
+    stringstyle=\color{white}\ttfamily,
+    showspaces=false,
+    showtabs=false,
+    xleftmargin=17pt,
+    framexleftmargin=17pt,
+    framexrightmargin=5pt,
+    framexbottommargin=4pt,
+    showstringspaces=false
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% References
+%%%%%%%%%%%%%%%%%%%%%%%%
+\addbibresource{resources.bib} %Import the bibliography file
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+% Begin document
+%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% Metadata
+\title{EWT summary}
+\author{Ernesto Casablanca}
+\date{\today}
+
+% Title page
+\input{sections/title_page}
+
+% Index
+\tableofcontents
+
+% Abstract
+\input{sections/abstract}
+
+% Chapters
+\input{sections/chapter_1}
+
+% Chapters
+\input{sections/conclusion}
+
+% Bibliografy
+\printbibliography
+
+\end{document}
