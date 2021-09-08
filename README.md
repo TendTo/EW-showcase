@@ -3,6 +3,7 @@
 [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://tendto.github.io/EW-showcase/)
 ![CI/CD](https://github.com/TendTo/EW-showcase/workflows/Production/badge.svg)
 [![codecov](https://codecov.io/gh/TendTo/EW-showcase/branch/master/graph/badge.svg?token=WYZ1RF09ZN)](https://codecov.io/gh/TendTo/EW-showcase)
+
 ## Project structure 📁
 ```py
 .
@@ -22,6 +23,8 @@ Sample DApp meant to showcase the Energy Web's chain capabilities.
 ## Docs (in italian) 📚
 - [Ew summary](./docs/EW_summary.pdf)
 - [Ew blockchain](./docs/EW_blockchain.pdf)
+- [Tesi](./docs/Tesi.pdf)
+
 ## Quickstart local 💻
 
 ### System requirements
@@ -73,5 +76,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 - [Create React App](https://create-react-app.dev/)
 - [Darkly bootstrap theme](https://bootswatch.com/darkly/)
 - [truffle](https://www.trufflesuite.com/truffle)
+- [Openzeppelin contracts](https://openzeppelin.com/contracts/)
 - [Volta explorer API](https://volta-explorer.energyweb.org/api-docs)
 - [SVGBackgrounds](https://www.svgbackgrounds.com/)
+- [template-tesi-latex](https://github.com/UNICT-DMI/template-tesi-latex)
