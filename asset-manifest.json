@@ -5,13 +5,13 @@
     "main.js.map": "/EW-showcase/static/js/main.8705cebe.chunk.js.map",
     "runtime-main.js": "/EW-showcase/static/js/runtime-main.38ab463d.js",
     "runtime-main.js.map": "/EW-showcase/static/js/runtime-main.38ab463d.js.map",
-    "static/js/2.5f2713b9.chunk.js": "/EW-showcase/static/js/2.5f2713b9.chunk.js",
-    "static/js/2.5f2713b9.chunk.js.map": "/EW-showcase/static/js/2.5f2713b9.chunk.js.map",
+    "static/js/2.c880df90.chunk.js": "/EW-showcase/static/js/2.c880df90.chunk.js",
+    "static/js/2.c880df90.chunk.js.map": "/EW-showcase/static/js/2.c880df90.chunk.js.map",
     "static/js/3.3274274c.chunk.js": "/EW-showcase/static/js/3.3274274c.chunk.js",
     "static/js/3.3274274c.chunk.js.map": "/EW-showcase/static/js/3.3274274c.chunk.js.map",
     "index.html": "/EW-showcase/index.html",
     "static/css/main.22b26e79.chunk.css.map": "/EW-showcase/static/css/main.22b26e79.chunk.css.map",
-    "static/js/2.5f2713b9.chunk.js.LICENSE.txt": "/EW-showcase/static/js/2.5f2713b9.chunk.js.LICENSE.txt",
+    "static/js/2.c880df90.chunk.js.LICENSE.txt": "/EW-showcase/static/js/2.c880df90.chunk.js.LICENSE.txt",
     "static/media/did-architecture.b93b579a.svg": "/EW-showcase/static/media/did-architecture.b93b579a.svg",
     "static/media/did-auth.ce757333.svg": "/EW-showcase/static/media/did-auth.ce757333.svg",
     "static/media/did-schema.28d7de6f.svg": "/EW-showcase/static/media/did-schema.28d7de6f.svg",
@@ -26,7 +26,7 @@
   },
   "entrypoints": [
     "static/js/runtime-main.38ab463d.js",
-    "static/js/2.5f2713b9.chunk.js",
+    "static/js/2.c880df90.chunk.js",
     "static/css/main.22b26e79.chunk.css",
     "static/js/main.8705cebe.chunk.js"
   ]
