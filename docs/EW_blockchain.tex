@@ -133,7 +133,7 @@ Si tratta, nella maggior parte dei casi, di aziende leader del settore energetic
 In breve, il funzionamento è il seguente:
 
 \begin{itemize}
-    \item Tutti i nodi validatori possiedono una lista aggiornata degli altri nodi validatori, oltre alla copia completa della blockchain e ad alcuni metadati ad essa collegati (es. il throughput della blockchain)
+    \item Tutti i nodi validatori possiedono una lista aggiornata degli altri nodi validatori, oltre alla copia completa della blockchain e ad alcuni meta-dati ad essa collegati (es. il throughput della blockchain)
     \item Per una finestra temporale ben definita, un validatore primario viene scelto dall'algoritmo e svolge il compito di raccogliere le transazioni e produrre il nuovo block. La scelta del validatore primario è in funzione del timestamp e del numero di validatori
     \item Se il validatore primario non riesce a produrre il block (es. problemi hardware) o il blocco non viene convalidato dagli altri nodi (es. problemi di connessione), il prossimo validatore primario riprenderà dalle transazioni rimaste in sospeso
     \item Gli altri validatori controllano che le transazioni siano legittime e firmano il block per poi propagarlo alla rete
@@ -213,7 +213,7 @@ Gli Zero Knowledge Proof Protocols sono una categoria di protocolli con lo scopo
 \subsubsection{zkSNARKs}
 zkSNARKs è probabilmente il protocollo più avanzato in questa categoria, sviluppato dal team Zcash. Sebbene sia il più maturo, presenta un tallone d'Achille non indifferente. \\
 Per poter utilizzare la Zero Knowledge Proof è necessario realizzare un circuito aritmetico che rappresenta la computazione da provare e generare da quello una coppia di chiavi prover/verifier.
-La creazione di questo setup deve essere sicura e pattuita a priori, perchè se dovesse essere compromesso un avversario potrebbe approfittarne per realizzare prove false.
+La creazione di questo setup deve essere sicura e pattuita a priori, perché se dovesse essere compromesso un avversario potrebbe approfittarne per realizzare prove false.
 
 \newpage
 
@@ -255,15 +255,15 @@ Ciò non esclude che, in caso si renda necessario, alcune scelte troppo compless
 
 \section{Staking}
 Per fornire quello che nell'architettura di ES-DOS è chiamato "Utility layer", è necessario il contributo di operatori che mettano a disposizione le proprie risorse a chi ha intenzione di sviluppare un servizio.
-Perchè il tutto sia affidabile e adatto ad un ambiente di produzione, devono essere garantiti dei livelli di servizio, in maniera analoga ad un qualsiasi \gls{sla} proposto da un fornitore di SaaS. \\
+Perché il tutto sia affidabile e adatto ad un ambiente di produzione, devono essere garantiti dei livelli di servizio, in maniera analoga ad un qualsiasi \gls{sla} proposto da un fornitore di SaaS. \\
 La soluzione proposta non è dissimile a quella implementata in altre blockchain, e si rifà al modello \gls{pos}.
 Gli attori in questo modello vengono suddivisi in due categorie:
 
 \begin{itemize}
     \item \textbf{Service providers:} sono organizzazioni che mettono a disposizione i nodi di utility. 
-    Per essere approvato, un service provider deve poter dimostrare la propria identità e depositare in garanzia una quantità di EWT per un periodo multiannale.
+    Per essere approvato, un service provider deve poter dimostrare la propria identità e depositare in garanzia una quantità di EWT per un periodo multi-annale.
     Dopo essere stati approvati, i service providers possono aggiungere ulteriori nodi di utility incrementando proporzionalmente il deposito di EWT.
-    Finchè il \gls{sla} continua ad essere rispettato, i service providers guadagneranno un interesse in base al loro deposito.
+    Finché il \gls{sla} continua ad essere rispettato, i service providers guadagneranno un interesse in base al loro deposito.
     In questo momento, il deposito minimo necessario per essere approvati come service provider si attesta fra i $10000$ e i $100000$ EWT, a cui si aggiungono fra i $1000$ e i $10000$ EWT per service node \cite{art:ew-staking}.
     \item \textbf{Patrons:} sono gli individui o le organizzazioni che finanziano un service provider depositando dei loro EWT per il service provider.
     Differentemente rispetto a ciò che accade per i service provider, non c'è un minimo alla somma depositata e questa può essere ritirata in qualsiasi momento.
