@@ -35,6 +35,7 @@ Sample DApp meant to showcase the Energy Web's chain capabilities.
 - In the _app_ directory, first run
     - `npm install`
     - `npx patch-package`
+- If any change is made on the abis stored in the _src/asset/json_ folder, you may want to run `npm run typechain` to update the type files. WARNING: doing so may remove some facilities I added manually
 - If you want to test the app for yourself you will need the [MetaMask browser extension](https://metamask.io/) connected to the [Volta test-net](https://energyweb.atlassian.net/wiki/spaces/EWF/pages/703201459/Volta+Connecting+to+Remote+RPC+and+Metamask). Make sure to have some [Volta token](https://voltafaucet.energyweb.org/) available.
 
 ### Available scripts
@@ -111,6 +112,8 @@ Opens an interactive console that connects to the provided network (the first if
 ## Made with 🔧
 - [react](https://reactjs.org/)
 - [Create React App](https://create-react-app.dev/)
+- [web3](https://github.com/ChainSafe/web3.js)
+- [typechain](https://github.com/dethcrypto/TypeChain)
 - [Darkly bootstrap theme](https://bootswatch.com/darkly/)
 - [truffle](https://www.trufflesuite.com/truffle)
 - [Openzeppelin contracts](https://openzeppelin.com/contracts/)
