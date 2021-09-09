@@ -1,59 +1,46 @@
 \chapter{Introduzione}
-TODO
 
-\begin{figure}[t] %[t] per inserire la figura in cima alla pagina
-	\includegraphics[width=1\linewidth]{university_logo.png} %width=1\linewidth per scalare l'immagine alle dimensioni opportune. E' possibile ridurre le dimensioni dell'immagine inserendo un numero minore di 1
-	\caption{Questo è un esempio di didascalia.}
-	\label{fig:immagine} %per poter richiamare l'immagine nel testo
+%%%%%%%%%%%%
+% Content
+%%%%%%%%%%%%
+\section{Il mercato dell'energia}
+La maggiore sensibilità rispetto ai temi di energia sostenibile e i costi sempre più abbordabili di strumenti quali pannelli solari hanno comportato 
+Se la gestione centralizzata della rete elettrica era la più ragionevole, adesso ha senso rivedere questo paradigma.
+
+In passato, una gestione centralizzata della rete elettrica era la più ragionevole.
+I grandi operatori elettrici erano anche quelli che producevano anche la quasi totalità dell'energia, gli unici ad avere a disposizione i mezzi per realizzare impianti costosi e complessi.
+Ad effettuarne poi la distribuzione sono poi i \gls{tso}, spesso con coperture nazionali, come la italiana Terna \cite{art:terna-role} \\
+
+La situazione odierna, tuttavia, è diversa.
+Negli anni abbiamo assistito ad una riduzione progressiva del costo degli impianti per la produzione di energia rinnovabile, 
+anche grazie a regolamentazioni estremamente favorevoli \cite{art:renewable-energy-regulations}. \\
+
+La conseguenza è una diffusione sempre più capillare di piccoli produttori di energia elettrica, 
+che attraverso piccoli impianti, spesso domestici, sono in grado di offrire un contributo attivo alla rete \cite{art:renewable-energy-increment}.\\
+Ad essi si aggiungono dispositivi come veicoli elettrici e nuovi sistemi di stoccaggio di energia, i quali, se ben gestiti, 
+possono offrire un servizio utile all'intera rete elettrica. \\
+Tutti questi dispositivi, definiti \gls{der}, introducono la necessità di un flusso bidirezionale di energia che li includa come agenti attivi \cite{art:enel-der}. \\
+Inoltre, la natura variabile e difficile da prevedere della maggior parte delle fonti di energia rinnovabile o \gls{res} richiede distribuzione flessibile, 
+in grado di garantire robustezza e stabilità all'intera rete \cite{art:blockchain-der}. \\
+
+La gestione di queste piccole realtà, mal si sposa con l'attuale struttura centralizzata, e impone un cambio di paradigma verso un'architettura distribuita, 
+in grado di includere i \gls{der} e mettere a più stretto contato produttore e consumatore.
+
+\begin{figure}[h]
+    \includegraphics[width=9cm]{p2pgrid}
+    \centering
+    \caption{Da rete da centralizzata a rete distribuita \cite{img:p2pgrid}}
+    \label{lab:p2pgrid}
 \end{figure}
 
 
-\begin{lstlisting}[caption={Didascalia},label=lst:multicorrelation]
-double multicorrelation_ncc(template_obj,candidate_obj) {
-double similarity = ncc(template_obj,candidate_obj);
-if (similarity<t) {
-split template_obj into blocks: template_obj[9];
-split candidate_obj into blocks:  candidate_obj[9];
-similarity=0;
-for (i=0; i<9; i++)
-similarity+=ncc(template_obj[i],candidate_obj[i]);
-similarity/=9;
-}
-else
-return similarity;
-}
-\end{lstlisting}
+\section{La tecnologia delle blockchain}
+La tecnologia dietro le blockchain esiste già da parecchi anni, ma negli ultimi tempi ha ricevuto crescenti attenzioni da studiosi e industrie, intenzionate a sfruttarne a pieno il potenziale. \\
 
-% \begin{table}[ht]
-% 	\begin{center}
-% 		\caption{Tabella Generica}\label{tab:gen}
-% 		\begin{tabular}{lcccccc}
-
-% 			& & & & & & \\ \hline
-% 			\multicolumn{1}{|c}{}  & \multicolumn{5}{|c|}{\bf Y} &
-% 			\multicolumn{1}{c|}{} \\
-
-% 			\multicolumn{1}{|c}{\bf X} & \multicolumn{1}{|c}{$1$} & $\ldots$ & $j$ & $\ldots$ &
-% 			\multicolumn{1}{c|}{$k$} & \multicolumn{1}{c|}{$\Sigma_{j=1}^k{X_{ij}}$} \\ \hline
-
-% 			\multicolumn{1}{|c}{$1$} & \multicolumn{1}{|c}{$X_{11}$} & $\ldots$ & $X_{1j}$ &
-% 			$\ldots$ & \multicolumn{1}{c|}{$X_{1k}$} &
-% 			\multicolumn{1}{c|}{$m$}\\
-
-% 			\multicolumn{1}{|c}{$\vdots$} & \multicolumn{1}{|c}{$\vdots$} &  & $\vdots$ &  &
-% 			\multicolumn{1}{c|}{$\vdots$} &
-% 			\multicolumn{1}{c|}{$\vdots$}\\
-
-% 			\multicolumn{1}{|c}{$i$} & \multicolumn{1}{|c}{$X_{i1}$} & $\dots$ & $X_{ij}$ &
-% 			$\ldots$ & \multicolumn{1}{c|}{$X_{ik}$} &
-% 			\multicolumn{1}{c|}{$m$} \\
-
-% 			\multicolumn{1}{|c}{$\vdots$} & \multicolumn{1}{|c}{$\vdots$} &
-% 			& $\vdots$ &  & \multicolumn{1}{c|}{$\vdots$} & \multicolumn{1}{c|}{\vdots} \\
-
-% 			\multicolumn{1}{|c}{$n$} & \multicolumn{1}{|c}{$X_{n1}$} & $\dots$ & $X_{nj}$ &
-% 			$\ldots$ & \multicolumn{1}{c|}{$X_{nk}$} & \multicolumn{1}{c|}{$m$}\\ \hline
-
-% 		\end{tabular}
-% 	\end{center}
-% \end{table}
+Tralasciando i dettagli più tecnici della tecnologia, che è possibile approfondire in pubblicazioni come queste \cite{art:blockchain} \cite{art:blockchain-for-industry}, 
+la blockchain può essere vista come una lista di transazioni pubblica, decentralizzata e immutabile, se non per l'aggiunta di nuove transazioni, della quale chiunque può possedere una copia. \\
+L'integrità e la correttezza delle transazioni viene garantita dagli algoritmi crittografici, che rendono molto facile verificare la validità della transazione. \\
+Ciò permette l'interazione di una qualsiasi entità con le altre senza che questa debba fare affidamento su nient'altro che l'algoritmo che governa la blockchain, eliminando la necessità di un intermediario fra le parti. \\
+Il risultato è una rete distribuita \gls{p2p} estremamente robusta che si presta a molteplici applicazioni. \\
+A rendere ancora più appetibile questa tecnologia sono gli smart contracts, presenti in reti come Ethereum \cite{wiki:eth-smart-contracts}. Semplificando, si tratta di veri e propri software rilasciati sulla blockchain 
+in grado di compiere svariate azioni in maniera automatica seguendo la loro programmazione. \\
