@@ -158,4 +158,15 @@ function toast(message: string, timeOrOptions?: number | ToastOptions | contentT
     }, time);
 }
 
+export function toastMetamaskError(err: { message: string, code: number }, t: (str: string) => string): void {
+    switch (err.code) {
+        case 4001:
+            return toast(t("ERROR.REQUEST_REJECTED"), 'danger');
+        case -32002:
+            return toast(t("ERROR.REQUEST_ALREADY_SENT"), 'warning');
+        default:
+            return toast(t("ERROR.GENERIC"), 'danger');
+    }
+}
+
 export default toast;

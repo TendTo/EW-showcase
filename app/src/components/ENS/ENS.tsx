@@ -36,7 +36,7 @@ function ENS({ web3 }: Props) {
     if (isName(search)) { // ENS resolve
       try {
         newAddress = await web3?.eth.ens.getAddress(search) || "";
-      } catch (err) {
+      } catch (err: any) {
         console.error(err);
         setError(t("ERROR.GENERIC"));
         if (err.message.startsWith("The resolver at 0x0000000000000000000000000000000000000000"))

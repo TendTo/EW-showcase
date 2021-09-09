@@ -1,13 +1,13 @@
+import { IServiceEndpoint } from "@ew-did-registry/did-resolver-interface";
+import { ClaimData, Profile } from "iam-client-lib";
 import React, { useContext, useState } from "react";
 import { Button, Container, Form, Modal, Spinner } from "react-bootstrap";
-import { useTranslation } from "react-i18next";
-import IAMContext from "../../context/IAMContext";
-import toast from "../Toast/Toast";
-import ew_logo from '../../asset/img/ew-logo-small.png';
-import './DIDEdit.css'
 import { useForm } from "react-hook-form";
-import { ClaimData, Profile } from "iam-client-lib";
-import { IServiceEndpoint } from "@ew-did-registry/did-resolver-interface";
+import { useTranslation } from "react-i18next";
+import ew_logo from '../../asset/img/ew-logo-small.png';
+import IAMContext from "../../context/IAMContext";
+import { toastMetamaskError } from "../Toast/Toast";
+import './DIDEdit.css';
 
 type Props = {
     did: string
@@ -47,18 +47,9 @@ function DIDEdit({ did, profile, setProfileClaims }: Props) {
             await iam.createSelfSignedClaim({ data });
             const claims = await iam.getUserClaims({ did });
             setProfileClaims(claims.find(c => c.profile));
-        } catch (e) {
+        } catch (e: any) {
             console.error(e);
-            switch (e.code) {
-                case 4001:
-                    toast(t("ERROR.REQUEST_REJECTED"), 'danger');
-                    break;
-                case -32002:
-                    toast(t("ERROR.REQUEST_ALREADY_SENT"), 'warning');
-                    break;
-                default:
-                    toast(t("ERROR.GENERIC"), 'danger');
-            }
+            toastMetamaskError(e, t);
         }
         setLoading(false);
         setShow(false);
