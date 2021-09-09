@@ -25,17 +25,19 @@ Sample DApp meant to showcase the Energy Web's chain capabilities.
 - [Ew blockchain](./docs/EW_blockchain.pdf)
 - [Tesi](./docs/Tesi.pdf)
 
-## Quickstart local 💻
+## APP: Quickstart local 💻
 
 ### System requirements
 - [node 16.2.0](https://nodejs.org/)
+- _OPTIONAL_ [MetaMask](https://metamask.io/)
 
-### Available Scripts
-In the _app_ directory, first run
-- `npm install`
-- `npx patch-package`
+### Steps
+- In the _app_ directory, first run
+    - `npm install`
+    - `npx patch-package`
+- If you want to test the app for yourself you will need the [MetaMask browser extension](https://metamask.io/) connected to the [Volta test-net](https://energyweb.atlassian.net/wiki/spaces/EWF/pages/703201459/Volta+Connecting+to+Remote+RPC+and+Metamask). Make sure to have some [Volta token](https://voltafaucet.energyweb.org/) available.
 
-Then, you can run:
+### Available scripts
 #### `npm start`
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -64,6 +66,41 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point, you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However, we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## CONTRACT: Quickstart local 💻
+
+### System requirements
+- [node 16.2.0](https://nodejs.org/)
+- _OPTIONAL_ [ganache](https://www.trufflesuite.com/ganache)
+- _OPTIONAL_ [MetaMask](https://metamask.io/)
+
+### Setup steps
+- In the _app_ directory, first run
+    - `npm install`
+- Make sure to edit the _truffle-config.js_ file to best fit your needs. 
+    - If you plan on using ganache, edit the **networks/development** configuration to point to your ganache server
+    - You can also use another network, but you may need to create a _.secret_ file containing the passphrase of your wallet and use the MetaMask provider
+    - It is possible to connect using an [Infura](https://infura.io/) node
+    - Check [here](https://www.trufflesuite.com/docs/truffle/reference/configuration) for more information about the  _truffle-config.js_ configuration
+- With any command you can change the network you are using by providing the `--network <network_name>` flag
+
+### Available scripts
+#### `npm run compile`
+Compiles all contracts and stores their json representation in the _build_ folder.
+
+#### `npm run migrate`
+Runs the migration scripts in the _migrations_ folder, with the purpose of deploying the contracts on the blockchain.
+You can add `-- --network <network-name>` to select which 
+
+#### `npm test`
+Launches the test runner that executes all the tests in the _test_ folder.  
+They are tailored to test the **Marketplace** contract.
+
+#### `npm run develop`
+Opens an interactive console that also spawns a development blockchain
+
+#### `npm run console`
+Opens an interactive console that connects to the provided network (the first if not specified)
 
 ## Resources 📖
 - [Energy Web](https://www.energyweb.org/)

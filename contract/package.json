@@ -12,8 +12,7 @@
     "test": "truffle test",
     "compile": "truffle compile",
     "migrate": "truffle migrate",
-    "console": "truffle console",
-    "serve": "lite-server"
+    "console": "truffle console"
   },
   "name": "ew-contract",
   "version": "1.0.0",

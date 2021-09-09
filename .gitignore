@@ -41,6 +41,7 @@ docs/*
 !docs/*.bib
 !docs/img/
 !docs/sections/
+!docs/README.md
 
 ################
 #  Contract
