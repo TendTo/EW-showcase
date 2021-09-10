@@ -40,7 +40,9 @@
     "EMPTY_FIELD": "The field cannot be empty",
     "INVALID_INPUT": "The input is not valid",
     "REQUEST_UNAUTHORIZED": "Unauthorized login response.\nPlease ensure that you have the necessary role claim.",
-    "MAX_LENGTH": "The field cannot be more than {{max}} characters long"
+    "MAX_LENGTH": "The field cannot be more than {{max}} characters long",
+    "NOT_POSITIVE": "The value must be a positive number",
+    "ONLY_INT": "Only integers are allowed"
   },
   "ENS": {
     "TITLE": "Ethereum Name Service (ENS)",
@@ -120,7 +122,11 @@
     "ROLES": "Roles",
     "APPS": "Applications",
     "WEBSITE": "Website",
-    "OTHER_JSON": "Other (JSON)"
+    "OTHER_JSON": "Other (JSON)",
+    "ASSET_DID": "Asset's DID",
+    "VOLUME": "Volume",
+    "PRICE": "Price",
+    "REMAINING_VOLUME": "Remaining volume"
   },
   "REFERENCES": {
     "TITLE": "References",
@@ -149,5 +155,15 @@
     "SECTION_2_IMG": "IAM's permission-granting process",
     "SECTION_3_TITLE": "IAM in action",
     "SECTION_3_TEXT": "To show what the IAM can be used for, here is a little demo.\n\nThe structure is as follows:\nthe main \"unict\" organization, is composed of a \"test\" sub-organizationi.\n\nTwo roles belong to it: \"testrole\" and \"student\". You can enroll with your DID to both roles.\nApplications to the former need approval from a specific DID, while for the latter anyone with a \"testrole\" role can approve the request.\nRoles can have optional fields containing an arbitrary amount of data of different types.\n\nThere is also an app called \"TESTAPP\" associated with the organization, and it contains has a role, namely the \"juniordev\" role.\n\nThis kind of hierarchy ensures a fine control and flexibility over permissions whithn an organization."
+  },
+  "MARKETPLACE": {
+    "TITLE": "Marketplace",
+    "NO_ASSET": "No asset found",
+    "EDIT_OFFER": "Edit the current offer",
+    "ADD_ASSET": "Create a new asset",
+    "CANCEL_OFFER": "Cancel offer",
+    "CANCEL_OFFER_CONFIRM": "Do you really want to cancel your offer?\n\nThis action cannot be undone",
+    "CREATE_OFFER": "Submit an offer",
+    "VIEW_OFFER": "Offer details"
   }
 }

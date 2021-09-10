@@ -40,7 +40,9 @@
     "ADDRESS_NOT_FOUND": "L'indirizzo specificato non è stato trovato",
     "INVALID_INPUT": "L'input non è valido",
     "REQUEST_UNAUTHORIZED": "La richesta non è autorizzata.\nAssicurarti di avere i ruoli necessari.",
-    "MAX_LENGTH": "Il campo non può essere più lungo di {{max}} caratteri"
+    "MAX_LENGTH": "Il campo non può essere più lungo di {{max}} caratteri",
+    "NOT_POSITIVE": "Il valore deve essere un numero positivo",
+    "ONLY_INT": "Sono consentiti solo numeri interi"
   },
   "ENS": {
     "TITLE": "Ethereum Name Service (ENS)",
@@ -120,7 +122,11 @@
     "ROLES": "Ruoli",
     "SUBORGS": "Sotto-organizzazioni",
     "OTHER_JSON": "Altro (JSON)",
-    "WEBSITE": "Website"
+    "WEBSITE": "Website",
+    "ASSET_DID": "DID dell'asset",
+    "PRICE": "Prezzo",
+    "VOLUME": "Volume",
+    "REMAINING_VOLUME": "Volume rimanente"
   },
   "REFERENCES": {
     "TITLE": "Bibliografia",
@@ -149,5 +155,15 @@
     "SECTION_1_TITLE": "Cos'è IAM?",
     "SECTION_2_TITLE": "Proprietà di un IAM decentralizzato",
     "TITLE": "Identity and Access Management (IAM)"
+  },
+  "MARKETPLACE": {
+    "TITLE": "Marketplace",
+    "NO_ASSET": "Non sono stati trovati asset",
+    "EDIT_OFFER": "Modifica l'offerta corrente",
+    "ADD_ASSET": "Crea un nuovo asset",
+    "CANCEL_OFFER": "Annulla l'offerta",
+    "CANCEL_OFFER_CONFIRM": "Sei sicuro di voler annullare l'offerta?\n\nQuesta azione non può essere annullata",
+    "CREATE_OFFER": "Crea un'offerta",
+    "VIEW_OFFER": "Dettagli dell'offerta"
   }
 }

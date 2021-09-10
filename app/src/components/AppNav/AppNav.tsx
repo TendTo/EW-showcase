@@ -28,6 +28,7 @@ function AppNav({ account, chain }: Props) {
           <Nav.Link href="#ens">ENS</Nav.Link>
           <Nav.Link href="#did">DID</Nav.Link>
           <Nav.Link href="#iam">IAM</Nav.Link>
+          <Nav.Link href="#marketplace">Marketplace</Nav.Link>
           <Nav.Link href="#references">{t('NAV.REFERENCES')}</Nav.Link>
         </Nav>
         <Nav className="connection-info">

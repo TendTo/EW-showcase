@@ -1,0 +1,9 @@
+.marketplace-button-row {
+    display: grid;
+    flex-grow: 1;
+    min-width: 37.8px;
+    grid-template-columns: repeat(auto-fit, 37.8px);
+    grid-auto-rows: auto;
+    gap: 14px;
+    justify-content: end;
+}

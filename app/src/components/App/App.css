@@ -135,3 +135,8 @@ p {
   font-size: 1.1em;
   line-height: 1.5;
 }
+
+.square-fav{
+  max-width: 11.8px;
+  max-height: 11.8px;
+}
