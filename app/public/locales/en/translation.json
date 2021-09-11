@@ -168,6 +168,8 @@
     "CANCEL_OFFER": "Cancel offer",
     "CANCEL_OFFER_CONFIRM": "Do you really want to cancel your offer?\n\nThis action cannot be undone",
     "CREATE_OFFER": "Submit an offer",
-    "VIEW_OFFER": "Offer details"
+    "VIEW_OFFER": "Offer details",
+    "CREATE_DEMAND": "Create a new demand",
+    "EDIT_DEMAND": "Edit the current demand"
   }
 }

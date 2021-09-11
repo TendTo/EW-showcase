@@ -128,7 +128,9 @@
     "VOLUME": "Volume",
     "REMAINING_VOLUME": "Volume rimanente",
     "BUYER": "Acquirente",
-    "AGGREGATOR": "Aggregatore"
+    "AGGREGATOR": "Aggregatore",
+    "ACTIONS": "Azioni",
+    "OWNER": "Proprietario"
   },
   "REFERENCES": {
     "TITLE": "Bibliografia",
@@ -166,6 +168,8 @@
     "CANCEL_OFFER": "Annulla l'offerta",
     "CANCEL_OFFER_CONFIRM": "Sei sicuro di voler annullare l'offerta?\n\nQuesta azione non può essere annullata",
     "CREATE_OFFER": "Crea un'offerta",
-    "VIEW_OFFER": "Dettagli dell'offerta"
+    "VIEW_OFFER": "Dettagli dell'offerta",
+    "EDIT_DEMAND": "Modifica questa richiesta",
+    "CREATE_DEMAND": "Crea una richiesta"
   }
 }

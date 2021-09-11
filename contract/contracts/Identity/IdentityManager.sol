@@ -95,7 +95,7 @@ contract IdentityManager {
         return identities[identity].owner;
     }
 
-    function createIdentity(address _owner) external returns (address) {
+    function createIdentity(address _owner) external {
         address identity = Clones.clone(libraryAddress);
         identities[identity].created = true;
 
@@ -105,8 +105,6 @@ contract IdentityManager {
             initData,
             "IdentityManager: Can't initialize cloned identity"
         );
-
-        return identity;
     }
 
     function identityCreated(address _owner) external isOfferable {

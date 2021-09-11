@@ -19,18 +19,4 @@ contract TestIdentityManager {
             address(_offerableIdentityAddress)
         );
     }
-
-    function testIdentityManagerOwner() public {
-        address identityAddress = _identityManager.createIdentity(_owner);
-        Assert.equal(
-            _identityManager.verified(identityAddress),
-            true,
-            "Asset not verified"
-        );
-        Assert.equal(
-            _identityManager.identityOwner(identityAddress),
-            _owner,
-            "Owner not assigned to asset"
-        );
-    }
 }

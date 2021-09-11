@@ -49,6 +49,10 @@ export class Asset {
         return this;
     }
 
+    public clone() {
+        return new Asset(this._asset, this._owner, this._volume, this._price, this._remainingVolume, this._matches);
+    }
+
     get doesOfferExists(): boolean { return this._volume > 0 && this._price > 0; }
 
     get asset(): string { return this._asset; }
@@ -89,7 +93,7 @@ export class Demand {
         return this;
     }
 
-    public async cancelOffer(web3: Web3) {
+    public async cancelDemand(web3: Web3) {
         const marketplace = new web3.eth.Contract(MarketplaceABI as AbiItem[], VOLTA_MARKETPLACE_ADDRESS) as unknown as Marketplace;
         await marketplace.methods.cancelDemand().send({ from: this._buyer });
 
@@ -97,6 +101,10 @@ export class Demand {
         this._volume = 0;
         this._price = 0;
         return this;
+    }
+
+    public clone() {
+        return new Demand(this._buyer, this._volume, this._price, this._isMatched);
     }
 
     get doesDemandExists(): boolean { return this._volume > 0 && this._price > 0; }
@@ -111,7 +119,7 @@ export class Demand {
 }
 
 export class Match {
-    constructor(private _matchId: number, private _asset?: Asset, private _demand?: Demand, private _volume: number = 0, private _price: number  = 0, private _isAccepted: boolean = false) { }
+    constructor(private _matchId: number, private _asset?: Asset, private _demand?: Demand, private _volume: number = 0, private _price: number = 0, private _isAccepted: boolean = false) { }
 
     public async fetchMarketplaceMatch(web3: Web3, autoFetch: boolean = true) {
         const marketplace = new web3.eth.Contract(MarketplaceABI as AbiItem[], VOLTA_MARKETPLACE_ADDRESS) as unknown as Marketplace;
@@ -194,6 +202,10 @@ export class Match {
             await this.recursiveFetch(web3);
         this.resetMatch();
         return this;
+    }
+
+    public clone() {
+        return new Match(this._matchId, this._asset, this._demand, this._volume, this._price, this._isAccepted);
     }
 
     get doesMatchExists(): boolean { return this._volume > 0 && this._price > 0; }
