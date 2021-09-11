@@ -13,10 +13,14 @@
 \usepackage[font=small,labelfont=bf,tableposition=top]{caption}
 \usepackage[style=numeric,useprefix,hyperref,backend=bibtex,sorting=none]{biblatex} % Sophisticated Bibliographies in LATEX (https://ctan.org/pkg/biblatex)
 \usepackage{listings}
+\usepackage{subfig}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 % Settings
 %%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand*{\figureautorefname}{Fig.}
+\renewcommand*{\sectionautorefname}{sez.} 
+\renewcommand*{\chapterautorefname}{Cap.} 
 \graphicspath{ {./img/} } % Base image path
 \lstset{
     language=C++,
@@ -57,8 +61,8 @@
 \newacronym{erc}{ERC}{Ethereum Request for Comment}
 \newacronym{ewns}{EWNS}{Energy Web Name Service}
 \newacronym{ewc}{EWC}{Energy Web Chain}
-\newacronym{eac}{EAC}{Rnergy Attribute Certificate}
-\newacronym{kms}{KMS}{Key Management Sysyem}
+\newacronym{eac}{EAC}{Energy Attribute Certificate}
+\newacronym{kms}{KMS}{Key Management System}
 \newacronym{spf}{SPO}{Single Point of Failure}
 \newacronym{ipfs}{IPFS}{InterPlanetary File System}
 \newacronym{dht}{DHT}{Distributed Hash Tables}
@@ -70,9 +74,9 @@
 \newacronym{ewdos}{EW-DOS}{Energy Web Decentralized Operating System}
 \newacronym{dapp}{DApp}{Decentralized Application}
 \newacronym{ewt}{EWT}{Energy Web Token}
-\newacronym{iot}{IoT}{Internet of Thigs}
+\newacronym{iot}{IoT}{Internet of Things}
 \newacronym{ens}{ENS}{Ethereum Name Service}
-\newacronym{ssi}{SSI}{Self Sovrain Identity}
+\newacronym{ssi}{SSI}{Self Sovereign Identity}
 \newacronym{iam}{IAM}{Identity and Access Management}
 
 %%%%%%%%%%%%%%%%%%%%%%%%
