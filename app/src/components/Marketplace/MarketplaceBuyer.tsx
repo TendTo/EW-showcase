@@ -8,7 +8,6 @@ import Marketplace from '../../types/Marketplace'
 import { toastMetamaskError } from '../Toast/Toast';
 import { Demand } from '../../types/MarketplaceEntities';
 import { Spinner } from 'react-bootstrap';
-import MarketplaceViewDemand from '../MarketplaceDemand/MarketplaceViewDemand';
 import MarketplaceCreateDemand from '../MarketplaceDemand/MarketplaceCreateDemand';
 import MarketplaceCancelDemand from '../MarketplaceDemand/MarketplaceCancelDemand';
 
@@ -64,24 +63,11 @@ function MarketplaceBuyer({ web3, account }: Props) {
                 </div>
                 :
                 <>
-                    <div className="app-row">
-                        <div className="text-muted">{t('GENERAL.BUYER')}</div>
-                        <p className="text-truncate">{demand.buyer}</p>
-                    </div>
-                    {demand.doesDemandExists &&
-                        <>
-                            <div className="app-row">
-                                <div className="text-muted">{t('GENERAL.VOLUME')}</div>
-                                <p className="text-truncate">{demand.volume}</p>
-                            </div>
-                            <div className="app-row">
-                                <div className="text-muted">{t('GENERAL.PRICE')}</div>
-                                <p className="text-truncate">{demand.price}</p>
-                            </div>
-                        </>
-                    }
-                    <div className="app-row">
-                        <div className="text-muted">{t('GENERAL.ACTIONS')}</div>
+                    <div className="app-row d-flex align-items-center justify-content-between">
+                        <div className="d-flex flex-column pr-3">
+                            <div className="text-muted">{t('GENERAL.BUYER')}</div>
+                            <p className="text-truncate">{demand.buyer}</p>
+                        </div>
                         <div className="marketplace-button-row">
                             {
                                 demand.isMatched ?
@@ -90,7 +76,6 @@ function MarketplaceBuyer({ web3, account }: Props) {
                                     :
                                     demand.doesDemandExists ?
                                         <>
-                                            <MarketplaceViewDemand demand={demand} />
                                             < MarketplaceCreateDemand web3={web3} demand={demand} updateDemand={updateDemand} />
                                             <MarketplaceCancelDemand web3={web3} demand={demand} updateDemand={updateDemand} />
                                         </ >
@@ -99,6 +84,23 @@ function MarketplaceBuyer({ web3, account }: Props) {
                             }
                         </div>
                     </div>
+                    {demand.doesDemandExists &&
+                        <div className="app-row">
+                            <details>
+                                <summary>{t('GENERAL.DEMAND')}</summary>
+                                <div className="app-row-set success">
+                                    <div className="app-row">
+                                        <div className="text-muted">{t('GENERAL.VOLUME')} (KW)</div>
+                                        <p className="text-truncate">{demand.volume}</p>
+                                    </div>
+                                    <div className="app-row">
+                                        <div className="text-muted">{t('GENERAL.PRICE')} (ct/KWh)</div>
+                                        <p className="text-truncate">{demand.price}</p>
+                                    </div>
+                                </div>
+                            </details>
+                        </div>
+                    }
                 </>
             }
         </div >

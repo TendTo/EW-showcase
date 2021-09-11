@@ -130,7 +130,9 @@
     "BUYER": "Acquirente",
     "AGGREGATOR": "Aggregatore",
     "ACTIONS": "Azioni",
-    "OWNER": "Proprietario"
+    "OWNER": "Proprietario",
+    "OFFER": "Offerta",
+    "DEMAND": "Richiesta"
   },
   "REFERENCES": {
     "TITLE": "Bibliografia",

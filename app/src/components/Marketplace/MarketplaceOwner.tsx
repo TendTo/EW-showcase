@@ -10,7 +10,6 @@ import MarketplaceCreateOffer from '../MarketplaceOffer/MarketplaceCreateOffer';
 import { toastMetamaskError } from '../Toast/Toast';
 import { Asset } from '../../types/MarketplaceEntities';
 import MarketplaceCancelOffer from '../MarketplaceOffer/MarketplaceCancelOffer';
-import MarketplaceViewOffer from '../MarketplaceOffer/MarketplaceViewOffer';
 
 type Props = {
     web3: Web3
@@ -70,6 +69,10 @@ function MarketplaceOwner({ web3, account }: Props) {
         setAssets([...assets])
     };
 
+    const viewAssetComponent = () => {
+
+    }
+
     const renderAssets = () => {
         if (loading) {
             return <div className="text-center mt-2"><Spinner animation="border" /></div>
@@ -82,26 +85,45 @@ function MarketplaceOwner({ web3, account }: Props) {
             );
         }
         return assets.map((asset, index) => (
-            <div key={index} className="app-row d-flex align-items-center justify-content-between">
-                <div className="d-flex flex-column pr-3">
-                    <div className="text-muted">{t('GENERAL.ASSET_DID')}</div>
-                    <p className="text-truncate">{asset.asset}</p>
+            <>
+                <div key={index} className="app-row d-flex align-items-center justify-content-between">
+                    <div className="d-flex flex-column pr-3">
+                        <div className="text-muted">{t('GENERAL.ASSET_DID')}</div>
+                        <p className="text-truncate">{asset.asset}</p>
+                    </div>
+                    {
+                        asset.isMatched ?
+                            // TODO: unmatch
+                            <></>
+                            :
+                            asset.doesOfferExists ?
+                                <div className="marketplace-button-row">
+                                    < MarketplaceCreateOffer web3={web3} account={account} asset={asset} updateAssets={updateAssets} />
+                                    <MarketplaceCancelOffer web3={web3} account={account} asset={asset} updateAssets={updateAssets} />
+                                </div >
+                                :
+                                < MarketplaceCreateOffer web3={web3} account={account} asset={asset} updateAssets={updateAssets} />
+                    }
                 </div>
                 {
-                    asset.isMatched ?
-                        // TODO: unmatch
-                        <></>
-                        :
-                        asset.doesOfferExists ?
-                            <div className="marketplace-button-row">
-                                <MarketplaceViewOffer asset={asset} />
-                                < MarketplaceCreateOffer web3={web3} account={account} asset={asset} updateAssets={updateAssets} />
-                                <MarketplaceCancelOffer web3={web3} account={account} asset={asset} updateAssets={updateAssets} />
-                            </div >
-                            :
-                            < MarketplaceCreateOffer web3={web3} account={account} asset={asset} updateAssets={updateAssets} />
+                    asset.doesOfferExists &&
+                    <div className="app-row">
+                        <details>
+                            <summary>{t('GENERAL.OFFER')}</summary>
+                            <div className="app-row-set success">
+                                <div className="app-row">
+                                    <div className="text-muted">{t('GENERAL.VOLUME')} (KW)</div>
+                                    <p className="text-truncate">{asset.volume}</p>
+                                </div>
+                                <div className="app-row">
+                                    <div className="text-muted">{t('GENERAL.PRICE')} (ct/KWh)</div>
+                                    <p className="text-truncate">{asset.price}</p>
+                                </div>
+                            </div>
+                        </details>
+                    </div>
                 }
-            </div>
+            </>
         ))
     }
 

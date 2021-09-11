@@ -130,7 +130,9 @@
     "BUYER": "Buyer",
     "ACTIONS": "Actions",
     "OWNER": "Owner",
-    "AGGREGATOR": "Aggregator"
+    "AGGREGATOR": "Aggregator",
+    "OFFER": "Offer",
+    "DEMAND": "Demand"
   },
   "REFERENCES": {
     "TITLE": "References",
