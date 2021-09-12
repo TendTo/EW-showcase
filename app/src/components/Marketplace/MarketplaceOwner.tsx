@@ -25,28 +25,17 @@ function MarketplaceOwner({ web3, account }: Props) {
     useEffect(() => {
         const fetchAssets = async () => {
             setLoading(true);
-            const identityManagerContract = new web3.eth.Contract(abi as AbiItem[], VOLTA_IDENTITY_MANAGER_ADDRESS) as unknown as IdentityManager;
-            const assetsCreated = await identityManagerContract.getPastEvents('IdentityCreated', {
-                filter: { owner: account },
-                fromBlock: 'earliest',
-                toBlock: 'latest'
-            });
-            const assetsTransferred = await identityManagerContract.getPastEvents('IdentityTransferred', {
-                filter: { owner: account },
-                fromBlock: 'earliest',
-                toBlock: 'latest'
-            });
-            // Consider all assets the user may owns among the ones that he has created or those that were transferred to him
-            const possibleAssets = Array.from(new Set([...assetsCreated, ...assetsTransferred])).map(({ returnValues }) => returnValues.identity);
-            // Filter out assets that are not currently owned by the user
-            const assets = await Promise.all(possibleAssets
-                .filter(async (identity) => account === await identityManagerContract.methods.identityOwner(identity).call())
-                .map(async (identity) => new Asset(identity, account).fetchMarketplaceOffer(web3)));
-            setAssets(assets);
+            try {
+                setAssets(await Asset.fetchAssets(web3, [account]));
+            }
+            catch (e: any) {
+                toastMetamaskError(e, t);
+                setAssets([]);
+            }
             setLoading(false);
         }
         fetchAssets();
-    }, [web3, account]);
+    }, [web3, account, t]);
 
     const onCreateAsset = async () => {
         setCreatingAsset(true);
@@ -68,10 +57,6 @@ function MarketplaceOwner({ web3, account }: Props) {
         console.log(assets);
         setAssets([...assets])
     };
-
-    const viewAssetComponent = () => {
-
-    }
 
     const renderAssets = () => {
         if (loading) {
@@ -114,6 +99,10 @@ function MarketplaceOwner({ web3, account }: Props) {
                                 <div className="app-row">
                                     <div className="text-muted">{t('GENERAL.VOLUME')} (KW)</div>
                                     <p className="text-truncate">{asset.volume}</p>
+                                </div>
+                                <div className="app-row">
+                                    <div className="text-muted">{t('GENERAL.REMAINING_VOLUME')} (KW)</div>
+                                    <p className="text-truncate">{asset.remainingVolume}</p>
                                 </div>
                                 <div className="app-row">
                                     <div className="text-muted">{t('GENERAL.PRICE')} (ct/KWh)</div>

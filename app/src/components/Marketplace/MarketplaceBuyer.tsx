@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { VOLTA_MARKETPLACE_ADDRESS } from '../../asset/json/voltaContractAddresses.json'
-import { abi } from '../../asset/json/Marketplace.abi.json'
 import Web3 from 'web3';
-import { AbiItem } from 'web3-utils';
-import Marketplace from '../../types/Marketplace'
 import { toastMetamaskError } from '../Toast/Toast';
 import { Demand } from '../../types/MarketplaceEntities';
 import { Spinner } from 'react-bootstrap';
@@ -24,10 +20,9 @@ function MarketplaceBuyer({ web3, account }: Props) {
     useEffect(() => {
         const fetchDemand = async () => {
             setLoading(true);
-            const marketContract = new web3.eth.Contract(abi as AbiItem[], VOLTA_MARKETPLACE_ADDRESS) as unknown as Marketplace;
             try {
-                const newDemand = await marketContract.methods.demands(account).call();
-                setDemand(new Demand(account, Number.parseInt(newDemand.volume), Number.parseInt(newDemand.price), newDemand.isMatched));
+                const demand = new Demand(account);
+                setDemand(await demand.fetchMarketplaceDemand(web3));
             } catch (e: any) {
                 toastMetamaskError(e, t);
                 setDemand(new Demand(account));
@@ -35,23 +30,7 @@ function MarketplaceBuyer({ web3, account }: Props) {
             setLoading(false);
         }
         fetchDemand();
-    }, [web3, account]);
-
-    // const onCreateDemand = async () => {
-    //     setLoading(true);
-    //     const marketContract = new web3.eth.Contract(abi as AbiItem[], VOLTA_MARKETPLACE_ADDRESS) as unknown as Marketplace;
-    //     marketContract.once('DemandCreated', (err, demandEvent) => {
-    //         const newDemand = demandEvent.returnValues;
-    //         err ? console.error(err) : setDemand(new Demand(account, Number.parseInt(newDemand.volume), Number.parseInt(newDemand.price)))
-    //     });
-    //     try {
-    //         await marketContract.methods.createDemand(account).send({ from: account });
-    //     } catch (e: any) {
-    //         console.error(e);
-    //         toastMetamaskError(e, t);
-    //     }
-    //     setLoading(false);
-    // }
+    }, [web3, account, t]);
 
     const updateDemand = () => setDemand(demand.clone());
 

@@ -12,6 +12,29 @@ const zeroAddress = '0x0000000000000000000000000000000000000000';
 export class Asset {
     constructor(private _asset: string, private _owner: string = zeroAddress, private _volume: number = 0, private _price: number = 0, private _remainingVolume: number = 0, private _matches: number = 0) { }
 
+    public static async fetchAssets(web3: Web3, owners: string[]) {
+        const identityManager = new web3.eth.Contract(IdentityManagerABI as AbiItem[], VOLTA_IDENTITY_MANAGER_ADDRESS) as unknown as IdentityManager;
+        const assets = await Promise.all(owners.map(async (owner) => {
+            const assetsCreated = await identityManager.getPastEvents('IdentityCreated', {
+                filter: { owner },
+                fromBlock: 'earliest',
+                toBlock: 'latest'
+            });
+            const assetsTransferred = await identityManager.getPastEvents('IdentityTransferred', {
+                filter: { owner },
+                fromBlock: 'earliest',
+                toBlock: 'latest'
+            });
+            // Consider all assets the user may owns among the ones that he has created or those that were transferred to him
+            const possibleAssets = Array.from(new Set([...assetsCreated, ...assetsTransferred])).map(({ returnValues }) => returnValues.identity);
+            // Filter out assets that are not currently owned by the user
+            return Promise.all(possibleAssets
+                .filter(async (identity) => owner === await identityManager.methods.identityOwner(identity).call())
+                .map(async (identity) => new Asset(identity, owner).fetchMarketplaceOffer(web3)));
+        }));
+        return assets.flat();
+    }
+
     public async fetchOwner(web3: Web3) {
         const identityManager = new web3.eth.Contract(IdentityManagerABI as AbiItem[], VOLTA_IDENTITY_MANAGER_ADDRESS) as unknown as IdentityManager;
         this._owner = await identityManager.methods.identityOwner(this.asset).call();
@@ -72,6 +95,17 @@ export class Asset {
 
 export class Demand {
     constructor(private _buyer: string, private _volume: number = 0, private _price: number = 0, private _isMatched: boolean = false) { }
+
+    public static async fetchDemands(web3: Web3, buyers: string[]) {
+        const marketplace = new web3.eth.Contract(MarketplaceABI as AbiItem[], VOLTA_MARKETPLACE_ADDRESS) as unknown as Marketplace;
+        let demands = [];
+        for (const buyer of buyers) {
+            const demandData = await marketplace.methods.demands(buyer).call();
+            const newDemand = new Demand(buyer, Number.parseInt(demandData.volume), Number.parseInt(demandData.price), demandData.isMatched)
+            demands.push(newDemand);
+        }
+        return demands;
+    }
 
     public async fetchMarketplaceDemand(web3: Web3) {
         const marketplace = new web3.eth.Contract(MarketplaceABI as AbiItem[], VOLTA_MARKETPLACE_ADDRESS) as unknown as Marketplace;
