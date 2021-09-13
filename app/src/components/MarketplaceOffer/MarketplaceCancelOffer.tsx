@@ -37,7 +37,9 @@ function MarketplaceCancelOffer({ web3, account, asset, updateAssets }: Props) {
 
     return (
         <>
-            <Button variant="outline-danger" onClick={() => setShow(true)} disabled={loading}><i className="fa fa-trash" /></Button>
+            <Button variant="outline-danger" onClick={() => setShow(true)} disabled={loading || asset.isMatched}>
+                <i className="fa fa-trash" />
+            </Button>
 
 
             <Modal show={show} onHide={() => { setShow(false); }} backdrop={!loading} keyboard={!loading}>

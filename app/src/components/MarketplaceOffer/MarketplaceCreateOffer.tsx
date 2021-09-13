@@ -54,9 +54,13 @@ function MarketplaceCreateOffer({ web3, account, asset, updateAssets }: Props) {
     return (
         <>
             {asset.doesOfferExists ?
-                <Button variant="outline-warning" onClick={() => setShow(true)} disabled={loading}><i className="square-fav fa fa-pencil-square-o" /> </Button>
+                <Button variant="outline-warning" onClick={() => setShow(true)} disabled={loading || asset.isMatched}>
+                    <i className="square-fav fa fa-pencil-square-o" />
+                </Button>
                 :
-                <Button variant="outline-light" onClick={() => setShow(true)} disabled={loading}><i className="square-fav fa fa-location-arrow" /> </Button>
+                <Button variant="outline-light" onClick={() => setShow(true)} disabled={loading || asset.isMatched}>
+                    <i className="square-fav fa fa-location-arrow" />
+                </Button>
             }
 
 

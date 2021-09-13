@@ -132,7 +132,10 @@
     "ACTIONS": "Azioni",
     "OWNER": "Proprietario",
     "OFFER": "Offerta",
-    "DEMAND": "Richiesta"
+    "DEMAND": "Richiesta",
+    "NO_DEMANDS": "Nessun acquirente è stato trovato",
+    "SELECT": "Seleziona",
+    "SELECTED": "Selezionato"
   },
   "REFERENCES": {
     "TITLE": "Bibliografia",
@@ -164,7 +167,7 @@
   },
   "MARKETPLACE": {
     "TITLE": "Marketplace",
-    "NO_ASSET": "Non sono stati trovati asset",
+    "NO_ASSET": "Non sono stati trovati asset che soddisfano i requisiti",
     "EDIT_OFFER": "Modifica l'offerta corrente",
     "ADD_ASSET": "Crea un nuovo asset",
     "CANCEL_OFFER": "Annulla l'offerta",
@@ -172,6 +175,9 @@
     "CREATE_OFFER": "Crea un'offerta",
     "VIEW_OFFER": "Dettagli dell'offerta",
     "EDIT_DEMAND": "Modifica questa richiesta",
-    "CREATE_DEMAND": "Crea una richiesta"
+    "CREATE_DEMAND": "Crea una richiesta",
+    "NO_DEMANDS": "Non sono stati trovati acquirenti che soddisfano i requisiti",
+    "PROPOSE_MATCH": "Proponi un abbinamento",
+    "PROPOSE_ASSET_RULE": "Seleziona un asset e un acquirente in modo che le rispettive offerte e domanda siano compatibili.\nIl volume residuo dell'offerta deve essere MAGGIORE O UGUALE del fabbisogno della domanda.\nIl prezzo dell'offerta deve essere MINORE O UGUALE al prezzo nella domanda."
   }
 }

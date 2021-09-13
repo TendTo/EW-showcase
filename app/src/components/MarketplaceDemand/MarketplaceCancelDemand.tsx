@@ -36,7 +36,9 @@ function MarketplaceCancelDemand({ web3, demand, updateDemand }: Props) {
 
     return (
         <>
-            <Button variant="outline-danger" onClick={() => setShow(true)} disabled={loading}><i className="fa fa-trash" /></Button>
+            <Button variant="outline-danger" onClick={() => setShow(true)} disabled={loading || demand.isMatched}>
+                <i className="fa fa-trash" />
+            </Button>
 
 
             <Modal show={show} onHide={() => { setShow(false); }} backdrop={!loading} keyboard={!loading}>

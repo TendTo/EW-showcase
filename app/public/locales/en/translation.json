@@ -132,7 +132,15 @@
     "OWNER": "Owner",
     "AGGREGATOR": "Aggregator",
     "OFFER": "Offer",
-    "DEMAND": "Demand"
+    "DEMAND": "Demand",
+    "MATCHES": "Matches",
+    "NO_DEMANDS": "No demands found",
+    "SELECT": "Select",
+    "SELECTED": "Selected",
+    "MATCH": "Match",
+    "ID": "ID",
+    "ACCEPTED": "Accepted",
+    "PENDING": "Pending"
   },
   "REFERENCES": {
     "TITLE": "References",
@@ -164,7 +172,7 @@
   },
   "MARKETPLACE": {
     "TITLE": "Marketplace",
-    "NO_ASSET": "No asset found",
+    "NO_ASSET": "No asset found that statisfy the requisites",
     "EDIT_OFFER": "Edit the current offer",
     "ADD_ASSET": "Create a new asset",
     "CANCEL_OFFER": "Cancel offer",
@@ -172,6 +180,9 @@
     "CREATE_OFFER": "Submit an offer",
     "VIEW_OFFER": "Offer details",
     "CREATE_DEMAND": "Create a new demand",
-    "EDIT_DEMAND": "Edit the current demand"
+    "EDIT_DEMAND": "Edit the current demand",
+    "NO_DEMANDS": "No demands found that satisfy the requirements",
+    "PROPOSE_MATCH": "Propose a new match",
+    "PROPOSE_ASSET_RULE": "Select an asset and a buyer so that the respective offer and demand are compatibles.\nThe offer's remaining volume must be GREATER OR EQUAL than the demand's need.\nThe offer's price must be LESS OR EQUAL than the demand'soffer."
   }
 }

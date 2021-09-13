@@ -7,3 +7,7 @@
     gap: 14px;
     justify-content: end;
 }
+
+.marketplace-selector{
+    cursor: pointer;
+}

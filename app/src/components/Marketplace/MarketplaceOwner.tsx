@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { Button, Spinner } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { VOLTA_IDENTITY_MANAGER_ADDRESS } from '../../asset/json/voltaContractAddresses.json'
-import { abi } from '../../asset/json/IdentityManager.abi.json'
 import Web3 from 'web3';
 import { AbiItem } from 'web3-utils';
-import IdentityManager from '../../types/IdentityManager'
-import { Button, Spinner } from 'react-bootstrap';
+import { abi } from '../../asset/json/IdentityManager.abi.json';
+import { VOLTA_IDENTITY_MANAGER_ADDRESS } from '../../asset/json/voltaContractAddresses.json';
+import IdentityManager from '../../types/IdentityManager';
+import { Asset } from '../../types/MarketplaceEntities';
+import MarketplaceMatches from '../MarketplaceMatch/MarketplaceMatches';
+import MarketplaceCancelOffer from '../MarketplaceOffer/MarketplaceCancelOffer';
 import MarketplaceCreateOffer from '../MarketplaceOffer/MarketplaceCreateOffer';
 import { toastMetamaskError } from '../Toast/Toast';
-import { Asset } from '../../types/MarketplaceEntities';
-import MarketplaceCancelOffer from '../MarketplaceOffer/MarketplaceCancelOffer';
 
 type Props = {
     web3: Web3
@@ -69,30 +70,26 @@ function MarketplaceOwner({ web3, account }: Props) {
                 </div>
             );
         }
-        return assets.map((asset, index) => (
+        return assets.map(asset => (
             <>
-                <div key={index} className="app-row d-flex align-items-center justify-content-between">
-                    <div className="d-flex flex-column pr-3">
+                <div key={`owner-${asset.asset}`} className="app-row">
+                    <div className="d-flex justify-content-between">
                         <div className="text-muted">{t('GENERAL.ASSET_DID')}</div>
-                        <p className="text-truncate">{asset.asset}</p>
-                    </div>
-                    {
-                        asset.isMatched ?
-                            // TODO: unmatch
-                            <></>
-                            :
-                            asset.doesOfferExists ?
-                                <div className="marketplace-button-row">
+                        <div className="marketplace-button-row mt-1">
+                            {
+                                asset.doesOfferExists ?
+                                    < >
+                                        < MarketplaceCreateOffer web3={web3} account={account} asset={asset} updateAssets={updateAssets} />
+                                        <MarketplaceCancelOffer web3={web3} account={account} asset={asset} updateAssets={updateAssets} />
+                                    </ >
+                                    :
                                     < MarketplaceCreateOffer web3={web3} account={account} asset={asset} updateAssets={updateAssets} />
-                                    <MarketplaceCancelOffer web3={web3} account={account} asset={asset} updateAssets={updateAssets} />
-                                </div >
-                                :
-                                < MarketplaceCreateOffer web3={web3} account={account} asset={asset} updateAssets={updateAssets} />
-                    }
-                </div>
-                {
-                    asset.doesOfferExists &&
-                    <div className="app-row">
+                            }
+                        </div>
+                    </div>
+                    <p className="text-truncate">{asset.asset}</p>
+                    {
+                        asset.doesOfferExists &&
                         <details>
                             <summary>{t('GENERAL.OFFER')}</summary>
                             <div className="app-row-set success">
@@ -110,23 +107,27 @@ function MarketplaceOwner({ web3, account }: Props) {
                                 </div>
                             </div>
                         </details>
-                    </div>
-                }
+                    }
+                    {
+                        asset.doesOfferExists && asset.isMatched &&
+                        <MarketplaceMatches web3={web3} account={account} asset={asset} />
+                    }
+                </div>
             </>
         ))
-    }
+}
 
-    return (
-        <div className="app-table">
-            <div className="app-row d-flex align-items-baseline justify-content-between">
-                <p className="mr-5"><b>{t('MARKETPLACE.ADD_ASSET')}</b></p>
-                <Button variant="outline-success" onClick={onCreateAsset} disabled={creatingAsset}>
-                    <i className="fa fa-plus"></i>
-                </Button>
-            </div>
-            {renderAssets()}
+return (
+    <div className="app-table">
+        <div className="app-row d-flex align-items-baseline justify-content-between">
+            <p className="mr-5"><b>{t('MARKETPLACE.ADD_ASSET')}</b></p>
+            <Button variant="outline-success" onClick={onCreateAsset} disabled={creatingAsset}>
+                <i className="fa fa-plus"></i>
+            </Button>
         </div>
-    );
+        {renderAssets()}
+    </div>
+);
 }
 
 export default MarketplaceOwner;

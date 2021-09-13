@@ -34,6 +34,18 @@
   text-align: center;
 }
 
+.app-table-side-by-side {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+}
+
+.app-table-side-by-side>.app-table {
+  flex: 1 1 100px;
+  min-width: 0;
+  overflow: hidden;
+}
+
 .app-table {
   display: flex;
   flex-flow: column nowrap;
@@ -139,4 +151,13 @@ p {
 .square-fav{
   max-width: 11.8px;
   max-height: 11.8px;
+}
+
+.app-nav>.nav-item{
+  background-color: var(--dark);
+}
+
+.app-nav>.nav-item>.nav-link.active{
+  background-color: var(--primary) !important;
+  border-color: var(--light) !important;
 }

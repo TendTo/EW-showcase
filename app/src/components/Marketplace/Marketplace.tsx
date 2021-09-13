@@ -3,8 +3,9 @@ import { Nav } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import Web3 from 'web3';
 import './Marketplace.css';
-import MarketplaceOwner from './MarketplaceOwner';
+import MarketplaceAggregator from './MarketplaceAggregator';
 import MarketplaceBuyer from './MarketplaceBuyer';
+import MarketplaceOwner from './MarketplaceOwner';
 
 enum ROLES { OWNER, BUYER, AGGREGATOR };
 
@@ -35,7 +36,7 @@ function Marketplace({ web3, account }: Props) {
             <div className="app-page-header mb-3">
                 <h2>{t('MARKETPLACE.TITLE')}</h2>
             </div>
-            <Nav justify variant="tabs" defaultActiveKey="owner" onSelect={onRoleSelect}>
+            <Nav justify variant="tabs" defaultActiveKey="owner" onSelect={onRoleSelect} className="app-nav">
                 <Nav.Item>
                     <Nav.Link eventKey="owner"><b>{t("GENERAL.OWNER")}</b></Nav.Link>
                 </Nav.Item>
@@ -56,7 +57,7 @@ function Marketplace({ web3, account }: Props) {
             }
             {
                 role === ROLES.AGGREGATOR &&
-                <div >AGGREGATOR</div>
+                <MarketplaceAggregator web3={web3} account={account} />
             }
         </div>
     );

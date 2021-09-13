@@ -19,7 +19,7 @@ type FormInput = {
     price: number
 }
 
-function MarketplaceCreateDemand({ web3, demand, updateDemand }: Props) {
+function MarketplaceProposeMatch({ web3, demand, updateDemand }: Props) {
     const defaultValues = { volume: demand.volume, price: demand.price };
     const isMounted = useIsMounted();
     const [loading, setLoading] = useState(false);
@@ -53,13 +53,9 @@ function MarketplaceCreateDemand({ web3, demand, updateDemand }: Props) {
     return (
         <>
             {demand.doesDemandExists ?
-                <Button variant="outline-warning" onClick={() => setShow(true)} disabled={loading || demand.isMatched}>
-                    <i className="square-fav fa fa-pencil-square-o" />
-                </Button>
+                <Button variant="outline-warning" onClick={() => setShow(true)} disabled={loading}><i className="square-fav fa fa-pencil-square-o" /> </Button>
                 :
-                <Button variant="outline-light" onClick={() => setShow(true)} disabled={loading || demand.isMatched}>
-                    <i className="square-fav fa fa-location-arrow" />
-                </Button>
+                <Button variant="outline-light" onClick={() => setShow(true)} disabled={loading}><i className="square-fav fa fa-location-arrow" /> </Button>
             }
 
 
@@ -111,4 +107,4 @@ function MarketplaceCreateDemand({ web3, demand, updateDemand }: Props) {
     );
 }
 
-export default MarketplaceCreateDemand;
+export default MarketplaceProposeMatch;

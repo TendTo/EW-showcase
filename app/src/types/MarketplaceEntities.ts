@@ -76,6 +76,12 @@ export class Asset {
         return new Asset(this._asset, this._owner, this._volume, this._price, this._remainingVolume, this._matches);
     }
 
+    public update(matches: number, remainingVolume: number) {
+        this._matches = matches;
+        this._remainingVolume = remainingVolume;
+        return this;
+    }
+
     get doesOfferExists(): boolean { return this._volume > 0 && this._price > 0; }
 
     get asset(): string { return this._asset; }
@@ -107,7 +113,7 @@ export class Demand {
         return demands;
     }
 
-    public async fetchMarketplaceDemand(web3: Web3) {
+    public async fetchDemand(web3: Web3) {
         const marketplace = new web3.eth.Contract(MarketplaceABI as AbiItem[], VOLTA_MARKETPLACE_ADDRESS) as unknown as Marketplace;
         const demand = await marketplace.methods.demands(this._buyer).call();
 
@@ -141,6 +147,11 @@ export class Demand {
         return new Demand(this._buyer, this._volume, this._price, this._isMatched);
     }
 
+    public update(isMatched: boolean) {
+        this._isMatched = isMatched;
+        return this;
+    }
+
     get doesDemandExists(): boolean { return this._volume > 0 && this._price > 0; }
 
     get buyer(): string { return this._buyer; }
@@ -153,9 +164,29 @@ export class Demand {
 }
 
 export class Match {
-    constructor(private _matchId: number, private _asset?: Asset, private _demand?: Demand, private _volume: number = 0, private _price: number = 0, private _isAccepted: boolean = false) { }
+    constructor(private _matchId: number = 0, private _asset?: Asset, private _demand?: Demand, private _volume: number = 0, private _price: number = 0, private _isAccepted: boolean = false) { }
 
-    public async fetchMarketplaceMatch(web3: Web3, autoFetch: boolean = true) {
+    public static async fetchMatches(web3: Web3, asset: Asset | Demand) {
+        const marketplace = new web3.eth.Contract(MarketplaceABI as AbiItem[], VOLTA_MARKETPLACE_ADDRESS) as unknown as Marketplace;
+        const filter = asset instanceof Asset ? { asset: asset.asset } : { demand: asset.buyer };
+        const matches = await marketplace.getPastEvents('MatchProposed', { filter, fromBlock: 'earliest', toBlock: 'latest' });
+        return await Promise.all(
+            matches
+                .map(async (match) => {
+                    const matchData = await marketplace.methods.matches(match.returnValues.matchId).call();
+                    if (matchData.price !== "0")
+                        return new Match(Number.parseInt(match.returnValues.matchId),
+                            new Asset(matchData.asset),
+                            new Demand(matchData.buyer),
+                            Number.parseInt(matchData.volume),
+                            Number.parseInt(matchData.price),
+                            matchData.isAccepted)
+                })
+                .filter(match => match !== undefined)
+        ) as Match[];
+    }
+
+    public async fetchMatch(web3: Web3, autoFetch: boolean = true) {
         const marketplace = new web3.eth.Contract(MarketplaceABI as AbiItem[], VOLTA_MARKETPLACE_ADDRESS) as unknown as Marketplace;
         const matches = await marketplace.methods.matches(this._matchId).call();
 
@@ -167,7 +198,7 @@ export class Match {
         this._demand = new Demand(matches.buyer);
         if (autoFetch) {
             await this._asset.fetchMarketplaceOffer(web3);
-            await this._demand.fetchMarketplaceDemand(web3);
+            await this._demand.fetchDemand(web3);
         }
 
         return this;
@@ -185,7 +216,7 @@ export class Match {
         if (this._asset)
             await this._asset.fetchMarketplaceOffer(web3);
         if (this._demand)
-            await this._demand.fetchMarketplaceDemand(web3);
+            await this._demand.fetchDemand(web3);
     }
 
     public async proposeMatch(web3: Web3, aggregator: string, asset: Asset, demand: Demand, volume: number, price: number) {
@@ -214,7 +245,7 @@ export class Match {
 
         this._isAccepted = true;
         if (autoFetch)
-            await this.fetchMarketplaceMatch(web3, true);
+            await this.fetchMatch(web3, true);
         return this;
     }
 
@@ -242,7 +273,7 @@ export class Match {
         return new Match(this._matchId, this._asset, this._demand, this._volume, this._price, this._isAccepted);
     }
 
-    get doesMatchExists(): boolean { return this._volume > 0 && this._price > 0; }
+    get doesMatchExists(): boolean { return this._volume > 0 && this._price > 0 && this._matchId > 0; }
 
     get matchId(): number { return this._matchId; }
 
