@@ -367,8 +367,10 @@ contract Marketplace {
      */
     function rejectMatch(uint256 _matchId) external matchExists(_matchId) {
         require(
-            matches[_matchId].buyer == msg.sender,
-            "Only the buyer can reject the match"
+            matches[_matchId].buyer == msg.sender ||
+                _identityManager.identityOwner(matches[_matchId].asset) ==
+                msg.sender,
+            "The operation can be performed only by the buyer or the asset owner"
         );
         cleanupAfterMatchRemoval(_matchId);
         emit MatchRejected(_matchId);
