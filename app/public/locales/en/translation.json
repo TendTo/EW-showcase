@@ -140,7 +140,8 @@
     "MATCH": "Match",
     "ID": "ID",
     "ACCEPTED": "Accepted",
-    "PENDING": "Pending"
+    "PENDING": "Pending",
+    "NO_UNDO_ACTION": "This action cannot be undone"
   },
   "REFERENCES": {
     "TITLE": "References",
@@ -173,16 +174,26 @@
   "MARKETPLACE": {
     "TITLE": "Marketplace",
     "NO_ASSET": "No asset found that statisfy the requisites",
-    "EDIT_OFFER": "Edit the current offer",
+    "EDIT_OFFER": "Edit the offer",
     "ADD_ASSET": "Create a new asset",
     "CANCEL_OFFER": "Cancel offer",
-    "CANCEL_OFFER_CONFIRM": "Do you really want to cancel your offer?\n\nThis action cannot be undone",
+    "CANCEL_OFFER_CONFIRM": "Do you really want to cancel your offer?",
     "CREATE_OFFER": "Submit an offer",
     "VIEW_OFFER": "Offer details",
-    "CREATE_DEMAND": "Create a new demand",
-    "EDIT_DEMAND": "Edit the current demand",
+    "CREATE_DEMAND": "Create a demand",
+    "EDIT_DEMAND": "Edit the demand",
     "NO_DEMANDS": "No demands found that satisfy the requirements",
     "PROPOSE_MATCH": "Propose a new match",
-    "PROPOSE_ASSET_RULE": "Select an asset and a buyer so that the respective offer and demand are compatibles.\nThe offer's remaining volume must be GREATER OR EQUAL than the demand's need.\nThe offer's price must be LESS OR EQUAL than the demand'soffer."
+    "PROPOSE_ASSET_RULE": "Select an asset and a buyer so that the respective offer and demand are compatibles.\nThe offer's remaining volume must be GREATER OR EQUAL than the demand's need.\nThe offer's price must be LESS OR EQUAL than the demand'soffer.",
+    "DELETE_MATCH": "Delete match",
+    "DELETE_MATCH_CONFIRM": "Do you really want to delete this match?",
+    "ACCEPT_MATCH": "Accept match",
+    "ACCEPT_MATCH_CONFIRM": "Do you really want to accept this match?",
+    "CREATE_OFFER_RULE": "Register a new asset.\nIt is possible to create an offer for any of the assets you own.\nThe offer can be modified or cancelled after its creation.\nOnce a buyer has been matched to your offer, you won't be able to alter it, until the match has been deleted.",
+    "CREATE_DEMAND_RULE": "It is possible to create a demand related to your address.\nThe demand can be modified or canceled after its publication.\nAn aggregator will match the demand with an appropriate offer.\nYou will be able to accept or reject the match.\nOnce an offer has been matched to your demand, you won't be able to alter it until the match has been deleted.",
+    "CANCEL_DEMAND": "Cancel demand",
+    "CANCEL_DEMAND_CONFIRM": "Do you really want to cancel the offer?",
+    "REJECT_MATCH": "Reject match",
+    "REJECT_MATCH_CONFIRM": "Do you really want to reject the match?"
   }
 }

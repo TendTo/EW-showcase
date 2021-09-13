@@ -63,8 +63,6 @@ function MarketplaceCreateOffer({ web3, account, asset, updateAssets }: Props) {
                 </Button>
             }
 
-
-
             <Modal show={show} onHide={() => { setShow(false); reset(defaultValues); }} backdrop={!loading} keyboard={!loading}>
                 <div className="didedit-card">
                     <div className="d-flex justify-content-center">
@@ -107,7 +105,6 @@ function MarketplaceCreateOffer({ web3, account, asset, updateAssets }: Props) {
                     </div>
                 </div>
             </Modal>
-
         </>
     );
 }

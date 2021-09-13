@@ -2,18 +2,18 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Web3 from 'web3';
 import { useIsMounted } from '../../hooks/useIsMounted';
-import { Asset } from '../../types/MarketplaceEntities';
+import { Match } from '../../types/MarketplaceEntities';
 import ConfirmModal from '../Modals/ConfirmModal';
 import { toastMetamaskError } from '../Toast/Toast';
 
 type Props = {
     web3: Web3
     account: string
-    asset: Asset
-    updateAssets: () => void
+    match: Match
+    updateMatches: () => void
 }
 
-function MarketplaceCancelOffer({ web3, account, asset, updateAssets }: Props) {
+function MarketplaceAcceptMatch({ web3, account, match, updateMatches }: Props) {
     const isMounted = useIsMounted();
     const [loading, setLoading] = useState(false);
     const { t } = useTranslation();
@@ -21,8 +21,8 @@ function MarketplaceCancelOffer({ web3, account, asset, updateAssets }: Props) {
     const onSubmit = async () => {
         setLoading(true);
         try {
-            await asset.cancelOffer(web3, account);
-            updateAssets();
+            await match.acceptMatch(web3, account);
+            updateMatches();
         } catch (e: any) {
             console.error(e);
             toastMetamaskError(e, t);
@@ -34,16 +34,14 @@ function MarketplaceCancelOffer({ web3, account, asset, updateAssets }: Props) {
 
     return (
         <ConfirmModal
-            icon="trash"
-            variant="danger"
+            icon="check"
+            variant="success"
             loading={loading}
             onSubmit={onSubmit}
-            title={t('MARKETPLACE.CANCEL_OFFER')}
-            message={t('MARKETPLACE.CANCEL_OFFER_CONFIRM')}
-            warning={t('GENERAL.NO_UNDO_ACTION')}
-            buttonDisabled={asset.isMatched}
+            title={t('MARKETPLACE.ACCEPT_MATCH')}
+            message={t('MARKETPLACE.ACCEPT_MATCH_CONFIRM')}
         />
     );
 }
 
-export default MarketplaceCancelOffer;
+export default MarketplaceAcceptMatch;

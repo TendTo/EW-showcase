@@ -36,52 +36,60 @@ function MarketplaceBuyer({ web3, account }: Props) {
     const updateDemand = () => setDemand(demand.clone());
 
     return (
-        <div className="app-table">
-            {loading ?
-                <div className="app-row text-center">
-                    <Spinner animation="border" />
+        <>
+            <div className="app-table">
+                <div className="app-row">
+                    <p><b>{t('MARKETPLACE.CREATE_DEMAND')}</b></p>
+                    <div className="text-muted">{t('MARKETPLACE.CREATE_DEMAND_RULE')}</div>
                 </div>
-                :
-                <>
-                    <div className="app-row">
-                        <div className="d-flex justify-content-between">
-                            <div className="text-muted">{t('GENERAL.BUYER')}</div>
-                            <div className="marketplace-button-row">
-                                {
-                                    demand.doesDemandExists ?
-                                        <>
-                                            < MarketplaceCreateDemand web3={web3} demand={demand} updateDemand={updateDemand} />
-                                            <MarketplaceCancelDemand web3={web3} demand={demand} updateDemand={updateDemand} />
-                                        </ >
-                                        :
-                                        < MarketplaceCreateDemand web3={web3} demand={demand} updateDemand={updateDemand} />
-                                }
-                            </div>
-                        </div>
-                        <p className="text-truncate">{demand.buyer}</p>
-                        {demand.doesDemandExists &&
-                            <details>
-                                <summary>{t('GENERAL.DEMAND')}</summary>
-                                <div className="app-row-set success">
-                                    <div className="app-row">
-                                        <div className="text-muted">{t('GENERAL.VOLUME')} (KW)</div>
-                                        <p className="text-truncate">{demand.volume}</p>
-                                    </div>
-                                    <div className="app-row">
-                                        <div className="text-muted">{t('GENERAL.PRICE')} (ct/KWh)</div>
-                                        <p className="text-truncate">{demand.price}</p>
-                                    </div>
-                                </div>
-                            </details>
-                        }
-                        {
-                            demand.doesDemandExists && demand.isMatched &&
-                            <MarketplaceMatches web3={web3} account={account} demand={demand} />
-                        }
+            </div>
+            <div className="app-table">
+                {loading ?
+                    <div className="app-row text-center">
+                        <Spinner animation="border" />
                     </div>
-                </>
-            }
-        </div >
+                    :
+                    <>
+                        <div className="app-row">
+                            <div className="d-flex justify-content-between">
+                                <div className="text-muted">{t('GENERAL.BUYER')}</div>
+                                <div className="marketplace-button-row">
+                                    {
+                                        demand.doesDemandExists ?
+                                            <>
+                                                < MarketplaceCreateDemand web3={web3} demand={demand} updateDemand={updateDemand} />
+                                                <MarketplaceCancelDemand web3={web3} demand={demand} updateDemand={updateDemand} />
+                                            </ >
+                                            :
+                                            < MarketplaceCreateDemand web3={web3} demand={demand} updateDemand={updateDemand} />
+                                    }
+                                </div>
+                            </div>
+                            <p className="text-truncate">{demand.buyer}</p>
+                            {demand.doesDemandExists &&
+                                <details>
+                                    <summary>{t('GENERAL.DEMAND')}</summary>
+                                    <div className="app-row-set success">
+                                        <div className="app-row">
+                                            <div className="text-muted">{t('GENERAL.VOLUME')} (KW)</div>
+                                            <p className="text-truncate">{demand.volume}</p>
+                                        </div>
+                                        <div className="app-row">
+                                            <div className="text-muted">{t('GENERAL.PRICE')} (ct/KWh)</div>
+                                            <p className="text-truncate">{demand.price}</p>
+                                        </div>
+                                    </div>
+                                </details>
+                            }
+                            {
+                                demand.doesDemandExists && demand.isMatched &&
+                                <MarketplaceMatches web3={web3} account={account} demand={demand} />
+                            }
+                        </div>
+                    </>
+                }
+            </div >
+        </>
     );
 }
 

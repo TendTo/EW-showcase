@@ -62,8 +62,6 @@ function MarketplaceCreateDemand({ web3, demand, updateDemand }: Props) {
                 </Button>
             }
 
-
-
             <Modal show={show} onHide={() => { setShow(false); reset(defaultValues); }} backdrop={!loading} keyboard={!loading}>
                 <div className="didedit-card">
                     <div className="d-flex justify-content-center">
@@ -106,7 +104,6 @@ function MarketplaceCreateDemand({ web3, demand, updateDemand }: Props) {
                     </div>
                 </div>
             </Modal>
-
         </>
     );
 }

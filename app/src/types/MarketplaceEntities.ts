@@ -170,7 +170,7 @@ export class Match {
         const marketplace = new web3.eth.Contract(MarketplaceABI as AbiItem[], VOLTA_MARKETPLACE_ADDRESS) as unknown as Marketplace;
         const filter = asset instanceof Asset ? { asset: asset.asset } : { demand: asset.buyer };
         const matches = await marketplace.getPastEvents('MatchProposed', { filter, fromBlock: 'earliest', toBlock: 'latest' });
-        return await Promise.all(
+        return (await Promise.all(
             matches
                 .map(async (match) => {
                     const matchData = await marketplace.methods.matches(match.returnValues.matchId).call();
@@ -182,8 +182,7 @@ export class Match {
                             Number.parseInt(matchData.price),
                             matchData.isAccepted)
                 })
-                .filter(match => match !== undefined)
-        ) as Match[];
+        )).filter(match => match !== undefined) as Match[];
     }
 
     public async fetchMatch(web3: Web3, autoFetch: boolean = true) {

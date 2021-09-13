@@ -43,8 +43,6 @@ function MarketplaceAggregator({ web3, account }: Props) {
         fetchDemand();
     }, [web3, account, t]);
 
-    const updateMatches = () => { setDemands([...demands]); setAssets([...assets]); }
-
     const onProposeMatch = async () => {
         if (selectedAsset === undefined || selectedDemand === undefined)
             return;
@@ -69,6 +67,8 @@ function MarketplaceAggregator({ web3, account }: Props) {
         try {
             const match = new Match();
             await match.proposeMatch(web3, account, selectedAsset, selectedDemand, selectedDemand?.volume, selectedAsset?.price);
+            setSelectedAsset(undefined);
+            setSelectedDemand(undefined);
         } catch (e: any) {
             console.error(e);
             toastMetamaskError(e, t);
@@ -85,7 +85,7 @@ function MarketplaceAggregator({ web3, account }: Props) {
                 </div>
             );
 
-        return assetsToShow.map(asset => <>
+        return assetsToShow.map(asset =>
             <div key={`aggregator-${asset.asset}`} className="app-row">
                 <div className="d-flex justify-content-between">
                     <div className="text-muted">{t('GENERAL.ASSET_DID')}</div>
@@ -115,7 +115,6 @@ function MarketplaceAggregator({ web3, account }: Props) {
                     </div>
                 </details>
             </div>
-        </>
         );
     }
 
@@ -129,7 +128,7 @@ function MarketplaceAggregator({ web3, account }: Props) {
                 </div>
             );
 
-        return demandsToShow.map(demand => <>
+        return demandsToShow.map(demand =>
             <div key={`aggregator-${demand.buyer}`} className="app-row">
                 <div className="d-flex justify-content-between">
                     <div className="text-muted">{t('GENERAL.BUYER')}</div>
@@ -155,7 +154,6 @@ function MarketplaceAggregator({ web3, account }: Props) {
                     </div>
                 </details>
             </div>
-        </>
         );
     }
 
