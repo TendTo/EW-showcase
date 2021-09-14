@@ -141,7 +141,8 @@
     "MATCH": "Abbinamento",
     "PENDING": "In sospeso",
     "MATCHES": "Abbinamenti",
-    "NO_UNDO_ACTION": "Queta azione non può essere annullata"
+    "NO_UNDO_ACTION": "Queta azione non può essere annullata",
+    "CONTRACTS_USED": "Contratti utilizzati:"
   },
   "REFERENCES": {
     "TITLE": "Bibliografia",

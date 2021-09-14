@@ -59,6 +59,13 @@ function Marketplace({ web3, account }: Props) {
                 role === ROLES.AGGREGATOR &&
                 <MarketplaceAggregator web3={web3} account={account} />
             }
+            <div className="d-flex justify-content-end mt-5">
+                <div className="d-flex flex-column align-items-end mt-5">
+                    <div className="text-muted">{t("GENERAL.CONTRACTS_USED")}</div>
+                    <a href="https://volta-explorer.energyweb.org/address/0x37dfeF9b9c56A81927Dfa73994E2fb23c3dd4b37/transactions" target="_blank" rel="noreferrer">Marketplace</a>
+                    <a href="https://volta-explorer.energyweb.org/address/0x84d0c7284A869213CB047595d34d6044d9a7E14A/transactions" target="_blank" rel="noreferrer">Energy web's Identity Manager</a>
+                </div>
+            </div>
         </div>
     );
 }

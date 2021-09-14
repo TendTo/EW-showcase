@@ -141,7 +141,8 @@
     "ID": "ID",
     "ACCEPTED": "Accepted",
     "PENDING": "Pending",
-    "NO_UNDO_ACTION": "This action cannot be undone"
+    "NO_UNDO_ACTION": "This action cannot be undone",
+    "CONTRACTS_USED": "Contracts used:"
   },
   "REFERENCES": {
     "TITLE": "References",
