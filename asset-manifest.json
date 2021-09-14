@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/EW-showcase/static/css/main.22b26e79.chunk.css",
-    "main.js": "/EW-showcase/static/js/main.8705cebe.chunk.js",
-    "main.js.map": "/EW-showcase/static/js/main.8705cebe.chunk.js.map",
-    "runtime-main.js": "/EW-showcase/static/js/runtime-main.38ab463d.js",
-    "runtime-main.js.map": "/EW-showcase/static/js/runtime-main.38ab463d.js.map",
-    "static/js/2.c880df90.chunk.js": "/EW-showcase/static/js/2.c880df90.chunk.js",
-    "static/js/2.c880df90.chunk.js.map": "/EW-showcase/static/js/2.c880df90.chunk.js.map",
-    "static/js/3.3274274c.chunk.js": "/EW-showcase/static/js/3.3274274c.chunk.js",
-    "static/js/3.3274274c.chunk.js.map": "/EW-showcase/static/js/3.3274274c.chunk.js.map",
+    "main.css": "/EW-showcase/static/css/main.b96813a2.chunk.css",
+    "main.js": "/EW-showcase/static/js/main.7d998ee9.chunk.js",
+    "main.js.map": "/EW-showcase/static/js/main.7d998ee9.chunk.js.map",
+    "runtime-main.js": "/EW-showcase/static/js/runtime-main.f537cb3d.js",
+    "runtime-main.js.map": "/EW-showcase/static/js/runtime-main.f537cb3d.js.map",
+    "static/js/2.0f0bc5f0.chunk.js": "/EW-showcase/static/js/2.0f0bc5f0.chunk.js",
+    "static/js/2.0f0bc5f0.chunk.js.map": "/EW-showcase/static/js/2.0f0bc5f0.chunk.js.map",
+    "static/js/3.5700c6f7.chunk.js": "/EW-showcase/static/js/3.5700c6f7.chunk.js",
+    "static/js/3.5700c6f7.chunk.js.map": "/EW-showcase/static/js/3.5700c6f7.chunk.js.map",
     "index.html": "/EW-showcase/index.html",
-    "static/css/main.22b26e79.chunk.css.map": "/EW-showcase/static/css/main.22b26e79.chunk.css.map",
-    "static/js/2.c880df90.chunk.js.LICENSE.txt": "/EW-showcase/static/js/2.c880df90.chunk.js.LICENSE.txt",
+    "static/css/main.b96813a2.chunk.css.map": "/EW-showcase/static/css/main.b96813a2.chunk.css.map",
+    "static/js/2.0f0bc5f0.chunk.js.LICENSE.txt": "/EW-showcase/static/js/2.0f0bc5f0.chunk.js.LICENSE.txt",
     "static/media/did-architecture.b93b579a.svg": "/EW-showcase/static/media/did-architecture.b93b579a.svg",
     "static/media/did-auth.ce757333.svg": "/EW-showcase/static/media/did-auth.ce757333.svg",
     "static/media/did-schema.28d7de6f.svg": "/EW-showcase/static/media/did-schema.28d7de6f.svg",
@@ -25,9 +25,9 @@
     "static/media/solar-logo.9b1e4654.svg": "/EW-showcase/static/media/solar-logo.9b1e4654.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.38ab463d.js",
-    "static/js/2.c880df90.chunk.js",
-    "static/css/main.22b26e79.chunk.css",
-    "static/js/main.8705cebe.chunk.js"
+    "static/js/runtime-main.f537cb3d.js",
+    "static/js/2.0f0bc5f0.chunk.js",
+    "static/css/main.b96813a2.chunk.css",
+    "static/js/main.7d998ee9.chunk.js"
   ]
 }
