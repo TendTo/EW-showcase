@@ -30,6 +30,7 @@ function MarketplaceOwner({ web3, account }: Props) {
                 setAssets(await Asset.fetchAssets(web3, [account]));
             }
             catch (e: any) {
+                console.error(e);
                 toastMetamaskError(e, t);
                 setAssets([]);
             }

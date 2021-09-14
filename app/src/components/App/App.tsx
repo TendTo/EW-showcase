@@ -9,6 +9,7 @@ import ENS from '../ENS/ENS';
 import Home from '../Home/Home';
 import IAM from '../IAM/IAM';
 import Login from '../Login/Login';
+import Marketplace from '../Marketplace/Marketplace';
 import References from '../References/References';
 import './App.css';
 
@@ -44,6 +45,9 @@ function App() {
               </Route>
               <Route path="/iam" exact>
                 <IAM account={account}/>
+              </Route>
+              <Route path="/marketplace" exact>
+                <Marketplace web3={web3 as Web3} account={account}/>
               </Route>
               <Route path="/" component={Home} />
             </Switch>

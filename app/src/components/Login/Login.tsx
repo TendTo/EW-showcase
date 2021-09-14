@@ -7,7 +7,7 @@ import Web3 from 'web3';
 import metamaskLogo from "../../asset/icon/metamask-logo.svg";
 import ew_logo from '../../asset/img/ew-logo-small.png';
 import { WindowProvider } from '../../types/MetaMask';
-import toast from '../Toast/Toast';
+import toast, { toastMetamaskError } from '../Toast/Toast';
 import './Login.css';
 
 type Props = {
@@ -41,15 +41,9 @@ function Login({ setAccount, setWeb3, setChain, web3, chain }: Props) {
             const provider = await detectEthereumProvider() as WindowProvider;
             try {
                 await provider.request({ method: 'eth_requestAccounts' });
-            } catch (e) {
-                switch (e.code) {
-                    case 4001:
-                        return toast(t("ERROR.REQUEST_REJECTED"), 'danger');
-                    case -32002:
-                        return toast(t("ERROR.REQUEST_ALREADY_SENT"), 'warning');
-                    default:
-                        return toast(t("ERROR.GENERIC"), 'danger');
-                }
+            } catch (e: any) {
+                console.error(e);
+                toastMetamaskError(e, t);
             }
             const currentWeb3 = web3 || new Web3(provider);
             handleAccounts(await currentWeb3.eth.getAccounts());

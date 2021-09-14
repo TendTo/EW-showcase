@@ -25,6 +25,7 @@ function MarketplaceBuyer({ web3, account }: Props) {
                 const demand = new Demand(account);
                 setDemand(await demand.fetchDemand(web3));
             } catch (e: any) {
+                console.error(e);
                 toastMetamaskError(e, t);
                 setDemand(new Demand(account));
             }

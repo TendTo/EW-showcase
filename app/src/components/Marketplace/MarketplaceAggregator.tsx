@@ -35,6 +35,7 @@ function MarketplaceAggregator({ web3, account }: Props) {
                 setAssets(assets.filter(asset => !asset.isMatched && asset.remainingVolume > 0 && asset.doesOfferExists));
                 setDemands(demand.filter(demand => !demand.isMatched && demand.doesDemandExists));
             } catch (e: any) {
+                console.error(e);
                 toastMetamaskError(e, t);
                 setDemands([]);
             }
