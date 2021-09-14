@@ -78,7 +78,7 @@ function MarketplaceAggregator({ web3, account }: Props) {
     }
 
     const assetsComponent = () => {
-        const assetsToShow = assets.filter(asset => selectedDemand === undefined || (asset.remainingVolume >= selectedDemand.volume && asset.price >= selectedDemand.price))
+        const assetsToShow = assets.filter(asset => selectedDemand === undefined || (asset.remainingVolume >= selectedDemand.volume && asset.price <= selectedDemand.price))
         if (assetsToShow.length === 0)
             return (
                 <div className="app-row">
@@ -120,7 +120,7 @@ function MarketplaceAggregator({ web3, account }: Props) {
     }
 
     const demandsComponent = () => {
-        const demandsToShow = demands.filter(demand => selectedAsset === undefined || (demand.price <= selectedAsset.price && demand.volume <= selectedAsset.remainingVolume));
+        const demandsToShow = demands.filter(demand => selectedAsset === undefined || (demand.price >= selectedAsset.price && demand.volume <= selectedAsset.remainingVolume));
 
         if (demandsToShow.length === 0)
             return (
