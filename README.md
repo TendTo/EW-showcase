@@ -103,6 +103,10 @@ Opens an interactive console that also spawns a development blockchain
 #### `npm run console`
 Opens an interactive console that connects to the provided network (the first if not specified)
 
+## Contracts currently deployed on the [Volta blockchain](https://volta-explorer.energyweb.org/) 📜
+- Energy Web's [Identity Manager](https://volta-explorer.energyweb.org/address/0x84d0c7284A869213CB047595d34d6044d9a7E14A/transactions)
+- [Marketplace](https://volta-explorer.energyweb.org/address/0x37dfeF9b9c56A81927Dfa73994E2fb23c3dd4b37/transactions)
+
 ## Resources 📖
 - [Energy Web](https://www.energyweb.org/)
 - [Switchboard](https://switchboard.energyweb.org/)
