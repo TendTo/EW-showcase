@@ -21,7 +21,6 @@ Compiles all contracts and stores their json representation in the _build_ folde
 
 #### `npm run migrate`
 Runs the migration scripts in the _migrations_ folder, with the purpose of deploying the contracts on the blockchain.
-You can add `-- --network <network-name>` to select which 
 
 #### `npm test`
 Launches the test runner that executes all the tests in the _test_ folder.  
