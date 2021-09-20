@@ -2,23 +2,25 @@
   "HOME": {
     "TITLE": "Energy Web DApp showcase",
     "SECTION_1_TITLE": "What is Energy Web?",
-    "SECTION_1_TEXT": "Energy Web is a project that aims to promote a low-carbon, customer-centric electricity system through blockchain technology.\nEvery energy asset can be assigned an unique identifier to allow it to be verified and to participate actively in any energy market.",
+    "SECTION_1_TEXT": "Energy Web is a project that uses distributed technologies, such as blockchain, in order to promote a low-carbon, customer-centric electricity system.\nThe Energy Web Chain (EWC) was released in 2019, and most of Energy Web services are based on it.",
     "SECTION_2_TITLE": "Energy Web Dos",
     "SECTION_2_TEXT": "The heart of the Energy Web project is EW-DOS, an open source, public, digital infrastructure.\nThe whole system is built on top of three macro components, each with its purpose:",
-    "SECTION_2_ITEM_1": "Trust - Energy Web Chain (EWC)",
-    "SECTION_2_ITEM_2": "Utility - Services and abstraction over the blockchain",
-    "SECTION_2_ITEM_3": "Toolkit - Frameworks and tools for building applications",
+    "SECTION_2_ITEM_1": "Trust: Energy Web Chain (EWC)",
+    "SECTION_2_ITEM_2": "Utility: Services and abstraction over the blockchain",
+    "SECTION_2_ITEM_3": "Toolkit: Frameworks and tools for building applications",
     "SECTION_2_IMG": "EW-Dos schema",
     "SECTION_3_TITLE": "Trust layer",
     "SECTION_3_TEXT": "The main role of the EWC is to ensure that there is consensus on the data and that all applications and smart contracts behave in a deterministic manner.\nIt is based on the Ethereum Virtual Machine (EVM), and as such allows the creation of smart contracts and respects all the Ethereum Request for Comment (ERC).\nThere is also a test-net, called Volta, used to test projects and applications before running on the main-net.\nThe consensus algorithm is Proof of Authority (POA), based on the AuRA protocol. At the cost of less decentralization, it ensures very high performance.\nThe token used on the blockchain is called Energy Web Token (EWT).",
     "SECTION_4_TEXT": "The utility layer consists of a set of EWC-based services that aim to make the entire infrastructure as accessible and inviting as possible for developers.\nAll services are paid for in EWT.\nThree broad categories of services are identified: End-user experience, Multi-platform interoperability, Application performance.\n\nSome examples are:",
     "SECTION_4_TITLE": "Utility layer",
-    "SECTION_4_ITEM_1": "EWNS - Similar to DNS, it associates human readable domains to addresses on the blockchain",
-    "SECTION_4_ITEM_2": "Oracles - Nodes that can be consulted with the Chainlink protocol to receive data of events external to the blockchain",
-    "SECTION_4_ITEM_3": "Identity Directory - Smart contract that contains all the Decentralized IDentifiers (DID)",
-    "SECTION_4_ITEM_4": "Messaging - A messaging system that uses DIDs to ensure the validity and authenticity of messages",
+    "SECTION_4_ITEM_1": "EWNS: Similar to DNS, it associates human readable domains to addresses on the blockchain",
+    "SECTION_4_ITEM_2": "Oracles: Nodes that can be consulted with the Chainlink protocol to receive data of events external to the blockchain",
+    "SECTION_4_ITEM_3": "Identity Directory: Smart contract that contains all the Decentralized IDentifiers (DID)",
+    "SECTION_4_ITEM_4": "Messaging: A messaging system that uses DIDs to ensure the validity and authenticity of messages",
     "SECTION_5_TITLE": "Toolkits layer",
-    "SECTION_5_TEXT": "Set of frameworks and services designed to create decentralized applications on EW-DOS.\n\nThere are two main examples:\nEW-Origin - Used to develop applications that support the tracking, transmission and awarding of energy Attribute Certificates (EAC) according to industry standards.\nEW-Flex - Open source software for the management of Distributed Energy Resource (DER) and the operations that involve them. Ensures an easy connection to the network, submitting the offers coming from small producers to an authorized operator that acts as intermediary between the user and the grid."
+    "SECTION_5_TEXT": "Set of frameworks and services designed to create decentralized applications on EW-DOS.\n\nThere are two main examples:",
+    "SECTION_5_ITEM_1": "EW-Origin: Used to develop applications that support the tracking, transmission and awarding of energy Attribute Certificates (EAC) according to industry standards",
+    "SECTION_5_ITEM_2": "EW-Flex: Open source software for the management of Distributed Energy Resource (DER) and the operations that involve them. Ensures an easy connection to the network, submitting the offers coming from small producers to an authorized operator that acts as intermediary between the user and the grid"
   },
   "LOGIN": {
     "TITLE": "EW showcase login",
@@ -47,7 +49,7 @@
   "ENS": {
     "TITLE": "Energy web Name Service (EWNS)",
     "SECTION_1_TITLE": "What is EWNS?",
-    "SECTION_1_TEXT": "The Energy Web Name Service is a distributed, open, and extensible naming system based on the Ethereum blockchain. It is available on the Energy Web's chains as well.\nSimilarly to a DNS, addresses are mapped to human readable domain names instead of hexadecimal values.\nThe default publicly available implementation allows mapping for: address, reverse addresses, content hashes, ABIdefinitions, public keys, smart contracts interfaces and so on.",
+    "SECTION_1_TEXT": "The Energy Web Name Service is a distributed, open, and extensible naming system based on the Ethereum blockchain.\nSimilarly to a DNS, addresses are mapped to human readable domain names instead of hexadecimal values.\nThe default publicly available implementation allows mapping for: address, reverse addresses, content hashes, ABIdefinitions, public keys, smart contracts interfaces and so on.",
     "SECTION_2_TITLE": "How does it work?",
     "SECTION_2_TEXT": "For an end user, of course, everything is completely transparent. It is up to the DApp developer to integrate the EWNS functionality.\nThere are several libraries that already support this feature, although some manual patching may be required.\nIn any case, the procedure for solving a domain with EWNS is not very complicated:",
     "SECTION_2_ITEM_1": "Normalise and hash the name. <a>(Learn more)</a>",
@@ -73,7 +75,7 @@
   "DID": {
     "TITLE": "Decentralized IDentifiers (DIDs)",
     "SECTION_1_TITLE": "What is a DID?",
-    "SECTION_1_TEXT": "DIDs are unique identifiers that enable verifiable, decentralized digital identity. They are used to implement Self Sovereign Identity (SSI).\nThe identified subject can be anything: a person, an organization or a physical asset to name a few.\nA DID behaves like an URL, and points to a DID document, which stored on public permanent storage, like a blockchain.\nAnyone can create a new DID at any time, but the claims will continue to refer to a specific DID.",
+    "SECTION_1_TEXT": "DIDs are unique identifiers that enable verifiable, decentralized digital identity. They are used to implement Self Sovereign Identity (SSI).\nThe identified subject can be anything: a person, an organization or a physical asset to name a few.\nA DID behaves like an URL, and points to a DID document, which stored on public permanent storage, like a blockchain.\nAnyone can create a new DID at any time, but the claims will continue to refer to the DID they were assigned to.",
     "SECTION_1_IMG": "A simple example of a Decentralized IDentifier (DID) with its components",
     "SECTION_2_TITLE": "A more in depth look at DIDs",
     "SECTION_2_TEXT": "A DID is, at its core, a URI composed of three parts: the scheme did:, a method identifier, and a unique, method-specific identifier specified by the DID method.\nDIDs are resolvable to DID documents, which are simple JSON-LD files. The DID document contains all the information or claims related to the subject the DID identifies and provides a set of mechanisms which enable a DID controller to prove its control over the DID. They also typically express verification methods, such as cryptographic public keys, and services relevant to interactions with the DID subject.\n\nThe controller of a DID is the entity that has the capability to make changes to a DID document. This capability is typically asserted by the control of a set of cryptographic keys.\nNote that a DID might have more than one controller, and the DID subject can be the DID controller, or one of them.\n\nSystems that support recording DIDs and returning data necessary to produce DID documents are called a verifiable data registry.\nA DID resolver is the component responsible of returning the correct DID document given its DID. This process is called DID resolution.",
@@ -160,7 +162,9 @@
     "SECTION_3_TITLE": "Official DApps",
     "SECTION_3_ITEM_1": "Switchboard",
     "SECTION_3_ITEM_2": "EWNS",
-    "SECTION_2_ITEM_5": "IAM-process"
+    "SECTION_2_ITEM_5": "IAM-process",
+    "SECTION_4_TITLE": "Report",
+    "SECTION_4_ITEM_1": "Tesi"
   },
   "IAM": {
     "TITLE": "Identity and Access Management (IAM)",

@@ -34,6 +34,10 @@ function Home() {
             </ul>
             <h3>{t('HOME.SECTION_5_TITLE')}</h3>
             <p>{t('HOME.SECTION_5_TEXT')}</p>
+            <ul>
+                <li>{t("HOME.SECTION_5_ITEM_1")}</li>
+                <li>{t("HOME.SECTION_5_ITEM_2")}</li>
+            </ul>
         </div>
     );
 }

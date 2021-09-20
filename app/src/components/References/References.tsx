@@ -27,8 +27,12 @@ function References() {
             </ul>
             <h3>{t('REFERENCES.SECTION_3_TITLE')}</h3>
             <ul>
-            <li><a href="https://switchboard.energyweb.org" target="_blank" rel="noreferrer">{t("REFERENCES.SECTION_3_ITEM_1")}</a></li>
-            <li><a href="https://ens.energyweb.org/" target="_blank" rel="noreferrer">{t("REFERENCES.SECTION_3_ITEM_2")}</a></li>
+                <li><a href="https://switchboard.energyweb.org" target="_blank" rel="noreferrer">{t("REFERENCES.SECTION_3_ITEM_1")}</a></li>
+                <li><a href="https://ens.energyweb.org/" target="_blank" rel="noreferrer">{t("REFERENCES.SECTION_3_ITEM_2")}</a></li>
+            </ul>
+            <h3>{t('REFERENCES.SECTION_4_TITLE')}</h3>
+            <ul>
+                <li><a href="https://github.com/TendTo/EW-showcase/blob/master/docs/Tesi.pdf" target="_blank" rel="noreferrer">{t("REFERENCES.SECTION_4_ITEM_1")}</a></li>
             </ul>
         </div>
     );
