@@ -24,7 +24,7 @@ function MarketplaceMatches({ web3, account, asset, demand }: Props) {
         const fetchDemand = async () => {
             setLoading(true);
             try {
-                const match = demand !== undefined ? Match.fetchMatches(web3, demand) : Match.fetchMatches(web3, asset as Asset);
+                const match = demand !== undefined ? Match.fetchMatches(web3, demand) : Match.fetchMatches(web3, asset!);
                 setMatches(await match);
             } catch (e: any) {
                 toastMetamaskError(e, t);
