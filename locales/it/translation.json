@@ -2,23 +2,25 @@
   "HOME": {
     "TITLE": "Energy Web DApp showcase",
     "SECTION_1_TITLE": "Cos'è Energy Web?",
-    "SECTION_1_TEXT": "Energy Web è un progetto con lo scopo di promuovere una rete elettrica con un basso utilizzo di combustibili fossili e con un focus sui piccoli produttori attraverso la tecnologia blockchain.\nAd ogni dispositivo è possibile assegnare un identificativo univoco per consentirgli di essere verificato e quindi di svolgere un ruolo attivo nel mercato dell'energia.",
+    "SECTION_1_TEXT": "Energy Web è un progetto che utilizza le tecnologie distribuite, come la blockchain, al fine di promuovere un mercato dell'energia con un basso utilizzo di combustibili fossili e con un focus sui piccoli produttori.\nNel 2019 è stata rilasciata la Energy Web Chain (EWC), la blockchain sulla quale si basano i servizi di Energy Web.",
     "SECTION_2_TITLE": "Energy Web Dos",
     "SECTION_2_TEXT": "Il cuore del progetto di Energy Web è EW-DOS, un’infrastruttura open-source, pubblica e digitale.\nL’intero sistema è costituito da tre macro componenti, ognuno con uno scopo specifico:",
-    "SECTION_2_ITEM_1": "Trust - Energy Web Chain (EWC)",
-    "SECTION_2_ITEM_2": "Utility - Servizi e astrazioni sopra la blockchain",
-    "SECTION_2_ITEM_3": "Toolkit - Frameworks e strumenti per la costruzione di applicazioni",
+    "SECTION_2_ITEM_1": "Trust: Energy Web Chain (EWC)",
+    "SECTION_2_ITEM_2": "Utility: Servizi e astrazioni sopra la blockchain",
+    "SECTION_2_ITEM_3": "Toolkit: Frameworks e strumenti per la costruzione di applicazioni",
     "SECTION_2_IMG": "Schema di EW-Dos",
     "SECTION_3_TITLE": "Livello Trust",
     "SECTION_3_TEXT": "Il ruolo principale della EWC è quello di assicurare che ci sia consenso sui dati e che tutte le applicazioni e gli smart contracts si comportino in maniera deterministica.\nSi basa sulla Ethereum Virtual Machine (EVM), quindi consente la creazione di smart contract e rispetta tutti gli Ethereum Request for Comment (ERC).\nÈ presente anche una test-net, chiamata Volta, usata per testare i progetti è le applicazioni prima di lanciare sulla main-net.\nL’algoritmo di consenso è Proof of Authority (POA), basato sul protocollo AuRA. A costo di una minore decentralizzazione, assicura performance molto elevata.\nIl token usato sulla blockchain si chiama Energy Web Token (EWT).",
     "SECTION_4_TITLE": "Livello Utility",
     "SECTION_4_TEXT": "L’utility layer è composto da un insieme di servizi basati sulla EWC che hanno lo scopo di rendere quanto più accessibile e invitante possibile l’intera infrastruttura per gli sviluppatori.\nTutti i servizi vengono pagati in EWT. \nVengono individuate 3 ampie categorie di servizi: Esperienza dell’utente finale, Interoperabilità Multipiattaforma, Performance delle applicazioni.\n\nAlcuni esempi sono:",
     "SECTION_5_TITLE": "Livello Toolkits",
-    "SECTION_5_TEXT": "Insieme di framework e servizi pensati per realizzare applicazioni decentralizzate su EW-DOS.\n\nGli esempi principali sono due:\nEW-Origin - Serve a sviluppare applicazioni che supportino il tracciamento, la trasmissione e il conferimento di energy Attribute Certificate (EAC) secondo gli standard industriali.\nEW-Flex - Software open source per la gestione dei Distributed Energy Resource (DER) e le operazioni che li coinvolgono. Assicura un facile collegamento alla rete, sottoponendo le offerte provenienti dai piccoli produttori ad un operatore autorizzato che funge da intermediario tra l'utente e la rete.",
-    "SECTION_4_ITEM_1": "EWNS - Seguendo lo stesso principio di un DNS, associa domini ad indirizzi sulla blockchain",
-    "SECTION_4_ITEM_2": "Oracles - Nodi che è possibile consultare con il protocollo Chainlink per ricevere dati di eventi esterni alla blockchain",
-    "SECTION_4_ITEM_3": "Identity Directory - Smart contract che contiene tutti le Decentralized IDentifiers (DID)",
-    "SECTION_4_ITEM_4": "Messaging - Un sistema di messaggistica che sfrutta le DID per assicurare validità ed autenticità dei messaggi"
+    "SECTION_5_TEXT": "Insieme di framework e servizi pensati per realizzare applicazioni decentralizzate su EW-DOS.\n\nGli esempi principali sono due:",
+    "SECTION_4_ITEM_1": "EWNS: Seguendo lo stesso principio di un DNS, associa domini ad indirizzi sulla blockchain",
+    "SECTION_4_ITEM_2": "Oracles: Nodi che è possibile consultare con il protocollo Chainlink per ricevere dati di eventi esterni alla blockchain",
+    "SECTION_4_ITEM_3": "Identity Directory: Smart contract che contiene tutti le Decentralized IDentifiers (DID)",
+    "SECTION_4_ITEM_4": "Messaging: Un sistema di messaggistica che sfrutta le DID per assicurare validità ed autenticità dei messaggi",
+    "SECTION_5_ITEM_1": "EW-Origin: Serve a sviluppare applicazioni che supportino il tracciamento, la trasmissione e il conferimento di energy Attribute Certificate (EAC) secondo gli standard industriali",
+    "SECTION_5_ITEM_2": "EW-Flex: Software open source per la gestione dei Distributed Energy Resource (DER) e le operazioni che li coinvolgono. Assicura un facile collegamento alla rete, sottoponendo le offerte provenienti dai piccoli produttori ad un operatore autorizzato che funge da intermediario tra l'utente e la rete"
   },
   "LOGIN": {
     "TITLE": "EW showcase login",
@@ -46,7 +48,7 @@
   },
   "ENS": {
     "TITLE": "Energy Web Name Service (EWNS)",
-    "SECTION_1_TEXT": "L'Energy Web Name Service è un sistema di denominazione distribuito, aperto ed estensibile basato sulla blockchain di Ethereum. \nÈ disponibile anche sulle catene di Energy Web.\nAnalogamente a un DNS, gli indirizzi vengono mappati su nomi di dominio leggibili dall'uomo anziché sui valori esadecimali.\nL'implementazione pubblica predefinita consente l'utilizzo di: indirizzi, indirizzi inversi, hash di dati, definizioni ABI, chiavi pubbliche, interfacce di smart contracts e così via.",
+    "SECTION_1_TEXT": "L'Energy Web Name Service è un sistema di denominazione distribuito, aperto ed estensibile basato sulla blockchain di Ethereum. \nAnalogamente a un DNS, gli indirizzi vengono mappati su nomi di dominio leggibili dall'uomo anziché sui valori esadecimali.\nL'implementazione pubblica predefinita consente l'utilizzo di: indirizzi, indirizzi inversi, hash di dati, definizioni ABI, chiavi pubbliche, interfacce di smart contracts e così via.",
     "SECTION_1_TITLE": "Cos'è EWNS?",
     "SECTION_2_TITLE": "Come funziona?",
     "SECTION_2_TEXT": "Per un utente finale il tutto è completamente trasparente. È compito dello sviluppatore di DApp integrare le funzionalità dell'EWNS.\nEsistono diverse librerie che già supportano questa funzione, anche se potrebbe essere necessaria qualche patch manuale.\nIl procedimento per risolvere un dominio con EWNS, comunque, non è particolarmente complicato:",
@@ -73,7 +75,7 @@
   "DID": {
     "TITLE": "Decentralized IDentifiers (DIDs)",
     "SECTION_1_TITLE": "Cos'è un DID?",
-    "SECTION_1_TEXT": "I DID sono identificatori univoci usati per realizzare identità digitali verificabili e decentralizzate. Sono la base per l'implementazione delle Self Sovrain Identity (SSI).\nIl soggetto identificato può essere qualsiasi cosa: una persona, un'organizzazione o un bene fisico, per fare qualche esempio.\nUn DID si comporta come un URL e punta ad un DID document, archiviato su un archivio pubblico permanente, come una blockchain.\nChiunque può creare un nuovo DID in qualsiasi momento, ma le caratteristiche (claims) continueranno a riferirsi ad uno specifico DID.",
+    "SECTION_1_TEXT": "I DID sono identificatori univoci usati per realizzare identità digitali verificabili e decentralizzate. Sono la base per l'implementazione delle Self Sovrain Identity (SSI).\nIl soggetto identificato può essere qualsiasi cosa: una persona, un'organizzazione o un bene fisico, per fare qualche esempio.\nUn DID si comporta come un URL e punta ad un DID document, archiviato su un archivio pubblico permanente, come una blockchain.\nChiunque può creare un nuovo DID in qualsiasi momento, ma le caratteristiche (claims) continueranno a riferirsi al DID a cui erano state assegnate.",
     "SECTION_1_IMG": "Semplice esempio di un Decentralized IDentifier (DID) con i suoi componenti",
     "SECTION_2_IMG": "Panoramica dell'architettura dei DID e le relazioni fra le componenti fondamentali",
     "SECTION_3_TITLE": "Qual è lo scopo delle DID?",
@@ -160,7 +162,9 @@
     "SECTION_3_ITEM_1": "Switchboard",
     "SECTION_3_ITEM_2": "EWNS",
     "SECTION_3_TITLE": "DApps ufficiali",
-    "SECTION_2_ITEM_5": "IAM-process"
+    "SECTION_2_ITEM_5": "IAM-process",
+    "SECTION_4_TITLE": "Relazione",
+    "SECTION_4_ITEM_1": "Tesi"
   },
   "IAM": {
     "SECTION_1_TEXT": "IAM è un insieme di policy in grado di garantire che solo le entità con le credenziali e le autorizzazioni necessarie possano accedere alle risorse.\nIl sistema deve prima controllare l'identità digitale del soggetto e verificare i ruoli ad esso associati.\nL'operazione viene autorizzata solo se il soggetto ha i ruoli necessari.\nPer assicurare l'accountability, viene utilizzato un sistema di logging per registrare ogni operazione eseguita dal soggetto.",
