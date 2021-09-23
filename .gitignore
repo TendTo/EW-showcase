@@ -39,6 +39,7 @@ docs/*
 !docs/*.pdf
 !docs/*.tex
 !docs/*.bib
+!docs/*.pptx
 !docs/img/
 !docs/sections/
 !docs/README.md
