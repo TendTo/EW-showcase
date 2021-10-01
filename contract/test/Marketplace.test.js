@@ -1,7 +1,7 @@
 const IdentityManager = artifacts.require('./Identity/IdentityManager.sol');
 const Identity = artifacts.require('./Identity/OfferableIdentity.sol');
 const Marketplace = artifacts.require('./Marketplace/Marketplace.sol');
-const { catchRevert } = require('./exeptions');
+const { catchRevert } = require('./exception');
 
 contract('Marketplace', async accounts => {
     let managerAddress; // identity manager contract address
