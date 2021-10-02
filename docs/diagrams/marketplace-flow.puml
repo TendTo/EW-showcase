@@ -1,0 +1,107 @@
+@startuml Marketplace flow
+title Marketplace flow
+!theme cerulean
+
+skinparam maxMessageSize 150
+skinparam defaultTextAlignment center
+skinparam noteTextAlignment left
+
+actor "Owner" as ow
+actor "Buyer" as bu
+actor "Aggregator" as ag
+participant "Marketplace" as ma
+participant "Identity Manager" as im
+
+note over ma #SlateGrey
+    **TODO:**
+    * save data on IPFS
+    * add cache server to gather logs
+    * verifiy asset's claims
+    * verify aggregator role
+    * more info (timeslot, reputation, ...)
+    * many to many relationship
+    * support delegation of ownership/buyer account
+endnote
+
+== Create DID ==
+ow->im ++: Create new DID request
+im->DID **: Deploy clone DID contract
+note over im: Log new DID
+im->ow --: Success
+
+== Submit offer ==
+ow->ma ++: Submit new/updated offer
+ma->ma: Validate parameters
+ma->ma: Check offer is unlocked
+ma->im ++: Check DID ownership
+im->ma --: DID ownership validated
+note over ma: Log new/updated offer
+ma->ow --: Success
+
+== Submit demand ==
+bu->ma ++: Submit new/updated demand
+ma->ma: Validate parameters
+ma->ma: Check demand is unlocked
+note over ma: Log new/updated demand
+ma->bu --: Success
+
+== Propose match ==
+ag<--ma: Gather offers logs
+ag<--ma: Gather demands logs
+ag->ma ++: Submit new match proposal
+ma->ma: Validate parameters
+ma->ma: Check compatibility
+ma->ma: Lock offer and demand
+note over ma: Log new match proposal
+ma->ag --: Success
+
+== Reject match proposal ==
+group #LightBlue Both owner and buyer can reject a match proposal
+    ow<--ma: Gather matches logs
+    ow->ma: Reject match proposal
+    else #LightGray
+    bu<--ma: Gather matches logs
+    bu->ma ++: Reject match proposal
+end
+group #LightBlue If the owner rejects the match proposal
+    ma->im ++: Check DID ownership
+    im->ma --: DID ownership validated
+end
+ma->ma: Unlock offer and demand
+ma->ma: Delete match
+note over ma: Log match rejected
+group #LightBlue Both owner and buyer can reject a match proposal
+    ma->ow: Success
+    else #LightGray
+    ma->bu --: Success
+end
+
+== Accept match proposal ==
+bu<--ma: Gather matches logs
+bu->ma ++: Accept match proposal
+ma->ma: Accept match
+note over ma: Log match accepted
+ma->bu --: Success
+
+== Delete match ==
+group #LightBlue Both owner and buyer can delete a match previously accepted
+    ow<--ma: Gather matches logs
+    ow->ma ++: Reject match proposal
+    else #LightGray
+    bu<--ma: Gather matches logs
+    bu->ma: Reject match proposal
+end
+group #LightBlue If the owner deletes the previously accepted match
+    ma->im ++: Check DID ownership
+    im->ma --: DID ownership validated
+end
+ma->ma: Unlock offer and demand
+ma->ma: Delete match
+note over ma: Log match deleted
+group #LightBlue Both owner and buyer can delete a match previously accepted
+    ma->ow: Success
+    else #LightGray
+    ma->bu --: Success
+end
+
+@enduml

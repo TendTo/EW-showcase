@@ -13,6 +13,7 @@ import "../Identity/IdentityManager.sol";
  * @dev - Create a server to handle and dispatch the requests from the frontend.
  * @dev - Remove most of the data stored on chain to move it to the server or on IPFS.
  * @dev - Define the role of aggregators.
+ * @dev - Add more stats to improve the matching process (timestamp, time to match, matches rejected, etc.).
  */
 contract Marketplace {
     IdentityManager private _identityManager;
