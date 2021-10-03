@@ -1,0 +1,31 @@
+@startuml Marketplace flow
+title Marketplace flow
+!theme cerulean
+
+skinparam maxMessageSize 150
+skinparam defaultTextAlignment center
+skinparam noteTextAlignment left
+
+actor "Aggregator" as ag
+participant "Marketplace" as ma
+
+== Propose match ==
+ag<--ma: Gather offers logs
+ag<--ma: Gather demands logs
+ag->ma ++: Submit new match proposal
+ma->ma: Validate parameters
+ma->ma: Check compatibility
+ma->ma: Lock offer and demand
+note over ma: Log new match proposal
+ma->ag --: Success
+
+== Cancel match ==
+ag<--ma: Gather matches logs
+ag->ma ++: Cancel match proposal
+ma->ma: Unlock offer and demand
+ma->ma: Delete match
+note over ma: Log match cancelled
+ma->ag: Success
+
+
+@endpuml

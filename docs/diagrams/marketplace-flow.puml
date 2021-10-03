@@ -55,27 +55,6 @@ ma->ma: Lock offer and demand
 note over ma: Log new match proposal
 ma->ag --: Success
 
-== Reject match proposal ==
-group #LightBlue Both owner and buyer can reject a match proposal
-    ow<--ma: Gather matches logs
-    ow->ma: Reject match proposal
-    else #LightGray
-    bu<--ma: Gather matches logs
-    bu->ma ++: Reject match proposal
-end
-group #LightBlue If the owner rejects the match proposal
-    ma->im ++: Check DID ownership
-    im->ma --: DID ownership validated
-end
-ma->ma: Unlock offer and demand
-ma->ma: Delete match
-note over ma: Log match rejected
-group #LightBlue Both owner and buyer can reject a match proposal
-    ma->ow: Success
-    else #LightGray
-    ma->bu --: Success
-end
-
 == Accept match proposal ==
 bu<--ma: Gather matches logs
 bu->ma ++: Accept match proposal

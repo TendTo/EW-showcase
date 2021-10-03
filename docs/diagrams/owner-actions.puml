@@ -1,0 +1,55 @@
+@startuml Owner actions
+title Owner actions
+!theme cerulean
+
+skinparam maxMessageSize 150
+skinparam defaultTextAlignment center
+skinparam noteTextAlignment left
+
+actor "Owner" as ow
+participant "Marketplace" as ma
+participant "Identity Manager" as im
+
+== Create DID ==
+ow->im ++: Create new DID request
+im->DID **: Deploy clone DID contract
+note over im: Log new DID
+im->ow --: Success
+
+== Submit offer ==
+ow->ma ++: Submit new/updated offer
+ma->ma: Validate parameters
+ma->ma: Check offer is unlocked
+ma->im ++: Check DID ownership
+im->ma --: DID ownership validated
+note over ma: Log new/updated offer
+ma->ow --: Success
+
+== Cancel offer ==
+ow->ma ++: Cancel offer
+ma->ma: Check offer is unlocked
+ma->im ++: Check DID ownership
+im->ma --: DID ownership validated
+note over ma: Log offer cancelled
+ma->ow --: Success
+
+== Reject match proposal ==
+ow<--ma: Gather matches logs
+ow->ma: Reject match proposal
+ma->im ++: Check DID ownership
+im->ma --: DID ownership validated
+ma->ma: Unlock offer and demand
+ma->ma: Delete match
+note over ma: Log match rejected
+ma->ow: Success
+
+== Delete match ==
+ow<--ma: Gather matches logs
+ow->ma ++: Reject match proposal
+ma->im ++: Check DID ownership
+im->ma --: DID ownership validated
+ma->ma: Unlock offer and demand
+ma->ma: Delete match
+note over ma: Log match deleted
+ma->ow: Success
+@enduml
