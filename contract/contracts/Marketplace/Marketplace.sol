@@ -175,6 +175,18 @@ contract Marketplace {
         _;
     }
     /**
+     * @notice The match has yet to be accepted by the buyer
+     * @param _matchId unique identifier of the match
+     */
+    modifier isMatchPending(uint256 _matchId) {
+        require(matches[_matchId].volume > 0, "The match doesn't exists");
+        require(
+            !matches[_matchId].isAccepted,
+            "The match has already been accepted"
+        );
+        _;
+    }
+    /**
      * @notice The match has already been accepted by the buyer
      * @param _matchId unique identifier of the match
      */
@@ -339,7 +351,7 @@ contract Marketplace {
     function cancelProposedMatch(uint256 _matchId)
         external
         isAggregator(matches[_matchId].buyer)
-        matchExists(_matchId)
+        isMatchPending(_matchId)
     {
         cleanupAfterMatchRemoval(_matchId);
         emit MatchCancelled(_matchId);
@@ -351,7 +363,7 @@ contract Marketplace {
      * @dev The match must exist
      * @param _matchId id of the match to accept
      */
-    function acceptMatch(uint256 _matchId) external matchExists(_matchId) {
+    function acceptMatch(uint256 _matchId) external isMatchPending(_matchId) {
         require(
             matches[_matchId].buyer == msg.sender,
             "Only the buyer can accept the match"
@@ -366,7 +378,7 @@ contract Marketplace {
      * @dev The match must exist
      * @param _matchId id of the match to reject
      */
-    function rejectMatch(uint256 _matchId) external matchExists(_matchId) {
+    function rejectMatch(uint256 _matchId) external isMatchPending(_matchId) {
         require(
             matches[_matchId].buyer == msg.sender ||
                 _identityManager.identityOwner(matches[_matchId].asset) ==
@@ -384,10 +396,6 @@ contract Marketplace {
      * @param _matchId id of the match to delete
      */
     function deleteMatch(uint256 _matchId) external isMatchAccepted(_matchId) {
-        require(
-            matches[_matchId].isAccepted,
-            "Match must be accepted or rejected first"
-        );
         require(
             matches[_matchId].buyer == msg.sender ||
                 _identityManager.identityOwner(matches[_matchId].asset) ==
