@@ -14,7 +14,7 @@ participant "Identity Manager" as im
 ow->im ++: Create new DID request
 im->DID **: Deploy clone DID contract
 note over im: Log new DID
-im->ow --: Success
+im-->>ow --
 
 == Submit offer ==
 ow->ma ++: Submit new/updated offer
@@ -23,7 +23,7 @@ ma->ma: Check offer is unlocked
 ma->im ++: Check DID ownership
 im->ma --: DID ownership validated
 note over ma: Log new/updated offer
-ma->ow --: Success
+ma-->>ow --
 
 == Cancel offer ==
 ow->ma ++: Cancel offer
@@ -31,25 +31,27 @@ ma->ma: Check offer is unlocked
 ma->im ++: Check DID ownership
 im->ma --: DID ownership validated
 note over ma: Log offer cancelled
-ma->ow --: Success
+ma-->>ow --
 
 == Reject match proposal ==
 ow<--ma: Gather matches logs
 ow->ma: Reject match proposal
 ma->im ++: Check DID ownership
 im->ma --: DID ownership validated
+ma->ma: Check match still pending
 ma->ma: Unlock offer and demand
 ma->ma: Delete match
 note over ma: Log match rejected
-ma->ow: Success
+ma-->>ow --
 
 == Delete match ==
 ow<--ma: Gather matches logs
 ow->ma ++: Reject match proposal
 ma->im ++: Check DID ownership
 im->ma --: DID ownership validated
+ma->ma: Check match accepted
 ma->ma: Unlock offer and demand
 ma->ma: Delete match
 note over ma: Log match deleted
-ma->ow: Success
+ma-->>ow --
 @enduml

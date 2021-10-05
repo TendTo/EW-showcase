@@ -1,0 +1,26 @@
+@startuml Match state
+title Match state
+!theme cerulean
+
+skinparam maxMessageSize 150
+skinparam defaultTextAlignment center
+skinparam noteTextAlignment left
+skinparam StateFontColor Black
+
+state "Proposed" as pr: asset: DID1\n \
+buyer: DID2\n \
+volume: x>0\n \
+price: y>0\n \
+isAccepted: false
+state "Accepted" as ac: asset: DID1\n \
+buyer: DID2\n \
+volume: x>0\n \
+price: y>0\n \
+isAccepted: true
+
+[*] -> pr: Propose match
+pr --> [*]: Cancel / reject match
+pr --> ac: Accept match
+ac --> [*]:Delete Match
+
+@enduml

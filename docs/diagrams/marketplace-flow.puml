@@ -27,7 +27,7 @@ endnote
 ow->im ++: Create new DID request
 im->DID **: Deploy clone DID contract
 note over im: Log new DID
-im->ow --: Success
+im-->>ow --
 
 == Submit offer ==
 ow->ma ++: Submit new/updated offer
@@ -36,14 +36,14 @@ ma->ma: Check offer is unlocked
 ma->im ++: Check DID ownership
 im->ma --: DID ownership validated
 note over ma: Log new/updated offer
-ma->ow --: Success
+ma-->>ow --
 
 == Submit demand ==
 bu->ma ++: Submit new/updated demand
 ma->ma: Validate parameters
 ma->ma: Check demand is unlocked
 note over ma: Log new/updated demand
-ma->bu --: Success
+ma-->>bu --
 
 == Propose match ==
 ag<--ma: Gather offers logs
@@ -53,14 +53,14 @@ ma->ma: Validate parameters
 ma->ma: Check compatibility
 ma->ma: Lock offer and demand
 note over ma: Log new match proposal
-ma->ag --: Success
+ma-->>ag --
 
 == Accept match proposal ==
 bu<--ma: Gather matches logs
 bu->ma ++: Accept match proposal
 ma->ma: Accept match
 note over ma: Log match accepted
-ma->bu --: Success
+ma-->>bu --
 
 == Delete match ==
 group #LightBlue Both owner and buyer can delete a match previously accepted
@@ -78,9 +78,9 @@ ma->ma: Unlock offer and demand
 ma->ma: Delete match
 note over ma: Log match deleted
 group #LightBlue Both owner and buyer can delete a match previously accepted
-    ma->ow: Success
+    ma-->>ow
     else #LightGray
-    ma->bu --: Success
+    ma-->>bu --
 end
 
 @enduml

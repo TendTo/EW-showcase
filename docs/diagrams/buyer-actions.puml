@@ -1,5 +1,5 @@
-@startuml Marketplace flow
-title Marketplace flow
+@startuml Buyer actions
+title Buyer actions
 !theme cerulean
 
 skinparam maxMessageSize 150
@@ -14,27 +14,29 @@ bu->ma ++: Submit new/updated demand
 ma->ma: Validate parameters
 ma->ma: Check demand is unlocked
 note over ma: Log new/updated demand
-ma->bu --: Success
+ma-->>bu --
 
 == Cancel demand ==
 bu->ma ++: Cancel demand
 ma->ma: Check demand is unlocked
 note over ma: Log demand cancelled
-ma->bu --: Success
+ma-->>bu --
 
 == Reject match proposal ==
 bu<--ma: Gather matches logs
-bu->ma: Reject match proposal
+bu->ma ++: Reject match proposal
+ma->ma: Check match still pending
 ma->ma: Unlock offer and demand
 ma->ma: Delete match
 note over ma: Log match rejected
-ma->bu: Success
+ma-->>bu --
 
 == Delete match ==
 bu<--ma: Gather matches logs
 bu->ma ++: Reject match proposal
+ma->ma: Check match accepted
 ma->ma: Unlock offer and demand
 ma->ma: Delete match
 note over ma: Log match deleted
-ma->bu: Success
+ma-->>bu --
 @enduml
