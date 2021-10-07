@@ -6,6 +6,7 @@ skinparam maxMessageSize 150
 skinparam defaultTextAlignment center
 skinparam noteTextAlignment left
 skinparam StateFontColor Black
+skinparam backgroundColor White
 
 state "Proposed" as pr: asset: DID1\n \
 buyer: DID2\n \

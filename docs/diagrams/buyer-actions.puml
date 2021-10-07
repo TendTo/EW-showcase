@@ -1,13 +1,19 @@
 @startuml Buyer actions
 title Buyer actions
 !theme cerulean
+!include <material/common>
+!include <material/script.puml>
 
 skinparam maxMessageSize 150
 skinparam defaultTextAlignment center
 skinparam noteTextAlignment left
+skinparam backgroundColor White
+skinparam SequenceParticipantBorderThickness 0
+skinparam ParticipantBackgroundColor Transparent
+skinparam ParticipantFontColor Black
 
 actor "Buyer" as bu
-participant "Marketplace" as ma
+participant "MA_SCRIPT(#2fa4e7, 1)\nMarketplace" as ma #White
 
 == Submit demand ==
 bu->ma ++: Submit new/updated demand

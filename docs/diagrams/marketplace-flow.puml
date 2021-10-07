@@ -1,16 +1,22 @@
 @startuml Marketplace flow
 title Marketplace flow
 !theme cerulean
+!include <material/common>
+!include <material/script.puml>
 
 skinparam maxMessageSize 150
 skinparam defaultTextAlignment center
 skinparam noteTextAlignment left
+skinparam backgroundColor White
+skinparam SequenceParticipantBorderThickness 0
+skinparam ParticipantBackgroundColor Transparent
+skinparam ParticipantFontColor Black
 
 actor "Owner" as ow
 actor "Buyer" as bu
 actor "Aggregator" as ag
-participant "Marketplace" as ma
-participant "Identity Manager" as im
+participant "MA_SCRIPT(#2fa4e7, 1)\nMarketplace" as ma #White
+participant "MA_SCRIPT(#2fa4e7, 1)\nIdentity Manager" as im #White
 
 note over ma #SlateGrey
     **TODO:**
