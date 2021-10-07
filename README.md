@@ -122,4 +122,5 @@ Opens an interactive console that connects to the provided network (the first if
 - [Openzeppelin contracts](https://openzeppelin.com/contracts/)
 - [Volta explorer API](https://volta-explorer.energyweb.org/api-docs)
 - [SVGBackgrounds](https://www.svgbackgrounds.com/)
+- [PlantUML](https://plantuml.com/)
 - [template-tesi-latex](https://github.com/UNICT-DMI/template-tesi-latex)
