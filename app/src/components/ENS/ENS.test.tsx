@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react';
+import { VoidSigner } from 'ethers';
 import ENS from './ENS';
-import Web3 from 'web3';
 
 test('renders ENS component', () => {
-  const web3 = new Web3("http://localhost:8545");
-  render(<ENS web3={web3} />);
+  const signer = new VoidSigner("0x0");
+  render(<ENS signer={signer} />);
   const linkElement = screen.getByText(/ENS.TITLE/i);
   expect(linkElement).toBeInTheDocument();
 });

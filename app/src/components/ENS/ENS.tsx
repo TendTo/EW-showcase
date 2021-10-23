@@ -1,21 +1,21 @@
+import { Signer } from 'ethers';
 import React, { useEffect, useRef, useState } from 'react';
 import { Button, Form, FormControl, InputGroup, Spinner } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { Trans, useTranslation } from 'react-i18next';
-import Web3 from 'web3';
 import VoltaApi, { getAccountInfoResponse } from '../../api/VoltaApi';
 import EwAccount from '../EwAccount/EwAccount';
 import './ENS.css';
 
 type Props = {
-  web3?: Web3;
+  signer: Signer;
 };
 
 type FormInput = {
   search: string;
 }
 
-function ENS({ web3 }: Props) {
+function ENS({ signer }: Props) {
   const voltaApi = useRef(new VoltaApi());
   const account = useRef<getAccountInfoResponse>();
   const [error, setError] = useState("");
@@ -35,7 +35,7 @@ function ENS({ web3 }: Props) {
     let newAddress = "";
     if (isName(search)) { // ENS resolve
       try {
-        newAddress = await web3?.eth.ens.getAddress(search) || "";
+        newAddress = await signer.provider!.resolveName(search) || "";
       } catch (err: any) {
         console.error(err);
         setError(t("ERROR.GENERIC"));

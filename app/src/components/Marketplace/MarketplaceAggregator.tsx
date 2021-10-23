@@ -1,20 +1,19 @@
+import { ethers, Signer } from 'ethers';
 import React, { useEffect, useState } from 'react';
 import { Badge, Button, Spinner } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import Web3 from 'web3';
-import { AbiItem } from 'web3-utils';
 import { abi as MarketplaceABI } from '../../asset/json/Marketplace.abi.json';
 import { VOLTA_MARKETPLACE_ADDRESS } from '../../asset/json/voltaContractAddresses.json';
-import Marketplace from '../../types/Marketplace';
+import { MarketplaceAbi as Marketplace } from '../../types/MarketplaceAbi';
 import { Asset, Demand, Match } from '../../types/MarketplaceEntities';
 import { toastMetamaskError } from '../Toast/Toast';
 
 type Props = {
-    web3: Web3
+    signer: Signer
     account: string
 }
 
-function MarketplaceAggregator({ web3, account }: Props) {
+function MarketplaceAggregator({ signer, account }: Props) {
     const { t } = useTranslation();
     const [assets, setAssets] = useState<Asset[]>([]);
     const [demands, setDemands] = useState<Demand[]>([]);
@@ -30,8 +29,8 @@ function MarketplaceAggregator({ web3, account }: Props) {
         const fetchDemand = async () => {
             setLoading(true);
             try {
-                const assets = await Asset.fetchAssets(web3, [account]);
-                const demand = await Demand.fetchDemands(web3, [account]);
+                const assets = await Asset.fetchAssets(signer, [account]);
+                const demand = await Demand.fetchDemands(signer, [account]);
                 setAssets(assets.filter(asset => !asset.isMatched && asset.remainingVolume > 0 && asset.doesOfferExists));
                 setDemands(demand.filter(demand => !demand.isMatched && demand.doesDemandExists));
             } catch (e: any) {
@@ -42,21 +41,21 @@ function MarketplaceAggregator({ web3, account }: Props) {
             setLoading(false);
         }
         fetchDemand();
-    }, [web3, account, t]);
+    }, [signer, account, t]);
 
     const onProposeMatch = async () => {
         if (selectedAsset === undefined || selectedDemand === undefined)
             return;
 
         setLoading(true);
-        const marketplace = new web3.eth.Contract(MarketplaceABI as AbiItem[], VOLTA_MARKETPLACE_ADDRESS) as unknown as Marketplace;
+        const marketplace = new ethers.Contract(VOLTA_MARKETPLACE_ADDRESS, MarketplaceABI, signer) as Marketplace;
         marketplace.once('MatchProposed', async (err, matchEvent) => {
             if (err)
                 return console.error(err)
-            const matchData = await marketplace.methods.matches(matchEvent.returnValues.matchId).call();
+            const matchData = await marketplace.matches(matchEvent.returnValues.matchId);
             if (matchData) {
                 filterSetAssets(assets.map(asset => asset.asset === matchData.asset ?
-                    asset.update(asset.matches + 1, asset.remainingVolume - Number.parseInt(matchData.volume))
+                    asset.update(asset.matches + 1, asset.remainingVolume - matchData.volume.toNumber())
                     :
                     asset));
                 filterDemangs(demands.map(demand => demand.buyer === matchData.buyer ?
@@ -67,7 +66,7 @@ function MarketplaceAggregator({ web3, account }: Props) {
         });
         try {
             const match = new Match();
-            await match.proposeMatch(web3, account, selectedAsset, selectedDemand, selectedDemand?.volume, selectedAsset?.price);
+            await match.proposeMatch(signer, selectedAsset, selectedDemand, selectedDemand?.volume, selectedAsset?.price);
             setSelectedAsset(undefined);
             setSelectedDemand(undefined);
         } catch (e: any) {
@@ -92,9 +91,9 @@ function MarketplaceAggregator({ web3, account }: Props) {
                     <div className="text-muted">{t('GENERAL.ASSET_DID')}</div>
                     {
                         selectedAsset !== undefined && asset.asset === selectedAsset.asset ?
-                            <Badge variant={"primary"} className="marketplace-selector mb-2" onClick={() => setSelectedAsset(undefined)}>{t("GENERAL.SELECTED")}</Badge>
+                            <Badge bg="primary" className="marketplace-selector mb-2" onClick={() => setSelectedAsset(undefined)}>{t("GENERAL.SELECTED")}</Badge>
                             :
-                            <Badge variant={"light"} className="marketplace-selector mb-2" onClick={() => setSelectedAsset(asset)}> {t("GENERAL.SELECT")}</Badge>
+                            <Badge bg="light" className="marketplace-selector mb-2" onClick={() => setSelectedAsset(asset)}> {t("GENERAL.SELECT")}</Badge>
                     }
                 </div>
                 <p className="text-truncate">{asset.asset}</p>
@@ -135,9 +134,9 @@ function MarketplaceAggregator({ web3, account }: Props) {
                     <div className="text-muted">{t('GENERAL.BUYER')}</div>
                     {
                         selectedDemand !== undefined && demand.buyer === selectedDemand.buyer ?
-                            <Badge variant={"primary"} className="marketplace-selector mb-2" onClick={() => setSelectedDemand(undefined)}>{t("GENERAL.SELECTED")}</Badge>
+                            <Badge bg="primary" className="marketplace-selector mb-2" onClick={() => setSelectedDemand(undefined)}>{t("GENERAL.SELECTED")}</Badge>
                             :
-                            <Badge variant={"light"} className="marketplace-selector mb-2" onClick={() => setSelectedDemand(demand)}> {t("GENERAL.SELECT")}</Badge>
+                            <Badge bg="light" className="marketplace-selector mb-2" onClick={() => setSelectedDemand(demand)}> {t("GENERAL.SELECT")}</Badge>
                     }
                 </div>
                 <p className="text-truncate">{demand.buyer}</p>

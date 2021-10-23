@@ -1,19 +1,19 @@
+import { Signer } from 'ethers';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import Web3 from 'web3';
 import { useIsMounted } from '../../hooks/useIsMounted';
 import { Match } from '../../types/MarketplaceEntities';
 import ConfirmModal from '../Modals/ConfirmModal';
 import { toastMetamaskError } from '../Toast/Toast';
 
 type Props = {
-    web3: Web3
+    signer: Signer
     account: string
     match: Match
     updateMatches: () => void
 }
 
-function MarketplaceDeleteMatch({ web3, account, match, updateMatches }: Props) {
+function MarketplaceDeleteMatch({ signer, account, match, updateMatches }: Props) {
     const isMounted = useIsMounted();
     const [loading, setLoading] = useState(false);
     const { t } = useTranslation();
@@ -21,7 +21,7 @@ function MarketplaceDeleteMatch({ web3, account, match, updateMatches }: Props) 
     const onSubmit = async () => {
         setLoading(true);
         try {
-            await match.deleteMatch(web3, account);
+            await match.deleteMatch(signer, account);
             updateMatches();
         } catch (e: any) {
             console.error(e);

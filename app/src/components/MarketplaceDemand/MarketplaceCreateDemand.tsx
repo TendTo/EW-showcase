@@ -1,15 +1,15 @@
+import { Signer } from 'ethers';
 import React, { useState } from 'react';
 import { Button, Container, Form, Modal, Spinner } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import Web3 from 'web3';
 import ew_logo from '../../asset/img/ew-logo-small.png';
 import { useIsMounted } from '../../hooks/useIsMounted';
 import { Demand } from '../../types/MarketplaceEntities';
 import { toastMetamaskError } from '../Toast/Toast';
 
 type Props = {
-    web3: Web3
+    signer: Signer
     demand: Demand
     updateDemand: () => void
 }
@@ -19,7 +19,7 @@ type FormInput = {
     price: number
 }
 
-function MarketplaceCreateDemand({ web3, demand, updateDemand }: Props) {
+function MarketplaceCreateDemand({ signer, demand, updateDemand }: Props) {
     const defaultValues = { volume: demand.volume, price: demand.price };
     const isMounted = useIsMounted();
     const [loading, setLoading] = useState(false);
@@ -30,7 +30,7 @@ function MarketplaceCreateDemand({ web3, demand, updateDemand }: Props) {
     const onSubmit = async ({ volume, price }: FormInput) => {
         setLoading(true);
         try {
-            await demand.createDemand(web3, volume, price);
+            await demand.createDemand(signer, volume, price);
             updateDemand();
         } catch (e: any) {
             console.error(e);

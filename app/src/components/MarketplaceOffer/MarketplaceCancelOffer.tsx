@@ -1,19 +1,19 @@
+import { Signer } from 'ethers';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import Web3 from 'web3';
 import { useIsMounted } from '../../hooks/useIsMounted';
 import { Asset } from '../../types/MarketplaceEntities';
 import ConfirmModal from '../Modals/ConfirmModal';
 import { toastMetamaskError } from '../Toast/Toast';
 
 type Props = {
-    web3: Web3
+    signer: Signer
     account: string
     asset: Asset
     updateAssets: () => void
 }
 
-function MarketplaceCancelOffer({ web3, account, asset, updateAssets }: Props) {
+function MarketplaceCancelOffer({ signer, account, asset, updateAssets }: Props) {
     const isMounted = useIsMounted();
     const [loading, setLoading] = useState(false);
     const { t } = useTranslation();
@@ -21,7 +21,7 @@ function MarketplaceCancelOffer({ web3, account, asset, updateAssets }: Props) {
     const onSubmit = async () => {
         setLoading(true);
         try {
-            await asset.cancelOffer(web3, account);
+            await asset.cancelOffer(signer);
             updateAssets();
         } catch (e: any) {
             console.error(e);

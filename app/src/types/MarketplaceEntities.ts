@@ -1,10 +1,9 @@
-import Web3 from "web3";
-import { AbiItem } from 'web3-utils';
+import { ethers, Signer } from "ethers";
 import { abi as IdentityManagerABI } from '../asset/json/IdentityManager.abi.json';
 import { abi as MarketplaceABI } from '../asset/json/Marketplace.abi.json';
 import { VOLTA_IDENTITY_MANAGER_ADDRESS, VOLTA_MARKETPLACE_ADDRESS } from '../asset/json/voltaContractAddresses.json';
-import IdentityManager from './IdentityManager';
-import Marketplace from './Marketplace';
+import { IdentityManagerAbi as IdentityManager } from './IdentityManagerAbi';
+import { MarketplaceAbi as Marketplace } from './MarketplaceAbi';
 
 const zeroAddress = '0x0000000000000000000000000000000000000000';
 
@@ -12,49 +11,49 @@ const zeroAddress = '0x0000000000000000000000000000000000000000';
 export class Asset {
     constructor(private _asset: string, private _owner: string = zeroAddress, private _volume: number = 0, private _price: number = 0, private _remainingVolume: number = 0, private _matches: number = 0) { }
 
-    public static async fetchAssets(web3: Web3, owners: string[]) {
-        const identityManager = new web3.eth.Contract(IdentityManagerABI as AbiItem[], VOLTA_IDENTITY_MANAGER_ADDRESS) as unknown as IdentityManager;
+    public static async fetchAssets(signer: Signer, owners: string[]) {
+        const identityManager = new ethers.Contract(VOLTA_IDENTITY_MANAGER_ADDRESS, IdentityManagerABI, signer) as IdentityManager;
         const assets = await Promise.all(owners.map(async (owner) => {
-            const assetsCreated = await identityManager.getPastEvents('IdentityCreated', {
-                filter: { owner },
-                fromBlock: 'earliest',
-                toBlock: 'latest'
-            });
-            const assetsTransferred = await identityManager.getPastEvents('IdentityTransferred', {
-                filter: { owner },
-                fromBlock: 'earliest',
-                toBlock: 'latest'
-            });
+            const assetsCreated = await identityManager.queryFilter(
+                identityManager.filters.IdentityCreated(null, owner),
+                'earliest',
+                'latest'
+            );
+            const assetsTransferred = await identityManager.queryFilter(
+                identityManager.filters.IdentityTransferred(null, owner),
+                'earliest',
+                'latest'
+            );
             // Consider all assets the user may owns among the ones that he has created or those that were transferred to him
-            const possibleAssets = Array.from(new Set([...assetsCreated, ...assetsTransferred])).map(({ returnValues }) => returnValues.identity);
+            const possibleAssets = new Set([...assetsCreated, ...assetsTransferred].map(({ args }) => args.identity));
             // Filter out assets that are not currently owned by the user
-            return Promise.all(possibleAssets
-                .filter(async (identity) => owner === await identityManager.methods.identityOwner(identity).call())
-                .map(async (identity) => new Asset(identity, owner).fetchMarketplaceOffer(web3)));
+            return Promise.all(Array.from(possibleAssets)
+                .filter(async (identity) => owner === await identityManager.identityOwner(identity))
+                .map(async (identity) => new Asset(identity, owner).fetchMarketplaceOffer(signer)));
         }));
         return assets.flat();
     }
 
-    public async fetchOwner(web3: Web3) {
-        const identityManager = new web3.eth.Contract(IdentityManagerABI as AbiItem[], VOLTA_IDENTITY_MANAGER_ADDRESS) as unknown as IdentityManager;
-        this._owner = await identityManager.methods.identityOwner(this.asset).call();
+    public async fetchOwner(signer: Signer) {
+        const identityManager = new ethers.Contract(VOLTA_IDENTITY_MANAGER_ADDRESS, IdentityManagerABI, signer) as IdentityManager;
+        this._owner = await identityManager.identityOwner(this.asset);
         return this._owner;
     }
 
-    public async fetchMarketplaceOffer(web3: Web3) {
-        const marketplace = new web3.eth.Contract(MarketplaceABI as AbiItem[], VOLTA_MARKETPLACE_ADDRESS) as unknown as Marketplace;
-        const offer = await marketplace.methods.offers(this.asset).call();
+    public async fetchMarketplaceOffer(signer: Signer) {
+        const marketplace = new ethers.Contract(VOLTA_MARKETPLACE_ADDRESS, MarketplaceABI, signer) as Marketplace;
+        const offer = await marketplace.offers(this.asset);
 
-        this._matches = Number.parseInt(offer.matches);
-        this._volume = Number.parseInt(offer.volume);
-        this._remainingVolume = Number.parseInt(offer.remainingVolume);
-        this._price = Number.parseInt(offer.price);
+        this._matches = offer.matches.toNumber();
+        this._volume = offer.volume.toNumber();
+        this._remainingVolume = offer.remainingVolume.toNumber();
+        this._price = offer.price.toNumber();
         return this;
     }
 
-    public async createOffer(web3: Web3, owner: string, volume: number, price: number) {
-        const marketplace = new web3.eth.Contract(MarketplaceABI as AbiItem[], VOLTA_MARKETPLACE_ADDRESS) as unknown as Marketplace;
-        await marketplace.methods.createOffer(this.asset, volume, price).send({ from: owner });
+    public async createOffer(signer: Signer, volume: number, price: number) {
+        const marketplace = new ethers.Contract(VOLTA_MARKETPLACE_ADDRESS, MarketplaceABI, signer) as Marketplace;
+        await marketplace.createOffer(this.asset, volume, price);
 
         this._volume = volume;
         this._remainingVolume = volume;
@@ -62,9 +61,9 @@ export class Asset {
         return this;
     }
 
-    public async cancelOffer(web3: Web3, owner: string) {
-        const marketplace = new web3.eth.Contract(MarketplaceABI as AbiItem[], VOLTA_MARKETPLACE_ADDRESS) as unknown as Marketplace;
-        await marketplace.methods.cancelOffer(this.asset).send({ from: owner });
+    public async cancelOffer(signer: Signer) {
+        const marketplace = new ethers.Contract(VOLTA_MARKETPLACE_ADDRESS, MarketplaceABI, signer) as Marketplace;
+        await marketplace.cancelOffer(this.asset);
 
         this._volume = 0;
         this._remainingVolume = 0;
@@ -102,30 +101,30 @@ export class Asset {
 export class Demand {
     constructor(private _buyer: string, private _volume: number = 0, private _price: number = 0, private _isMatched: boolean = false) { }
 
-    public static async fetchDemands(web3: Web3, buyers: string[]) {
-        const marketplace = new web3.eth.Contract(MarketplaceABI as AbiItem[], VOLTA_MARKETPLACE_ADDRESS) as unknown as Marketplace;
+    public static async fetchDemands(signer: Signer, buyers: string[]) {
+        const marketplace = new ethers.Contract(VOLTA_MARKETPLACE_ADDRESS, MarketplaceABI, signer) as Marketplace;
         let demands = [];
         for (const buyer of buyers) {
-            const demandData = await marketplace.methods.demands(buyer).call();
-            const newDemand = new Demand(buyer, Number.parseInt(demandData.volume), Number.parseInt(demandData.price), demandData.isMatched)
+            const demandData = await marketplace.demands(buyer);
+            const newDemand = new Demand(buyer, demandData.volume.toNumber(), demandData.price.toNumber(), demandData.isMatched)
             demands.push(newDemand);
         }
         return demands;
     }
 
-    public async fetchDemand(web3: Web3) {
-        const marketplace = new web3.eth.Contract(MarketplaceABI as AbiItem[], VOLTA_MARKETPLACE_ADDRESS) as unknown as Marketplace;
-        const demand = await marketplace.methods.demands(this._buyer).call();
+    public async fetchDemand(signer: Signer) {
+        const marketplace = new ethers.Contract(VOLTA_MARKETPLACE_ADDRESS, MarketplaceABI, signer) as Marketplace;
+        const demand = await marketplace.demands(this._buyer);
 
         this._isMatched = demand.isMatched;
-        this._volume = Number.parseInt(demand.volume);
-        this._price = Number.parseInt(demand.price);
+        this._volume = demand.volume.toNumber();
+        this._price = demand.price.toNumber();
         return this;
     }
 
-    public async createDemand(web3: Web3, volume: number, price: number) {
-        const marketplace = new web3.eth.Contract(MarketplaceABI as AbiItem[], VOLTA_MARKETPLACE_ADDRESS) as unknown as Marketplace;
-        await marketplace.methods.createDemand(volume, price).send({ from: this._buyer });
+    public async createDemand(signer: Signer, volume: number, price: number) {
+        const marketplace = new ethers.Contract(VOLTA_MARKETPLACE_ADDRESS, MarketplaceABI, signer) as Marketplace;
+        await marketplace.createDemand(volume, price);
 
         this._isMatched = false;
         this._volume = volume;
@@ -133,9 +132,9 @@ export class Demand {
         return this;
     }
 
-    public async cancelDemand(web3: Web3) {
-        const marketplace = new web3.eth.Contract(MarketplaceABI as AbiItem[], VOLTA_MARKETPLACE_ADDRESS) as unknown as Marketplace;
-        await marketplace.methods.cancelDemand().send({ from: this._buyer });
+    public async cancelDemand(signer: Signer) {
+        const marketplace = new ethers.Contract(VOLTA_MARKETPLACE_ADDRESS, MarketplaceABI, signer) as Marketplace;
+        await marketplace.cancelDemand();
 
         this._isMatched = false;
         this._volume = 0;
@@ -166,38 +165,42 @@ export class Demand {
 export class Match {
     constructor(private _matchId: number = 0, private _asset?: Asset, private _demand?: Demand, private _volume: number = 0, private _price: number = 0, private _isAccepted: boolean = false) { }
 
-    public static async fetchMatches(web3: Web3, asset: Asset | Demand) {
-        const marketplace = new web3.eth.Contract(MarketplaceABI as AbiItem[], VOLTA_MARKETPLACE_ADDRESS) as unknown as Marketplace;
-        const filter = asset instanceof Asset ? { asset: asset.asset } : { demand: asset.buyer };
-        const matches = await marketplace.getPastEvents('MatchProposed', { filter, fromBlock: 'earliest', toBlock: 'latest' });
+    public static async fetchMatches(signer: Signer, asset: Asset | Demand) {
+        const marketplace = new ethers.Contract(VOLTA_MARKETPLACE_ADDRESS, MarketplaceABI, signer) as Marketplace;
+        const filter = asset instanceof Asset ? [asset.asset, null] : [null, asset.buyer];
+        const matches = await marketplace.queryFilter(
+            marketplace.filters.MatchProposed(null, ...filter),
+            'earliest',
+            'latest'
+        );
         return (await Promise.all(
             matches
                 .map(async (match) => {
-                    const matchData = await marketplace.methods.matches(match.returnValues.matchId).call();
-                    if (matchData.price !== "0")
-                        return new Match(Number.parseInt(match.returnValues.matchId),
+                    const matchData = await marketplace.matches(match.args.matchId);
+                    if (matchData.price.toString() !== "0")
+                        return new Match(match.args.matchId.toNumber(),
                             new Asset(matchData.asset),
                             new Demand(matchData.buyer),
-                            Number.parseInt(matchData.volume),
-                            Number.parseInt(matchData.price),
+                            matchData.volume.toNumber(),
+                            matchData.price.toNumber(),
                             matchData.isAccepted)
                 })
         )).filter(match => match !== undefined) as Match[];
     }
 
-    public async fetchMatch(web3: Web3, autoFetch: boolean = true) {
-        const marketplace = new web3.eth.Contract(MarketplaceABI as AbiItem[], VOLTA_MARKETPLACE_ADDRESS) as unknown as Marketplace;
-        const matches = await marketplace.methods.matches(this._matchId).call();
+    public async fetchMatch(signer: Signer, autoFetch: boolean = true) {
+        const marketplace = new ethers.Contract(VOLTA_MARKETPLACE_ADDRESS, MarketplaceABI, signer) as Marketplace;
+        const matches = await marketplace.matches(this._matchId);
 
         this._isAccepted = matches.isAccepted;
-        this._volume = Number.parseInt(matches.volume);
-        this._price = Number.parseInt(matches.price);
+        this._volume = matches.volume.toNumber();
+        this._price = matches.price.toNumber();
 
         this._asset = new Asset(matches.asset);
         this._demand = new Demand(matches.buyer);
         if (autoFetch) {
-            await this._asset.fetchMarketplaceOffer(web3);
-            await this._demand.fetchDemand(web3);
+            await this._asset.fetchMarketplaceOffer(signer);
+            await this._demand.fetchDemand(signer);
         }
 
         return this;
@@ -211,16 +214,16 @@ export class Match {
         this._demand = undefined;
     }
 
-    private async recursiveFetch(web3: Web3) {
+    private async recursiveFetch(signer: Signer) {
         if (this._asset)
-            await this._asset.fetchMarketplaceOffer(web3);
+            await this._asset.fetchMarketplaceOffer(signer);
         if (this._demand)
-            await this._demand.fetchDemand(web3);
+            await this._demand.fetchDemand(signer);
     }
 
-    public async proposeMatch(web3: Web3, aggregator: string, asset: Asset, demand: Demand, volume: number, price: number) {
-        const marketplace = new web3.eth.Contract(MarketplaceABI as AbiItem[], VOLTA_MARKETPLACE_ADDRESS) as unknown as Marketplace;
-        await marketplace.methods.proposeMatch(asset.asset, demand.buyer, volume, price).send({ from: aggregator });
+    public async proposeMatch(signer: Signer, asset: Asset, demand: Demand, volume: number, price: number) {
+        const marketplace = new ethers.Contract(VOLTA_MARKETPLACE_ADDRESS, MarketplaceABI, signer) as Marketplace;
+        await marketplace.proposeMatch(asset.asset, demand.buyer, volume, price);
 
         this._isAccepted = false;
         this._volume = volume;
@@ -230,40 +233,40 @@ export class Match {
         return this;
     }
 
-    public async cancelProposedMatch(web3: Web3, aggregator: string) {
-        const marketplace = new web3.eth.Contract(MarketplaceABI as AbiItem[], VOLTA_MARKETPLACE_ADDRESS) as unknown as Marketplace;
-        await marketplace.methods.cancelProposedMatch(this._matchId).send({ from: aggregator });
+    public async cancelProposedMatch(signer: Signer, aggregator: string) {
+        const marketplace = new ethers.Contract(VOLTA_MARKETPLACE_ADDRESS, MarketplaceABI, signer) as Marketplace;
+        await marketplace.cancelProposedMatch(this._matchId);
 
         this.resetMatch();
         return this;
     }
 
-    public async acceptMatch(web3: Web3, buyer: string, autoFetch: boolean = true) {
-        const marketplace = new web3.eth.Contract(MarketplaceABI as AbiItem[], VOLTA_MARKETPLACE_ADDRESS) as unknown as Marketplace;
-        await marketplace.methods.acceptMatch(this._matchId).send({ from: buyer });
+    public async acceptMatch(signer: Signer, buyer: string, autoFetch: boolean = true) {
+        const marketplace = new ethers.Contract(VOLTA_MARKETPLACE_ADDRESS, MarketplaceABI, signer) as Marketplace;
+        await marketplace.acceptMatch(this._matchId);
 
         this._isAccepted = true;
         if (autoFetch)
-            await this.fetchMatch(web3, true);
+            await this.fetchMatch(signer, true);
         return this;
     }
 
-    public async rejectMatch(web3: Web3, buyer: string, autoFetch: boolean = true) {
-        const marketplace = new web3.eth.Contract(MarketplaceABI as AbiItem[], VOLTA_MARKETPLACE_ADDRESS) as unknown as Marketplace;
-        await marketplace.methods.rejectMatch(this._matchId).send({ from: buyer });
+    public async rejectMatch(signer: Signer, buyer: string, autoFetch: boolean = true) {
+        const marketplace = new ethers.Contract(VOLTA_MARKETPLACE_ADDRESS, MarketplaceABI, signer) as Marketplace;
+        await marketplace.rejectMatch(this._matchId);
 
         if (autoFetch)
-            await this.recursiveFetch(web3);
+            await this.recursiveFetch(signer);
         this.resetMatch();
         return this;
     }
 
-    public async deleteMatch(web3: Web3, buyerOrOwner: string, autoFetch: boolean = true) {
-        const marketplace = new web3.eth.Contract(MarketplaceABI as AbiItem[], VOLTA_MARKETPLACE_ADDRESS) as unknown as Marketplace;
-        await marketplace.methods.deleteMatch(this._matchId).send({ from: buyerOrOwner });
+    public async deleteMatch(signer: Signer, buyerOrOwner: string, autoFetch: boolean = true) {
+        const marketplace = new ethers.Contract(VOLTA_MARKETPLACE_ADDRESS, MarketplaceABI, signer) as Marketplace;
+        await marketplace.deleteMatch(this._matchId);
 
         if (autoFetch)
-            await this.recursiveFetch(web3);
+            await this.recursiveFetch(signer);
         this.resetMatch();
         return this;
     }

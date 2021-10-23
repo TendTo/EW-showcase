@@ -1,17 +1,17 @@
 diff --git a/node_modules/iam-client-lib/dist/src/cacheServerClient/cacheServerClient.types.d.ts b/node_modules/iam-client-lib/dist/src/cacheServerClient/cacheServerClient.types.d.ts
-index f4b325c..a5dcbb7 100644
+index bec1305..63b10f8 100644
 --- a/node_modules/iam-client-lib/dist/src/cacheServerClient/cacheServerClient.types.d.ts
 +++ b/node_modules/iam-client-lib/dist/src/cacheServerClient/cacheServerClient.types.d.ts
-@@ -1,7 +1,7 @@
- import { IDIDDocument } from "@ew-did-registry/did-resolver-interface";
+@@ -2,7 +2,7 @@ import { IDIDDocument } from "@ew-did-registry/did-resolver-interface";
  import { IRoleDefinition, IAppDefinition, IOrganizationDefinition } from "@energyweb/iam-contracts";
+ import { IClaimIssuance, IClaimRejection, IClaimRequest } from "../iam";
  export interface IRole {
 -    uid: string;
 +    id: string;
      name: string;
      namespace: string;
      owner: string;
-@@ -9,7 +9,7 @@ export interface IRole {
+@@ -10,7 +10,7 @@ export interface IRole {
      isOwnedByCurrentUser?: boolean;
  }
  export interface IOrganization {
@@ -20,7 +20,7 @@ index f4b325c..a5dcbb7 100644
      name: string;
      namespace: string;
      owner: string;
-@@ -20,7 +20,7 @@ export interface IOrganization {
+@@ -21,7 +21,7 @@ export interface IOrganization {
      isOwnedByCurrentUser?: boolean;
  }
  export interface IApp {

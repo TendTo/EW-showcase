@@ -1,7 +1,7 @@
+import { Signer } from 'ethers';
 import React, { useEffect, useState } from 'react';
 import { Spinner } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import Web3 from 'web3';
 import { Demand } from '../../types/MarketplaceEntities';
 import MarketplaceCancelDemand from '../MarketplaceDemand/MarketplaceCancelDemand';
 import MarketplaceCreateDemand from '../MarketplaceDemand/MarketplaceCreateDemand';
@@ -9,11 +9,11 @@ import MarketplaceMatches from '../MarketplaceMatch/MarketplaceMatches';
 import { toastMetamaskError } from '../Toast/Toast';
 
 type Props = {
-    web3: Web3
+    signer: Signer
     account: string
 }
 
-function MarketplaceBuyer({ web3, account }: Props) {
+function MarketplaceBuyer({ signer, account }: Props) {
     const { t } = useTranslation();
     const [demand, setDemand] = useState<Demand>(new Demand(account));
     const [loading, setLoading] = useState(false);
@@ -23,7 +23,7 @@ function MarketplaceBuyer({ web3, account }: Props) {
             setLoading(true);
             try {
                 const demand = new Demand(account);
-                setDemand(await demand.fetchDemand(web3));
+                setDemand(await demand.fetchDemand(signer));
             } catch (e: any) {
                 console.error(e);
                 toastMetamaskError(e, t);
@@ -32,7 +32,7 @@ function MarketplaceBuyer({ web3, account }: Props) {
             setLoading(false);
         }
         fetchDemand();
-    }, [web3, account, t]);
+    }, [signer, account, t]);
 
     const updateDemand = () => setDemand(demand.clone());
 
@@ -58,11 +58,11 @@ function MarketplaceBuyer({ web3, account }: Props) {
                                     {
                                         demand.doesDemandExists ?
                                             <>
-                                                < MarketplaceCreateDemand web3={web3} demand={demand} updateDemand={updateDemand} />
-                                                <MarketplaceCancelDemand web3={web3} demand={demand} updateDemand={updateDemand} />
+                                                < MarketplaceCreateDemand signer={signer} demand={demand} updateDemand={updateDemand} />
+                                                <MarketplaceCancelDemand signer={signer} demand={demand} updateDemand={updateDemand} />
                                             </ >
                                             :
-                                            < MarketplaceCreateDemand web3={web3} demand={demand} updateDemand={updateDemand} />
+                                            < MarketplaceCreateDemand signer={signer} demand={demand} updateDemand={updateDemand} />
                                     }
                                 </div>
                             </div>
@@ -84,7 +84,7 @@ function MarketplaceBuyer({ web3, account }: Props) {
                             }
                             {
                                 demand.doesDemandExists && demand.isMatched &&
-                                <MarketplaceMatches web3={web3} account={account} demand={demand} />
+                                <MarketplaceMatches signer={signer} account={account} demand={demand} />
                             }
                         </div>
                     </>

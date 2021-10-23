@@ -1,11 +1,10 @@
+import { ethers, Signer } from 'ethers';
 import React, { useEffect, useState } from 'react';
 import { Button, Spinner } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import Web3 from 'web3';
-import { AbiItem } from 'web3-utils';
 import { abi } from '../../asset/json/IdentityManager.abi.json';
 import { VOLTA_IDENTITY_MANAGER_ADDRESS } from '../../asset/json/voltaContractAddresses.json';
-import IdentityManager from '../../types/IdentityManager';
+import { IdentityManagerAbi as IdentityManager } from '../../types/IdentityManagerAbi';
 import { Asset } from '../../types/MarketplaceEntities';
 import MarketplaceMatches from '../MarketplaceMatch/MarketplaceMatches';
 import MarketplaceCancelOffer from '../MarketplaceOffer/MarketplaceCancelOffer';
@@ -13,11 +12,11 @@ import MarketplaceCreateOffer from '../MarketplaceOffer/MarketplaceCreateOffer';
 import { toastMetamaskError } from '../Toast/Toast';
 
 type Props = {
-    web3: Web3
+    signer: Signer
     account: string
 }
 
-function MarketplaceOwner({ web3, account }: Props) {
+function MarketplaceOwner({ signer, account }: Props) {
     const { t } = useTranslation();
     const [assets, setAssets] = useState<Asset[]>([]);
     const [loading, setLoading] = useState(false);
@@ -27,7 +26,7 @@ function MarketplaceOwner({ web3, account }: Props) {
         const fetchAssets = async () => {
             setLoading(true);
             try {
-                setAssets(await Asset.fetchAssets(web3, [account]));
+                setAssets(await Asset.fetchAssets(signer, [account]));
             }
             catch (e: any) {
                 console.error(e);
@@ -37,16 +36,16 @@ function MarketplaceOwner({ web3, account }: Props) {
             setLoading(false);
         }
         fetchAssets();
-    }, [web3, account, t]);
+    }, [signer, account, t]);
 
     const onCreateAsset = async () => {
         setCreatingAsset(true);
-        const identityManagerContract = new web3.eth.Contract(abi as AbiItem[], VOLTA_IDENTITY_MANAGER_ADDRESS) as unknown as IdentityManager;
+        const identityManagerContract = new ethers.Contract(VOLTA_IDENTITY_MANAGER_ADDRESS, abi, signer) as IdentityManager;
         identityManagerContract.once('IdentityCreated', (err, identity) =>
             err ? console.error(err) : setAssets([...assets, new Asset(identity.returnValues.identity, account)])
         );
         try {
-            await identityManagerContract.methods.createIdentity(account).send({ from: account });
+            await identityManagerContract.createIdentity(account);
         } catch (e: any) {
             console.error(e);
             toastMetamaskError(e, t);
@@ -79,11 +78,11 @@ function MarketplaceOwner({ web3, account }: Props) {
                         {
                             asset.doesOfferExists ?
                                 < >
-                                    < MarketplaceCreateOffer web3={web3} account={account} asset={asset} updateAssets={updateAssets} />
-                                    <MarketplaceCancelOffer web3={web3} account={account} asset={asset} updateAssets={updateAssets} />
+                                    < MarketplaceCreateOffer signer={signer} account={account} asset={asset} updateAssets={updateAssets} />
+                                    <MarketplaceCancelOffer signer={signer} account={account} asset={asset} updateAssets={updateAssets} />
                                 </ >
                                 :
-                                < MarketplaceCreateOffer web3={web3} account={account} asset={asset} updateAssets={updateAssets} />
+                                < MarketplaceCreateOffer signer={signer} account={account} asset={asset} updateAssets={updateAssets} />
                         }
                     </div>
                 </div>
@@ -110,7 +109,7 @@ function MarketplaceOwner({ web3, account }: Props) {
                 }
                 {
                     asset.doesOfferExists && asset.isMatched &&
-                    <MarketplaceMatches web3={web3} account={account} asset={asset} />
+                    <MarketplaceMatches signer={signer} account={account} asset={asset} />
                 }
             </div>
         ))
