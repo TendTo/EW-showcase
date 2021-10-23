@@ -9,7 +9,7 @@
 \usepackage{csquotes}
 \usepackage{graphicx} % Enhanced support for graphics (https://ctan.org/pkg/graphicx)
 \usepackage{framed} % Framed or shaded regions that can break across pages (https://ctan.org/pkg/framed)
-\usepackage[acronyms]{glossaries}
+\usepackage[toc,acronyms]{glossaries}
 \usepackage[font=small,labelfont=bf,tableposition=top]{caption}
 \usepackage[style=numeric,useprefix,hyperref,backend=bibtex,sorting=none]{biblatex} % Sophisticated Bibliographies in LATEX (https://ctan.org/pkg/biblatex)
 \usepackage{listings}
@@ -81,17 +81,17 @@
 % Energy web chain
 \input{sections/chapter_3}
 
-% Energy web servizi
+% Energy web services
 \input{sections/chapter_4}
 
-% Chapters
+% Conclusion
 \input{sections/conclusion}
 
-% Chapters
+% Energy Web showcase
 \input{sections/project}
 
-% Bibliografy
+% Glossaries and bibliografy
 \printnoidxglossary
-\printbibliography
+\printbibliography[heading=bibintoc]
 
 \end{document}
