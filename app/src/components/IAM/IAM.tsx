@@ -1,17 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import iam_process from "../../asset/img/iam-process.png";
-import IAMContext from "../../context/IAMContext";
+import { AppContext } from "../../context/appContext";
 import DIDLogin from "../DIDLogin/DIDLogin";
 import IAMDetails from "../IAMDetails/IAMDetails";
 import './IAM.css';
 
-type Props = {
-    account: string
-}
-
-function IAM({ account }: Props) {
-    const iam = useContext(IAMContext);
+function IAM() {
+    const { iam } = useContext(AppContext).state;
     const [did, setDID] = useState<string>("");
     const { t } = useTranslation();
 

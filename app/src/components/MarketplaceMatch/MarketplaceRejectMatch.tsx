@@ -1,19 +1,18 @@
-import { Signer } from 'ethers';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { AppContext } from '../../context/appContext';
 import { useIsMounted } from '../../hooks/useIsMounted';
 import { Match } from '../../types/MarketplaceEntities';
 import ConfirmModal from '../Modals/ConfirmModal';
 import { toastMetamaskError } from '../Toast/Toast';
 
 type Props = {
-    signer: Signer
-    account: string
     match: Match
     updateMatches: () => void
 }
 
-function MarketplaceRejectMatch({ signer, account, match, updateMatches }: Props) {
+function MarketplaceRejectMatch({ match, updateMatches }: Props) {
+    const { signer, address } = useContext(AppContext).state;
     const isMounted = useIsMounted();
     const [loading, setLoading] = useState(false);
     const { t } = useTranslation();
@@ -21,7 +20,7 @@ function MarketplaceRejectMatch({ signer, account, match, updateMatches }: Props
     const onSubmit = async () => {
         setLoading(true);
         try {
-            await match.rejectMatch(signer, account);
+            await match.rejectMatch(signer, address);
             updateMatches();
         } catch (e: any) {
             console.error(e);

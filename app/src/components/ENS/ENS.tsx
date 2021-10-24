@@ -1,5 +1,5 @@
-import { Signer } from 'ethers';
-import React, { useEffect, useRef, useState } from 'react';
+import { AppContext } from '../../context/appContext';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Button, Form, FormControl, InputGroup, Spinner } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { Trans, useTranslation } from 'react-i18next';
@@ -7,15 +7,12 @@ import VoltaApi, { getAccountInfoResponse } from '../../api/VoltaApi';
 import EwAccount from '../EwAccount/EwAccount';
 import './ENS.css';
 
-type Props = {
-  signer: Signer;
-};
-
 type FormInput = {
   search: string;
 }
 
-function ENS({ signer }: Props) {
+function ENS() {
+  const { signer } = useContext(AppContext).state;
   const voltaApi = useRef(new VoltaApi());
   const account = useRef<getAccountInfoResponse>();
   const [error, setError] = useState("");

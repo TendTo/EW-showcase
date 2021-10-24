@@ -1,7 +1,7 @@
 import { IOrganization } from "iam-client-lib/dist/src/cacheServerClient/cacheServerClient.types";
 import React, { useContext, useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
-import IAMContext from "../../context/IAMContext";
+import { AppContext } from "../../context/appContext";
 import EwOrg from "../EwOrg/EwOrg";
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
 
 function IAMDetails({ did }: Props) {
     const namespace = "unict.iam.ewc";
-    const iam = useContext(IAMContext);
+    const { iam } = useContext(AppContext).state;
     const [loading, setLoading] = useState(false);
     const [org, setOrg] = useState<(IOrganization)>();
 

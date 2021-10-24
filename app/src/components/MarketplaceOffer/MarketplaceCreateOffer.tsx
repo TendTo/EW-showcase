@@ -1,16 +1,14 @@
-import { Signer } from 'ethers';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Container, Form, Modal, Spinner } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import ew_logo from '../../asset/img/ew-logo-small.png';
+import { AppContext } from '../../context/appContext';
 import { useIsMounted } from '../../hooks/useIsMounted';
 import { Asset } from '../../types/MarketplaceEntities';
 import { toastMetamaskError } from '../Toast/Toast';
 
 type Props = {
-    signer: Signer
-    account: string
     asset: Asset
     updateAssets: () => void
 }
@@ -20,7 +18,8 @@ type FormInput = {
     price: number
 }
 
-function MarketplaceCreateOffer({ signer, account, asset, updateAssets }: Props) {
+function MarketplaceCreateOffer({ asset, updateAssets }: Props) {
+    const { signer } = useContext(AppContext).state;
     const defaultValues = { volume: asset.volume, price: asset.price };
     const isMounted = useIsMounted();
     const [loading, setLoading] = useState(false);

@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from 'react';
 import { Spinner } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import solar_logo from '../../asset/icon/solar-logo.svg';
-import IAMContext from '../../context/IAMContext';
+import { AppContext } from '../../context/appContext';
 import EwApp from '../EwApp/EwApp';
 import EwRole from '../EwRole/EwRole';
 
@@ -12,7 +12,7 @@ type Props = {
 };
 
 function EwOrg({ org }: Props) {
-    const iam = useContext(IAMContext);
+    const { iam } = useContext(AppContext).state;
     const [loading, setLoading] = React.useState(false);
     const [apps, setApps] = React.useState<IApp[]>([]);
     const [orgRoles, setOrgRoles] = React.useState<IRole[]>([]);

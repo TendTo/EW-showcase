@@ -1,9 +1,10 @@
-import { ethers, Signer } from 'ethers';
-import React, { useEffect, useState } from 'react';
+import { ethers } from 'ethers';
+import React, { useContext, useEffect, useState } from 'react';
 import { Button, Spinner } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { abi } from '../../asset/json/IdentityManager.abi.json';
 import { VOLTA_IDENTITY_MANAGER_ADDRESS } from '../../asset/json/voltaContractAddresses.json';
+import { AppContext } from '../../context/appContext';
 import { IdentityManagerAbi as IdentityManager } from '../../types/IdentityManagerAbi';
 import { Asset } from '../../types/MarketplaceEntities';
 import MarketplaceMatches from '../MarketplaceMatch/MarketplaceMatches';
@@ -11,12 +12,8 @@ import MarketplaceCancelOffer from '../MarketplaceOffer/MarketplaceCancelOffer';
 import MarketplaceCreateOffer from '../MarketplaceOffer/MarketplaceCreateOffer';
 import { toastMetamaskError } from '../Toast/Toast';
 
-type Props = {
-    signer: Signer
-    account: string
-}
-
-function MarketplaceOwner({ signer, account }: Props) {
+function MarketplaceOwner() {
+    const { signer, address } = useContext(AppContext).state;
     const { t } = useTranslation();
     const [assets, setAssets] = useState<Asset[]>([]);
     const [loading, setLoading] = useState(false);
@@ -26,7 +23,7 @@ function MarketplaceOwner({ signer, account }: Props) {
         const fetchAssets = async () => {
             setLoading(true);
             try {
-                setAssets(await Asset.fetchAssets(signer, [account]));
+                setAssets(await Asset.fetchAssets(signer, [address]));
             }
             catch (e: any) {
                 console.error(e);
@@ -36,16 +33,16 @@ function MarketplaceOwner({ signer, account }: Props) {
             setLoading(false);
         }
         fetchAssets();
-    }, [signer, account, t]);
+    }, [signer, address, t]);
 
     const onCreateAsset = async () => {
         setCreatingAsset(true);
         const identityManagerContract = new ethers.Contract(VOLTA_IDENTITY_MANAGER_ADDRESS, abi, signer) as IdentityManager;
         identityManagerContract.once('IdentityCreated', (err, identity) =>
-            err ? console.error(err) : setAssets([...assets, new Asset(identity.returnValues.identity, account)])
+            err ? console.error(err) : setAssets([...assets, new Asset(identity.returnValues.identity, address)])
         );
         try {
-            await identityManagerContract.createIdentity(account);
+            await identityManagerContract.createIdentity(address);
         } catch (e: any) {
             console.error(e);
             toastMetamaskError(e, t);
@@ -78,11 +75,11 @@ function MarketplaceOwner({ signer, account }: Props) {
                         {
                             asset.doesOfferExists ?
                                 < >
-                                    < MarketplaceCreateOffer signer={signer} account={account} asset={asset} updateAssets={updateAssets} />
-                                    <MarketplaceCancelOffer signer={signer} account={account} asset={asset} updateAssets={updateAssets} />
+                                    < MarketplaceCreateOffer asset={asset} updateAssets={updateAssets} />
+                                    <MarketplaceCancelOffer asset={asset} updateAssets={updateAssets} />
                                 </ >
                                 :
-                                < MarketplaceCreateOffer signer={signer} account={account} asset={asset} updateAssets={updateAssets} />
+                                < MarketplaceCreateOffer asset={asset} updateAssets={updateAssets} />
                         }
                     </div>
                 </div>
@@ -109,7 +106,7 @@ function MarketplaceOwner({ signer, account }: Props) {
                 }
                 {
                     asset.doesOfferExists && asset.isMatched &&
-                    <MarketplaceMatches signer={signer} account={account} asset={asset} />
+                    <MarketplaceMatches asset={asset} />
                 }
             </div>
         ))

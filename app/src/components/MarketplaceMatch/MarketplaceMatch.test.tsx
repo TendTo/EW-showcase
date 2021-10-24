@@ -13,14 +13,14 @@ const update = () => { };
 describe('MarketplaceAcceptMatch component', () => {
 
   test('renders MarketplaceAcceptMatch component', () => {
-    const { container } = render(<MarketplaceAcceptMatch signer={signer} account="account" match={match} updateMatches={update} />);
+    const { container } = render(<MarketplaceAcceptMatch match={match} updateMatches={update} />);
 
     const element = container.getElementsByClassName('fa-check');
     expect(element).toHaveLength(1);
   });
 
   test('renders MarketplaceAcceptMatch modal', () => {
-    const { container } = render(<MarketplaceAcceptMatch signer={signer} account="account" match={match} updateMatches={update} />);
+    const { container } = render(<MarketplaceAcceptMatch match={match} updateMatches={update} />);
 
     const element = container.getElementsByClassName('fa-check');
     fireEvent.click(element[0]);
@@ -32,14 +32,14 @@ describe('MarketplaceAcceptMatch component', () => {
 describe('MarketplaceCancelMatch component', () => {
 
   test('renders MarketplaceCancelMatch component', () => {
-    const { container } = render(<MarketplaceCancelMatch signer={signer} account="account" match={match} updateMatch={update} />);
+    const { container } = render(<MarketplaceCancelMatch match={match} updateMatch={update} />);
 
     const element = container.getElementsByClassName('fa-times');
     expect(element).toHaveLength(1);
   });
 
   test('renders MarketplaceCancelMatch modal', () => {
-    const { container } = render(<MarketplaceCancelMatch signer={signer} account="account" match={match} updateMatch={update} />);
+    const { container } = render(<MarketplaceCancelMatch match={match} updateMatch={update} />);
 
     const element = container.getElementsByClassName('fa-times');
     fireEvent.click(element[0]);
@@ -51,14 +51,14 @@ describe('MarketplaceCancelMatch component', () => {
 describe('MarketplaceDeleteMatch component', () => {
 
   test('renders MarketplaceDeleteMatch component', () => {
-    const { container } = render(<MarketplaceDeleteMatch signer={signer} account="account" match={match} updateMatches={update} />);
+    const { container } = render(<MarketplaceDeleteMatch match={match} updateMatches={update} />);
 
     const element = container.getElementsByClassName('fa-times');
     expect(element).toHaveLength(1);
   });
 
   test('renders MarketplaceDeleteMatch modal', () => {
-    const { container } = render(<MarketplaceDeleteMatch signer={signer} account="account" match={match} updateMatches={update} />);
+    const { container } = render(<MarketplaceDeleteMatch match={match} updateMatches={update} />);
 
     const element = container.getElementsByClassName('fa-times');
     fireEvent.click(element[0]);
@@ -70,14 +70,14 @@ describe('MarketplaceDeleteMatch component', () => {
 describe('MarketplaceRejectMatch component', () => {
 
   test('renders MarketplaceRejectMatch component', () => {
-    const { container } = render(<MarketplaceRejectMatch signer={signer} account="account" match={match} updateMatches={update} />);
+    const { container } = render(<MarketplaceRejectMatch match={match} updateMatches={update} />);
 
     const element = container.getElementsByClassName('fa-times');
     expect(element).toHaveLength(1);
   });
 
   test('renders MarketplaceRejectMatch modal', () => {
-    const { container } = render(<MarketplaceRejectMatch signer={signer} account="account" match={match} updateMatches={update} />);
+    const { container } = render(<MarketplaceRejectMatch match={match} updateMatches={update} />);
 
     const element = container.getElementsByClassName('fa-times');
     fireEvent.click(element[0]);

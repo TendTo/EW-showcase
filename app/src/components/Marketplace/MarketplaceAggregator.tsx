@@ -1,19 +1,16 @@
-import { ethers, Signer } from 'ethers';
-import React, { useEffect, useState } from 'react';
+import { ethers } from 'ethers';
+import React, { useContext, useEffect, useState } from 'react';
 import { Badge, Button, Spinner } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { abi as MarketplaceABI } from '../../asset/json/Marketplace.abi.json';
 import { VOLTA_MARKETPLACE_ADDRESS } from '../../asset/json/voltaContractAddresses.json';
+import { AppContext } from '../../context/appContext';
 import { MarketplaceAbi as Marketplace } from '../../types/MarketplaceAbi';
 import { Asset, Demand, Match } from '../../types/MarketplaceEntities';
 import { toastMetamaskError } from '../Toast/Toast';
 
-type Props = {
-    signer: Signer
-    account: string
-}
-
-function MarketplaceAggregator({ signer, account }: Props) {
+function MarketplaceAggregator() {
+    const { signer, address } = useContext(AppContext).state;
     const { t } = useTranslation();
     const [assets, setAssets] = useState<Asset[]>([]);
     const [demands, setDemands] = useState<Demand[]>([]);
@@ -29,8 +26,8 @@ function MarketplaceAggregator({ signer, account }: Props) {
         const fetchDemand = async () => {
             setLoading(true);
             try {
-                const assets = await Asset.fetchAssets(signer, [account]);
-                const demand = await Demand.fetchDemands(signer, [account]);
+                const assets = await Asset.fetchAssets(signer, [address]);
+                const demand = await Demand.fetchDemands(signer, [address]);
                 setAssets(assets.filter(asset => !asset.isMatched && asset.remainingVolume > 0 && asset.doesOfferExists));
                 setDemands(demand.filter(demand => !demand.isMatched && demand.doesDemandExists));
             } catch (e: any) {
@@ -41,7 +38,7 @@ function MarketplaceAggregator({ signer, account }: Props) {
             setLoading(false);
         }
         fetchDemand();
-    }, [signer, account, t]);
+    }, [signer, address, t]);
 
     const onProposeMatch = async () => {
         if (selectedAsset === undefined || selectedDemand === undefined)

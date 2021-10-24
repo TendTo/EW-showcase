@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Spinner } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import solar_logo from '../../asset/icon/solar-logo.svg';
-import IAMContext from '../../context/IAMContext';
+import { AppContext } from '../../context/appContext';
 import EwRole from '../EwRole/EwRole';
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 };
 
 function EwApp({ app }: Props) {
-    const iam = useContext(IAMContext);
+    const { iam } = useContext(AppContext).state;
     const [loading, setLoading] = useState(false);
     const [appRoles, setAppRoles] = useState<IRole[]>([]);
     const { t } = useTranslation();

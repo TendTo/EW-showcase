@@ -13,14 +13,14 @@ const update = () => { };
 describe('MarketplaceCreateOffer component', () => {
 
   test('renders MarketplaceCreateOffer component on create offer', () => {
-    const { container } = render(<MarketplaceCreateOffer signer={signer} account="account" asset={nonPublicAsset} updateAssets={update} />);
+    const { container } = render(<MarketplaceCreateOffer asset={nonPublicAsset} updateAssets={update} />);
 
     const element = container.getElementsByClassName('fa-location-arrow');
     expect(element).toHaveLength(1);
   });
 
   test('renders MarketplaceCreateOffer modal on create offer', () => {
-    const { container } = render(<MarketplaceCreateOffer signer={signer} account="account" asset={nonPublicAsset} updateAssets={update} />);
+    const { container } = render(<MarketplaceCreateOffer asset={nonPublicAsset} updateAssets={update} />);
 
     const element = container.getElementsByClassName('fa-location-arrow');
     fireEvent.click(element[0]);
@@ -29,14 +29,14 @@ describe('MarketplaceCreateOffer component', () => {
   });
 
   test('renders MarketplaceCreateOffer component on edit offer', () => {
-    const { container } = render(<MarketplaceCreateOffer signer={signer} account="account" asset={publicUnmatchedAsset} updateAssets={update} />);
+    const { container } = render(<MarketplaceCreateOffer asset={publicUnmatchedAsset} updateAssets={update} />);
 
     const element = container.getElementsByClassName('fa-pencil-square-o');
     expect(element).toHaveLength(1);
   });
 
   test('renders MarketplaceCreateOffer modal on edit offer', () => {
-    const { container } = render(<MarketplaceCreateOffer signer={signer} account="account" asset={publicUnmatchedAsset} updateAssets={update} />);
+    const { container } = render(<MarketplaceCreateOffer asset={publicUnmatchedAsset} updateAssets={update} />);
 
     const element = container.getElementsByClassName('fa-pencil-square-o');
     fireEvent.click(element[0]);
@@ -45,7 +45,7 @@ describe('MarketplaceCreateOffer component', () => {
   });
 
   test('renders MarketplaceCreateOffer modal on matched offer', () => {
-    const { container } = render(<MarketplaceCreateOffer signer={signer} account="account" asset={matchedAsset} updateAssets={update} />);
+    const { container } = render(<MarketplaceCreateOffer asset={matchedAsset} updateAssets={update} />);
 
     const element = container.querySelector('[disabled]');
     expect(element).not.toBeNull();
@@ -55,14 +55,14 @@ describe('MarketplaceCreateOffer component', () => {
 describe('MarketplaceCancelOffer component', () => {
 
   test('renders MarketplaceCancelOffer component', () => {
-    const { container } = render(<MarketplaceCancelOffer signer={signer} account="account" asset={nonPublicAsset} updateAssets={update} />);
+    const { container } = render(<MarketplaceCancelOffer asset={nonPublicAsset} updateAssets={update} />);
 
     const element = container.getElementsByClassName('fa-trash');
     expect(element).toHaveLength(1);
   });
 
   test('renders MarketplaceCancelOffer modal', () => {
-    const { container } = render(<MarketplaceCancelOffer signer={signer} account="account" asset={nonPublicAsset} updateAssets={update} />);
+    const { container } = render(<MarketplaceCancelOffer asset={nonPublicAsset} updateAssets={update} />);
 
     const element = container.getElementsByClassName('fa-trash');
     fireEvent.click(element[0]);
@@ -71,7 +71,7 @@ describe('MarketplaceCancelOffer component', () => {
   });
 
   test('renders MarketplaceCancelOffer modal on matched offer', () => {
-    const { container } = render(<MarketplaceCancelOffer signer={signer} account="account" asset={matchedAsset} updateAssets={update} />);
+    const { container } = render(<MarketplaceCancelOffer asset={matchedAsset} updateAssets={update} />);
 
     const element = container.querySelector('[disabled]');
     expect(element).not.toBeNull();

@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Button, Spinner } from "react-bootstrap";
 import { Trans, useTranslation } from "react-i18next";
 import metamaskLogo from "../../asset/icon/metamask-logo.svg";
-import IAMContext from "../../context/IAMContext";
+import { AppContext } from "../../context/appContext";
 import './DIDLogin.css';
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
 type RequestResultType = 'Error' | 'Unauthorized' | 'Success' | 'None';
 
 function DIDLogin({ setDID }: Props) {
-    const iam = useContext(IAMContext);
+    const { iam } = useContext(AppContext).state;
     const [requestResult, setRequestResult] = useState<RequestResultType>('None');
     const [loading, setLoading] = useState<boolean>(false);
     const { t } = useTranslation();

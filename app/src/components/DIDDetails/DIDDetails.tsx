@@ -5,7 +5,7 @@ import { Container, Spinner } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import empty_set from "../../asset/icon/empty-set.svg";
 import solar_logo from "../../asset/icon/solar-logo.svg";
-import IAMContext from "../../context/IAMContext";
+import { AppContext } from "../../context/appContext";
 import DIDEdit from "../DIDEdit/DIDEdit";
 
 type Props = {
@@ -14,7 +14,7 @@ type Props = {
 
 
 function DIDDetails({ did }: Props) {
-    const iam = useContext(IAMContext);
+    const { iam } = useContext(AppContext).state;
     const [loading, setLoading] = useState(false);
     const [profileClaim, setProfileClaims] = useState<(IServiceEndpoint & ClaimData)>();
     const { t } = useTranslation();

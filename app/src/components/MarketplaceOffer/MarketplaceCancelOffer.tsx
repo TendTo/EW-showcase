@@ -1,19 +1,18 @@
-import { Signer } from 'ethers';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { AppContext } from '../../context/appContext';
 import { useIsMounted } from '../../hooks/useIsMounted';
 import { Asset } from '../../types/MarketplaceEntities';
 import ConfirmModal from '../Modals/ConfirmModal';
 import { toastMetamaskError } from '../Toast/Toast';
 
 type Props = {
-    signer: Signer
-    account: string
     asset: Asset
     updateAssets: () => void
 }
 
-function MarketplaceCancelOffer({ signer, account, asset, updateAssets }: Props) {
+function MarketplaceCancelOffer({ asset, updateAssets }: Props) {
+    const { signer } = useContext(AppContext).state;
     const isMounted = useIsMounted();
     const [loading, setLoading] = useState(false);
     const { t } = useTranslation();

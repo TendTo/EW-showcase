@@ -1,7 +1,7 @@
-import { Signer } from 'ethers';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Badge, Spinner } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { AppContext } from '../../context/appContext';
 import { Asset, Demand, Match } from '../../types/MarketplaceEntities';
 import { toastMetamaskError } from '../Toast/Toast';
 import MarketplaceAcceptMatch from './MarketplaceAcceptMatch';
@@ -9,13 +9,12 @@ import MarketplaceDeleteMatch from './MarketplaceDeleteMatch';
 import MarketplaceRejectMatch from './MarketplaceRejectMatch';
 
 type Props = {
-    signer: Signer
-    account: string
     demand?: Demand
     asset?: Asset
 }
 
-function MarketplaceMatches({ signer, account, asset, demand }: Props) {
+function MarketplaceMatches({ asset, demand }: Props) {
+    const { signer, address } = useContext(AppContext).state;
     const { t } = useTranslation();
     const [loading, setLoading] = useState(false);
     const [matches, setMatches] = useState<Match[]>([]);
@@ -32,7 +31,7 @@ function MarketplaceMatches({ signer, account, asset, demand }: Props) {
             setLoading(false);
         }
         fetchDemand();
-    }, [signer, account, asset, demand, t]);
+    }, [signer, address, asset, demand, t]);
 
     const updateMatches = () => setMatches(matches.filter(match => match.doesMatchExists));
 
@@ -49,15 +48,15 @@ function MarketplaceMatches({ signer, account, asset, demand }: Props) {
                         </div >
                         <div className="marketplace-button-row">
                             {demand !== undefined && !match.isAccepted &&
-                                <MarketplaceAcceptMatch signer={signer} account={account} match={match} updateMatches={updateMatches} />
+                                <MarketplaceAcceptMatch match={match} updateMatches={updateMatches} />
                             }
                             {
                                 !match.isAccepted &&
-                                <MarketplaceRejectMatch signer={signer} account={account} match={match} updateMatches={updateMatches} />
+                                <MarketplaceRejectMatch match={match} updateMatches={updateMatches} />
 
                             }
                             {match.isAccepted &&
-                                <MarketplaceDeleteMatch signer={signer} account={account} match={match} updateMatches={updateMatches} />
+                                <MarketplaceDeleteMatch match={match} updateMatches={updateMatches} />
                             }
                         </div>
                     </div>

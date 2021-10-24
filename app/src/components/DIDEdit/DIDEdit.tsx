@@ -5,7 +5,7 @@ import { Button, Container, Form, Modal, Spinner } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import ew_logo from '../../asset/img/ew-logo-small.png';
-import IAMContext from "../../context/IAMContext";
+import { AppContext } from "../../context/appContext";
 import { toastMetamaskError } from "../Toast/Toast";
 import './DIDEdit.css';
 
@@ -27,7 +27,7 @@ function DIDEdit({ did, profile, setProfileClaims }: Props) {
         address: profile?.address ? profile.address.toString() : "",
         birthdate: profile?.birthdate ? new Date(Number(profile.birthdate)).toISOString().substr(0, 10) : ""
     };
-    const iam = useContext(IAMContext);
+    const { iam } = useContext(AppContext).state;
     const [loading, setLoading] = useState(false);
     const [show, setShow] = useState(false);
     const { register, formState: { errors }, handleSubmit, reset } = useForm<FormInput>({ defaultValues });

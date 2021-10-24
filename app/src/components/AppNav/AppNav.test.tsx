@@ -3,7 +3,7 @@ import React from 'react';
 import AppNav from './AppNav';
 
 test('renders AppNav react link', () => {
-  render(<AppNav account={"testAccount"} chain={"testChain"}/>);
+  render(<AppNav />);
   const linkElement = screen.getByText(/Energy Web Dapp showcase/i);
   expect(linkElement).toBeInTheDocument();
 });

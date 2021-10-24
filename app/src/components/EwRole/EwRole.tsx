@@ -2,7 +2,7 @@ import { ENSNamespaceTypes, IRole } from 'iam-client-lib';
 import React from 'react';
 import { Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { switchboardUrl } from '../../context/IAMContext'
+import { switchboardUrl } from '../../types/constants';
 
 
 type Props = {

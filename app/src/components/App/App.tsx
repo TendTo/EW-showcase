@@ -1,7 +1,7 @@
-import { Signer } from 'ethers';
 import React, { Suspense, useState } from 'react';
 import { Container, Spinner } from 'react-bootstrap';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { appContextData, AppContextProvider } from '../../context/appContext';
 import AppFooter from '../AppFooter/AppFooter';
 import AppNav from '../AppNav/AppNav';
 import DID from '../DID/DID';
@@ -15,12 +15,10 @@ import './App.css';
 
 function App() {
   const allowedChain = ["volta"];
-  const [signer, setSigner] = useState<Signer>();
-  const [account, setAccount] = useState<string>("");
-  const [chain, setChain] = useState<string>("");
-
-  const loggedIn = signer !== undefined && account.length > 0 && allowedChain.includes(chain);
-
+  const [logged, setLogged] = useState(false);
+  const login = (newContext: appContextData) => {
+    setLogged(newContext.signer !== undefined && newContext.address !== "" && allowedChain.includes(newContext.chainName));
+  }
   return (
     <Suspense fallback={
       <Container fluid className="text-center">
@@ -28,38 +26,40 @@ function App() {
       </Container>}
     >
       <Router>
-        <header>
-          <AppNav account={account} chain={chain}></AppNav>
-        </header>
-        <main role="main" className="container-fluid">
-          {loggedIn ?
-            <Switch>
-              <Route path="/ens" exact>
-                <ENS signer={signer}></ENS>
-              </Route>
-              <Route path="/did" exact>
-                <DID account={account}></DID>
-              </Route>
-              <Route path="/references" exact>
-                <References />
-              </Route>
-              <Route path="/iam" exact>
-                <IAM account={account}/>
-              </Route>
-              <Route path="/marketplace" exact>
-                <Marketplace signer={signer} account={account}/>
-              </Route>
-              <Route path="/" component={Home} />
-            </Switch>
-            :
-            <Login chain={chain} setAccount={setAccount} setSigner={setSigner} setChain={setChain}></Login>
-          }
-        </main>
+        <AppContextProvider>
+          <header>
+            <AppNav />
+          </header>
+          <main role="main" className="container-fluid">
+            {logged ?
+              <Switch>
+                <Route path="/ens" exact>
+                  <ENS />
+                </Route>
+                <Route path="/did" exact>
+                  <DID />
+                </Route>
+                <Route path="/references" exact>
+                  <References />
+                </Route>
+                <Route path="/iam" exact>
+                  <IAM />
+                </Route>
+                <Route path="/marketplace" exact>
+                  <Marketplace />
+                </Route>
+                <Route path="/" component={Home} />
+              </Switch>
+              :
+              <Login login={login} />
+            }
+          </main>
+        </AppContextProvider>
         <footer>
           <AppFooter></AppFooter>
         </footer>
       </Router>
-    </Suspense>
+    </Suspense >
   );
 }
 

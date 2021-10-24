@@ -1,38 +1,34 @@
-import { Signer } from 'ethers';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Spinner } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { AppContext } from '../../context/appContext';
 import { Demand } from '../../types/MarketplaceEntities';
 import MarketplaceCancelDemand from '../MarketplaceDemand/MarketplaceCancelDemand';
 import MarketplaceCreateDemand from '../MarketplaceDemand/MarketplaceCreateDemand';
 import MarketplaceMatches from '../MarketplaceMatch/MarketplaceMatches';
 import { toastMetamaskError } from '../Toast/Toast';
 
-type Props = {
-    signer: Signer
-    account: string
-}
-
-function MarketplaceBuyer({ signer, account }: Props) {
+function MarketplaceBuyer() {
+    const { signer, address } = useContext(AppContext).state;
     const { t } = useTranslation();
-    const [demand, setDemand] = useState<Demand>(new Demand(account));
+    const [demand, setDemand] = useState<Demand>(new Demand(address));
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchDemand = async () => {
             setLoading(true);
             try {
-                const demand = new Demand(account);
+                const demand = new Demand(address);
                 setDemand(await demand.fetchDemand(signer));
             } catch (e: any) {
                 console.error(e);
                 toastMetamaskError(e, t);
-                setDemand(new Demand(account));
+                setDemand(new Demand(address));
             }
             setLoading(false);
         }
         fetchDemand();
-    }, [signer, account, t]);
+    }, [signer, address, t]);
 
     const updateDemand = () => setDemand(demand.clone());
 
@@ -84,7 +80,7 @@ function MarketplaceBuyer({ signer, account }: Props) {
                             }
                             {
                                 demand.doesDemandExists && demand.isMatched &&
-                                <MarketplaceMatches signer={signer} account={account} demand={demand} />
+                                <MarketplaceMatches demand={demand} />
                             }
                         </div>
                     </>

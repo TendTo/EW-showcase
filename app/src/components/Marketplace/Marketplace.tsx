@@ -1,4 +1,3 @@
-import { Signer } from 'ethers';
 import React, { useState } from 'react';
 import { Nav } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
@@ -9,12 +8,8 @@ import MarketplaceOwner from './MarketplaceOwner';
 
 enum ROLES { OWNER, BUYER, AGGREGATOR };
 
-type Props = {
-    signer: Signer
-    account: string
-}
 
-function Marketplace({ signer, account }: Props) {
+function Marketplace() {
     const [role, setRoles] = useState(ROLES.OWNER);
     const { t } = useTranslation();
 
@@ -49,15 +44,15 @@ function Marketplace({ signer, account }: Props) {
             </Nav>
             {
                 role === ROLES.OWNER &&
-                <MarketplaceOwner signer={signer} account={account} />
+                <MarketplaceOwner />
             }
             {
                 role === ROLES.BUYER &&
-                <MarketplaceBuyer signer={signer} account={account} />
+                <MarketplaceBuyer />
             }
             {
                 role === ROLES.AGGREGATOR &&
-                <MarketplaceAggregator signer={signer} account={account} />
+                <MarketplaceAggregator />
             }
             <div className="d-flex justify-content-end mt-5">
                 <div className="d-flex flex-column align-items-end mt-5">
