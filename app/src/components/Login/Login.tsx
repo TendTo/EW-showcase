@@ -6,10 +6,17 @@ import { useTranslation } from 'react-i18next';
 import metamaskLogo from "../../asset/icon/metamask-logo.svg";
 import ew_logo from '../../asset/img/ew-logo-small.png';
 import { AppContext, appContextData } from '../../context/appContext';
+import { allowedChains } from '../../types/constants';
 import toast, { toastMetamaskError } from '../Toast/Toast';
 import './Login.css';
 
-declare var window: { location: { reload: () => any; }; ethereum: ethers.providers.ExternalProvider & { enable(): Promise<void> } };
+declare var window: {
+    location: { reload: () => any; };
+    ethereum: ethers.providers.ExternalProvider & {
+        request(method: { method: string }): Promise<void>
+        once(event: string, cb: (...args: any[]) => void): void;
+    }
+};
 
 type Props = {
     login: (newContext: appContextData) => void;
@@ -18,19 +25,19 @@ type Props = {
 function Login({ login }: Props) {
     const { state, update } = useContext(AppContext);
     const { t } = useTranslation();
-    const allowedChains = ["volta"];
     const onboarding = React.useRef<MetaMaskOnboarding>(new MetaMaskOnboarding());
 
     const onClick = async () => {
         if (MetaMaskOnboarding.isMetaMaskInstalled()) {
             onboarding.current.stopOnboarding();
             try {
-                await window.ethereum.enable();
+                await window.ethereum.request({ method: 'eth_requestAccounts' });
             } catch (err: any) {
                 toastMetamaskError(err, t);
+                console.log(err);
                 return;
             }
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
             const accounts = await provider.listAccounts();
             const newContext = {
                 ...state,
@@ -48,20 +55,18 @@ function Login({ login }: Props) {
 
     useEffect(() => {
         const setup = async () => {
-            if (window.ethereum === undefined)
+            if (window.ethereum === undefined || state.chainName !== "")
                 return;
             try {
-                await window.ethereum.enable();
+                await window.ethereum.request({ method: 'eth_requestAccounts' });
             } catch (err: any) {
                 toastMetamaskError(err, t);
+                console.log(err);
                 return;
             }
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
-            console.log("Once");
-            provider.once('accountsChanged', () => console.log("Accounts changed"));
-            provider.on("network", (_, oldNetwork) => { if (oldNetwork) console.log("Network changed from " + oldNetwork.name) });
-            //window.location.reload(); 
-            // });
+            const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+            window.ethereum.once('accountsChanged', () => window.location.reload());
+            window.ethereum.once('chainChanged', () => window.location.reload());
             const accounts = await provider.listAccounts();
             const newContext = {
                 ...state,
@@ -73,7 +78,7 @@ function Login({ login }: Props) {
             login(newContext);
         };
         setup();
-    }, [t, login, state, update])
+    }, [t, login, state, update]);
 
     return (
         <Container className="h-100">

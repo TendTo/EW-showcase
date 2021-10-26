@@ -2,6 +2,7 @@ import React, { Suspense, useState } from 'react';
 import { Container, Spinner } from 'react-bootstrap';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { appContextData, AppContextProvider } from '../../context/appContext';
+import { allowedChains } from '../../types/constants';
 import AppFooter from '../AppFooter/AppFooter';
 import AppNav from '../AppNav/AppNav';
 import DID from '../DID/DID';
@@ -14,10 +15,11 @@ import References from '../References/References';
 import './App.css';
 
 function App() {
-  const allowedChain = ["volta"];
   const [logged, setLogged] = useState(false);
   const login = (newContext: appContextData) => {
-    setLogged(newContext.signer !== undefined && newContext.address !== "" && allowedChain.includes(newContext.chainName));
+    setLogged(newContext.signer !== undefined
+      && newContext.address !== ""
+      && allowedChains.includes(newContext.chainName));
   }
   return (
     <Suspense fallback={
