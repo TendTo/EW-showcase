@@ -124,3 +124,4 @@ Opens an interactive console that connects to the provided network (the first if
 - [SVGBackgrounds](https://www.svgbackgrounds.com/)
 - [PlantUML](https://plantuml.com/)
 - [template-tesi-latex](https://github.com/UNICT-DMI/template-tesi-latex)
+- [ethers](https://github.com/ethers-io/ethers.js/#readme)
